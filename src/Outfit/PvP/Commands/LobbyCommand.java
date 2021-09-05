@@ -5,7 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 public class LobbyCommand implements CommandExecutor {
-   public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
-      return false;
-   }
+	public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
+		return false;
+	}
 }

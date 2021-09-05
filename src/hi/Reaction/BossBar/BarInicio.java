@@ -43,7 +43,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import Outfit.PvP.Main.Main;
 
-
 /**
  * © Copyright 2015 inventivetalent
  *
@@ -53,12 +52,9 @@ public class BarInicio implements Listener {
 
 	protected static BarInicio instance;
 
-
-	
-
 	@EventHandler
 	public void onPluginEnable(PluginEnableEvent e) {
-		
+
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR)
@@ -82,7 +78,9 @@ public class BarInicio implements Listener {
 	}
 
 	protected void handlePlayerTeleport(Player player, Location from, Location to) {
-		if (!BossBarAPI.hasBar(player)) { return; }
+		if (!BossBarAPI.hasBar(player)) {
+			return;
+		}
 		final BossBar bar = BossBarAPI.getBossBar(player);
 		bar.setVisible(false);
 		new BukkitRunnable() {
@@ -102,7 +100,9 @@ public class BarInicio implements Listener {
 
 				@Override
 				public void run() {
-					if (!e.getPlayer().isOnline()) { return; }
+					if (!e.getPlayer().isOnline()) {
+						return;
+					}
 					bar.updateMovement();
 				}
 			}.runTaskLater(Main.getPlugin(), 0);

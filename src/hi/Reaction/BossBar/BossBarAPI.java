@@ -111,7 +111,9 @@ public abstract class BossBarAPI {
 	 */
 	public static String getMessage(Player player) {
 		BossBar bar = getBossBar(player);
-		if (bar == null) { return null; }
+		if (bar == null) {
+			return null;
+		}
 		return bar.getMessage();
 	}
 
@@ -130,7 +132,9 @@ public abstract class BossBarAPI {
 	 */
 	public static void removeBar(@Nonnull Player player) {
 		BossBar bar = getBossBar(player);
-		if (bar == null) { return; }
+		if (bar == null) {
+			return;
+		}
 		bar.setVisible(false);
 		barMap.remove(player.getUniqueId());
 	}
@@ -143,7 +147,9 @@ public abstract class BossBarAPI {
 	 */
 	public static void setHealth(Player player, float percentage) {
 		BossBar bar = getBossBar(player);
-		if (bar == null) { return; }
+		if (bar == null) {
+			return;
+		}
 		bar.setHealth(percentage);
 	}
 
@@ -153,7 +159,9 @@ public abstract class BossBarAPI {
 	 */
 	public static float getHealth(@Nonnull Player player) {
 		BossBar bar = getBossBar(player);
-		if (bar == null) { return -1; }
+		if (bar == null) {
+			return -1;
+		}
 		return bar.getHealth();
 	}
 
@@ -161,11 +169,14 @@ public abstract class BossBarAPI {
 	 * Get the bar for the specified player
 	 *
 	 * @param player {@link Player}
-	 * @return a {@link BossBar} instance if the player has a bar, <code>null</code> otherwise
+	 * @return a {@link BossBar} instance if the player has a bar, <code>null</code>
+	 *         otherwise
 	 */
 	@Nullable
 	public static BossBar getBossBar(@Nonnull Player player) {
-		if (player == null) { return null; }
+		if (player == null) {
+			return null;
+		}
 		return barMap.get(player.getUniqueId());
 	}
 
@@ -178,11 +189,14 @@ public abstract class BossBarAPI {
 	}
 
 	protected static void sendPacket(Player p, Object packet) {
-		if (p == null || packet == null) { throw new IllegalArgumentException("player and packet cannot be null"); }
+		if (p == null || packet == null) {
+			throw new IllegalArgumentException("player and packet cannot be null");
+		}
 		try {
 			Object handle = Reflection.getHandle(p);
 			Object connection = Reflection.getField(handle.getClass(), "playerConnection").get(handle);
-			Reflection.getMethod(connection.getClass(), "sendPacket", Reflection.getNMSClass("Packet")).invoke(connection, new Object[] { packet });
+			Reflection.getMethod(connection.getClass(), "sendPacket", Reflection.getNMSClass("Packet"))
+					.invoke(connection, new Object[] { packet });
 		} catch (Exception e) {
 		}
 	}

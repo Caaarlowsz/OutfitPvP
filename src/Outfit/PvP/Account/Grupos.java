@@ -3,7 +3,7 @@ package Outfit.PvP.Account;
 import org.bukkit.entity.Player;
 
 public class Grupos {
-	
+
 	public static String getGrupos(Player p) {
 		if (p.getName().equalsIgnoreCase("sdadasdas") || p.getName().equalsIgnoreCase("dsadasda")) {
 			return "§4§lDONA";
@@ -87,5 +87,5 @@ public class Grupos {
 			return "§7§lNORMAL";
 		}
 		return "§7§lNORMAL";
-		}
+	}
 }

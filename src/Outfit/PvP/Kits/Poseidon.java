@@ -1,26 +1,26 @@
 package Outfit.PvP.Kits;
 
-import org.bukkit.event.player.*;
-import org.bukkit.*;
-import org.bukkit.potion.*;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.potion.PotionEffectType;
 
-import Outfit.PvP.Essencial.*;
-import Outfit.PvP.Eventos.*;
+import Outfit.PvP.Essencial.KitUtil;
+import Outfit.PvP.Eventos.Habilidade;
 
-import org.bukkit.entity.*;
-import org.bukkit.block.*;
-import org.bukkit.event.*;
-
-public class Poseidon implements Listener
-{
-    @EventHandler
-    public void aoPoseidon(final PlayerMoveEvent e) {
-        final Player p = e.getPlayer();
-        final Block b = p.getLocation().getBlock();
-        if (Habilidade.getAbility(p).equalsIgnoreCase("Poseidon") && (b.getType() == Material.WATER || b.getType() == Material.STATIONARY_WATER)) {
-            KitUtil.darEfeito(p, PotionEffectType.INCREASE_DAMAGE, 10, 1);
-            KitUtil.darEfeito(p, PotionEffectType.DAMAGE_RESISTANCE, 10, 1);
-            KitUtil.darEfeito(p, PotionEffectType.SPEED, 8, 0);
-        }
-    }
+public class Poseidon implements Listener {
+	@EventHandler
+	public void aoPoseidon(final PlayerMoveEvent e) {
+		final Player p = e.getPlayer();
+		final Block b = p.getLocation().getBlock();
+		if (Habilidade.getAbility(p).equalsIgnoreCase("Poseidon")
+				&& (b.getType() == Material.WATER || b.getType() == Material.STATIONARY_WATER)) {
+			KitUtil.darEfeito(p, PotionEffectType.INCREASE_DAMAGE, 10, 1);
+			KitUtil.darEfeito(p, PotionEffectType.DAMAGE_RESISTANCE, 10, 1);
+			KitUtil.darEfeito(p, PotionEffectType.SPEED, 8, 0);
+		}
+	}
 }

@@ -1,5 +1,15 @@
 package Outfit.PvP.Main;
 
+import java.util.List;
+
+import org.bukkit.Bukkit;
+import org.bukkit.World;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.java.JavaPlugin;
+
 import Outfit.PvP.APIs.TheTitle;
 import Outfit.PvP.Cassino.ApostasListener;
 import Outfit.PvP.Commands.AdminCommand;
@@ -185,376 +195,361 @@ import Outfit.PvP.Warps.Warp1v1;
 import Outfit.PvP.Warps.WarpRdm;
 import Outfit.PvP.Warps.WarpSumo;
 import Outfit.PvP.Warps.wFisherman;
-
-import java.util.Iterator;
-import java.util.List;
 import net.minecraft.util.com.google.common.collect.Lists;
-import org.bukkit.Bukkit;
-import org.bukkit.World;
-import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.java.JavaPlugin;
 
-@SuppressWarnings("unused")
-public class Main extends JavaPlugin
-{
-  public static String prefix;
-  public static String loja;
-  public static String ts;
-  public static String discord;
-  public static String motd;
-  public static String motd2;
-  public static String motd3;
-  public static String motd4;
-  public static Plugin plugin;
-  public static Main instance;
-  public static MyConfigManager manager;
-  public static BlinkEffect bk = new BlinkEffect();
-  private static Version version;
-  public static List<String> admins = Lists.newArrayList();
-  
-  public static Main getInstace()
-  {
-    return instance;
-  }
+public class Main extends JavaPlugin {
+	public static String prefix;
+	public static String loja;
+	public static String ts;
+	public static String discord;
+	public static String motd;
+	public static String motd2;
+	public static String motd3;
+	public static String motd4;
+	public static Plugin plugin;
+	public static Main instance;
+	public static MyConfigManager manager;
+	public static BlinkEffect bk = new BlinkEffect();
+	private static Version version;
+	public static List<String> admins = Lists.newArrayList();
 
-  public static Main getInstance1()
-  {
-    return instance;
-  }
+	public static Main getInstace() {
+		return instance;
+	}
 
-  public static Main getPlugin() {
-      return (Main)JavaPlugin.getProvidingPlugin((Class<?>)Main.class);
-  }
+	public static Main getInstance1() {
+		return instance;
+	}
 
-  @SuppressWarnings("deprecation")
-public void onEnable() {
+	public static Main getPlugin() {
+		return (Main) JavaPlugin.getProvidingPlugin((Class<?>) Main.class);
+	}
+
+	public void onEnable() {
 		for (Player todos : Bukkit.getOnlinePlayers()) {
-			todos.kickPlayer("§d§lKombo§f§lNetwork \n \n §cServidor Reiniciando \n Para sua segurança e a de outros jogadores(a), você foi kickado. \n\nAguarde o servidor reiniciar e entre para jogar novamente =)");
+			todos.kickPlayer(
+					"§d§lKombo§f§lNetwork \n \n §cServidor Reiniciando \n Para sua segurança e a de outros jogadores(a), você foi kickado. \n\nAguarde o servidor reiniciar e entre para jogar novamente =)");
 		}
 		ReflectionUtils.loadUtils();
 		CrashAPI.load();
 		Bukkit.getConsoleSender().sendMessage("§b§lSistema de /crash ativado");
-		
-   SManager.onEnable();
-   this.getServer().getPluginManager().registerEvents((Listener)new PlayerListener(), (Plugin)this);
-    try {
-      saveDefaultConfig();
-    }
-    catch (Exception localException) {
-    }
-    prefix = ("§d§lKombo§f§lPvP");
-    motd = ("             §f§k!!§r §6Kombo§fPvP §d§k!!§r §8» §7Servidor de KitPvP \n               §5✵ §f§lOS §d§lMELHORES§f§l ESTÃO AQUI§d§l! §5✵");
-    motd2 = ("             §f§k!!§r §6Kombo§fPvP §d§k!!§r §8» §7Servidor de KitPvP \n                   §5✵ §f§lNOVA §d§lHOST§f§l SEM LAG§d§l! §5✵");
-    motd3 = ("             §f§k!!§r §6Kombo§fPvP §d§k!!§r §8» §7Servidor de KitPvP \n              §5✵ §f§lVENHA TREINAR§6§l! §5✵");
-    motd4 = ("             §f§k!!§r §6Kombo§fPvP §d§k!!§r §8» §7Servidor de KitPvP \n                 §c§lSERVIDOR EM MANUNTENCAO!");
-    
-	Bukkit.getConsoleSender().sendMessage("§b§l§m-------------------------------------");
-	Bukkit.getConsoleSender().sendMessage("          §d§lKombo§f§lNetwork        ");
-	Bukkit.getConsoleSender().sendMessage("                                       ");
-	Bukkit.getConsoleSender().sendMessage("      §d§lKombo§f§lPvP §a§lHABILITADO");
-	Bukkit.getConsoleSender().sendMessage("§b§l§m-------------------------------------");
-	
-	Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPlugin(), new Runnable() {
-		public void run() {
-			API.AutomaticMessage();
+
+		SManager.onEnable();
+		this.getServer().getPluginManager().registerEvents((Listener) new PlayerListener(), (Plugin) this);
+		try {
+			saveDefaultConfig();
+		} catch (Exception localException) {
 		}
-	}, 0L, 120 * 20);
-	
-	Bukkit.getScheduler().runTaskTimerAsynchronously((Plugin)Main.getPlugin(), (Runnable)new Runnable() {
-		public void run() {
-		    Main.bk.next();
+		prefix = ("§d§lKombo§f§lPvP");
+		motd = ("             §f§k!!§r §6Kombo§fPvP §d§k!!§r §8» §7Servidor de KitPvP \n               §5✵ §f§lOS §d§lMELHORES§f§l ESTÃO AQUI§d§l! §5✵");
+		motd2 = ("             §f§k!!§r §6Kombo§fPvP §d§k!!§r §8» §7Servidor de KitPvP \n                   §5✵ §f§lNOVA §d§lHOST§f§l SEM LAG§d§l! §5✵");
+		motd3 = ("             §f§k!!§r §6Kombo§fPvP §d§k!!§r §8» §7Servidor de KitPvP \n              §5✵ §f§lVENHA TREINAR§6§l! §5✵");
+		motd4 = ("             §f§k!!§r §6Kombo§fPvP §d§k!!§r §8» §7Servidor de KitPvP \n                 §c§lSERVIDOR EM MANUNTENCAO!");
+
+		Bukkit.getConsoleSender().sendMessage("§b§l§m-------------------------------------");
+		Bukkit.getConsoleSender().sendMessage("          §d§lKombo§f§lNetwork        ");
+		Bukkit.getConsoleSender().sendMessage("                                       ");
+		Bukkit.getConsoleSender().sendMessage("      §d§lKombo§f§lPvP §a§lHABILITADO");
+		Bukkit.getConsoleSender().sendMessage("§b§l§m-------------------------------------");
+
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPlugin(), new Runnable() {
+			public void run() {
+				API.AutomaticMessage();
+			}
+		}, 0L, 120 * 20);
+
+		Bukkit.getScheduler().runTaskTimerAsynchronously((Plugin) Main.getPlugin(), (Runnable) new Runnable() {
+			public void run() {
+				Main.bk.next();
+			}
+		}, 0L, 20L);
+
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPlugin(), new Runnable() {
+			public void run() {
+				for (World w : Bukkit.getServer().getWorlds())
+					w.setTime(0L);
+			}
+		}, 0L, 10000L);
+
+		getConfig().options().copyDefaults(true);
+		getConfig().options().copyHeader(true);
+		saveConfig();
+		manager = new MyConfigManager(this);
+		ZeyCoins.loadMoneyManager();
+
+		instance = this;
+		plugin = this;
+		new ClanConfig(this);
+		new ClanConfig2(this);
+		Eventos();
+		Comandos();
+		Kits();
+	}
+
+	public void onDisable() {
+		Bukkit.getConsoleSender().sendMessage("§b§l§m-------------------------------------");
+		Bukkit.getConsoleSender().sendMessage("          §d§lOutfit§f§lNetwork        ");
+		Bukkit.getConsoleSender().sendMessage("                                       ");
+		Bukkit.getConsoleSender().sendMessage("      §d§lKombo§f§lPvP §c§lDESABILITADO!");
+		Bukkit.getConsoleSender().sendMessage("§b§l§m-------------------------------------");
+	}
+
+	public static boolean isOldVersion() {
+		if (version == Version.v1_7) {
+			return true;
 		}
-	}, 0L, 20L);
-	
-	Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPlugin(), new Runnable() {
-        public void run() {
-          for (World w : Bukkit.getServer().getWorlds())
-            w.setTime(0L); 
-        }
-    },  0L, 10000L);
+		if (version == Version.v1_6) {
+			return true;
+		}
+		if (version == Version.v1_5) {
+			return true;
+		}
+		return false;
+	}
 
-    getConfig().options().copyDefaults(true);
-    getConfig().options().copyHeader(true);
-    saveConfig();
-    manager = new MyConfigManager(this);
-    ZeyCoins.loadMoneyManager();
+	public static boolean isVeryOldVersion() {
+		if (version == Version.v1_6) {
+			return true;
+		}
+		if (version == Version.v1_5) {
+			return true;
+		}
+		return false;
+	}
 
-    instance = this;
-    plugin = this;
-	new ClanConfig(this);
-	new ClanConfig2(this);
-    Eventos();
-    Comandos();
-    Kits();
-  }
+	public void Eventos() {
+		PluginManager Eventos = Bukkit.getPluginManager();
+		Eventos.registerEvents(new AntiBot(), this);
+		Eventos.registerEvents(new PlacaDaLava(), this);
+		Eventos.registerEvents(new PlacaDeRecraft(), this);
+		Eventos.registerEvents(new Proteção(), this);
+		Eventos.registerEvents(new Admin(this), this);
+		Eventos.registerEvents(new Diamante(), this);
+		Eventos.registerEvents(new EndPortal(), this);
+		Eventos.registerEvents(new Ferro(), this);
+		Eventos.registerEvents(new Esponja(), this);
+		Eventos.registerEvents(new GmCommand(this), this);
+		Eventos.registerEvents(new TheTitle(), this);
+		Eventos.registerEvents(new AntFlood(this), this);
+		Eventos.registerEvents(new Entrar(), this);
+		Eventos.registerEvents(new CcCommand(this), this);
+		Eventos.registerEvents(new MenuGeral(), this);
+		Eventos.registerEvents(new Direito(), this);
+		Eventos.registerEvents(new CombatLog(), this);
+		Eventos.registerEvents(new XpDiario(), this);
+		Eventos.registerEvents(new BroadcastCommand(), this);
+		Eventos.registerEvents(new SSCommand(), this);
+		Eventos.registerEvents(new SetArenaCommand(this), this);
+		Eventos.registerEvents(new KitCommand(this), this);
+		Eventos.registerEvents(new Geral(), this);
+		Eventos.registerEvents(new MenuPerfil(), this);
+		Eventos.registerEvents(new MenuOutros(), this);
+		Eventos.registerEvents(new TabPersonalizado(), this);
+		Eventos.registerEvents(new InvCommand(), this);
+		Eventos.registerEvents(new GanharXP(), this);
+		Eventos.registerEvents(new MyConfigManager(this), this);
+		Eventos.registerEvents(new ZeyCoins(), this);
+		Eventos.registerEvents(new ChatForm(), this);
+		Eventos.registerEvents(new Status(), this);
+		Eventos.registerEvents(new PvPCommand(), this);
+		Eventos.registerEvents(new BuildCommand(), this);
+		Eventos.registerEvents(new MenuKits2(this), this);
+		Eventos.registerEvents(new MenuKits(this), this);
+		Eventos.registerEvents(new MenuVip(), this);
+		Eventos.registerEvents(new TagCommand(), this);
+		Eventos.registerEvents(new HeadCommand(), this);
+		Eventos.registerEvents(new Fps(this), this);
+		Eventos.registerEvents(new Textura(this), this);
+		Eventos.registerEvents(new Lava(this), this);
+		Eventos.registerEvents(new Potion(this), this);
+		Eventos.registerEvents(new Evento(this), this);
+		Eventos.registerEvents(new Parkour(this), this);
+		Eventos.registerEvents(new SetarRdm(this), this);
+		Eventos.registerEvents(new SetFps(this), this);
+		Eventos.registerEvents(new SetLoc1(this), this);
+		Eventos.registerEvents(new Set1v1(this), this);
+		Eventos.registerEvents(new SetLoc2(this), this);
+		Eventos.registerEvents(new SetTextura(this), this);
+		Eventos.registerEvents(new SetKnockback(this), this);
+		Eventos.registerEvents(new Caixas(), this);
+		Eventos.registerEvents(new SetSS(this), this);
+		Eventos.registerEvents(new SetMDR(this), this);
+		Eventos.registerEvents(new SetMLG(this), this);
+		Eventos.registerEvents(new SetPotion(this), this);
+		Eventos.registerEvents(new SetLava(this), this);
+		Eventos.registerEvents(new SetEvento(this), this);
+		Eventos.registerEvents(new SetParkour(this), this);
+		Eventos.registerEvents(new PlacaDeSopa(this), this);
+		Eventos.registerEvents(new PlacaDePotion(this), this);
+		Eventos.registerEvents(new SetSpawn(this), this);
+		Eventos.registerEvents(new Setthemain(this), this);
+		Eventos.registerEvents(new Spawn(this), this);
+		Eventos.registerEvents(new TheMain(this), this);
+		Eventos.registerEvents(new ARENA(this), this);
+		Eventos.registerEvents(new MDR(this), this);
+		Eventos.registerEvents(new MLG(this), this);
+		Eventos.registerEvents(new WarpRdm(this), this);
+		Eventos.registerEvents(new MenuWarps(), this);
+		Eventos.registerEvents(new MenuLojaKits(this), this);
+		Eventos.registerEvents(new MenuLojaVips(), this);
+		Eventos.registerEvents(new MenuEventos(), this);
+		Eventos.registerEvents(new MenuLojaExtras(this), this);
+		Eventos.registerEvents(new MacroTestCommand(), this);
+		Eventos.registerEvents(new ParkourJump(this), this);
+		Eventos.registerEvents(new Vis(), this);
+		Eventos.registerEvents(new MenuCabeças(this), this);
+		Eventos.registerEvents(new ApostasListener(), this);
+		Eventos.registerEvents(new ChatCommand(this), this);
+		Eventos.registerEvents(new SpeedSumo(), this);
+		Eventos.registerEvents(new EventsSumo(), this);
+		Eventos.registerEvents(new Speed1v1(), this);
+		Eventos.registerEvents(new Events1v1(), this);
+	}
 
-   public void onDisable() {
-      Bukkit.getConsoleSender().sendMessage("§b§l§m-------------------------------------");
-      Bukkit.getConsoleSender().sendMessage("          §d§lOutfit§f§lNetwork        ");
-      Bukkit.getConsoleSender().sendMessage("                                       ");
-      Bukkit.getConsoleSender().sendMessage("      §d§lKombo§f§lPvP §c§lDESABILITADO!");
-      Bukkit.getConsoleSender().sendMessage("§b§l§m-------------------------------------");
-   }
-   public static boolean isOldVersion()
-   {
-     if (version == Version.v1_7) {
-       return true;
-     }
-     if (version == Version.v1_6) {
-       return true;
-     }
-     if (version == Version.v1_5) {
-       return true;
-     }
-     return false;
-   }
+	void Comandos() {
+		this.getCommand("admin").setExecutor(new AdminCommand(this));
+		this.getCommand("morrer").setExecutor(new Morrer());
+		this.getCommand("autosoup").setExecutor(new AutoSoupCommand(this));
+		this.getCommand("bc").setExecutor(new BroadcastCommand());
+		this.getCommand("build").setExecutor(new BuildCommand());
+		this.getCommand("reloadcfg").setExecutor(new ConfigCommand());
+		this.getCommand("cage").setExecutor(new CageCommand());
+		this.getCommand("ss").setExecutor(new SSCommand());
+		this.getCommand("cc").setExecutor(new CcCommand(this));
+		this.getCommand("chat").setExecutor(new ChatCommand(this));
+		this.getCommand("darcoins").setExecutor(new DarCoinsCommand());
+		this.getCommand("doar").setExecutor(new DoarCommand());
+		this.getCommand("finalizar").setExecutor(new FinalizarCommand());
+		this.getCommand("fly").setExecutor(new FlyCommand());
+		this.getCommand("gm").setExecutor(new GmCommand(this));
+		this.getCommand("head").setExecutor(new HeadCommand());
+		this.getCommand("sudo").setExecutor(new Sudo());
+		this.getCommand("consolesudo").setExecutor(new Sudo());
+		this.getCommand("iniciar").setExecutor(new IniciarCommand());
+		this.getCommand("inv").setExecutor(new InvCommand());
+		this.getCommand("kit").setExecutor(new KitCommand(this));
+		this.getCommand("liga").setExecutor(new LigaCommand());
+		this.getCommand("crash").setExecutor(new Crashar());
+		this.getCommand("marca").setExecutor(new MarcaCommand());
+		this.getCommand("testmacro").setExecutor(new MacroTestCommand());
+		this.getCommand("ping").setExecutor(new LagCommand());
+		this.getCommand("lag").setExecutor(new LagCommand());
+		this.getCommand("pvp").setExecutor(new PvPCommand());
+		this.getCommand("clan").setExecutor(new ClanCommand());
+		this.getCommand("score").setExecutor(new ScoreCommand());
+		this.getCommand("setarena").setExecutor(new SetArenaCommand(this));
+		this.getCommand("setgroup").setExecutor(new SetGroupCommand());
+		this.getCommand("setvip").setExecutor(new SetVipCommand());
+		this.getCommand("regras").setExecutor(new Regras());
+		this.getCommand("status").setExecutor(new StatusCommand());
+		this.getCommand("skit").setExecutor(new sKit(this));
+		this.getCommand("sortearkit").setExecutor(new SortearKit());
+		this.getCommand("sortearvip").setExecutor(new SortearVip());
+		this.getCommand("tag").setExecutor(new TagCommand());
+		this.getCommand("tpall").setExecutor(new TpAllCommand());
+		this.getCommand("tpevento").setExecutor(new TpAllEvento());
+		this.getCommand("tp").setExecutor(new TpCommand());
+		this.getCommand("tphere").setExecutor(new TpHereCommand());
+		this.getCommand("vis").setExecutor(new Vis());
+		this.getCommand("sc").setExecutor(new SCCommand());
+		this.getCommand("limpartela").setExecutor(new LimparTelaCommand());
+		this.getCommand("recraft").setExecutor(new RecraftCommand());
+		this.getCommand("tell").setExecutor(new TellCommand());
+		this.getCommand("aplicar").setExecutor(new AplicarCommand());
+		this.getCommand("youtuber").setExecutor(new YTCommand());
+		this.getCommand("ajuda").setExecutor(new InfoCommand());
+		this.getCommand("report").setExecutor(new ReportCommand(this));
+		this.getCommand("fps").setExecutor(new Fps(this));
+		this.getCommand("warps").setExecutor(new MenuWarps());
+		this.getCommand("loja").setExecutor(new MenuVip());
+		this.getCommand("textura").setExecutor(new Textura(this));
+		this.getCommand("knockback").setExecutor(new Knockback(this));
+		this.getCommand("fisherman").setExecutor(new wFisherman(this));
+		this.getCommand("challenge").setExecutor(new Lava(this));
+		this.getCommand("void").setExecutor(new VoidC(this));
+		this.getCommand("sumo").setExecutor(new WarpSumo(this));
+		this.getCommand("speedsumo").setExecutor(new CmdsSpeedSumo());
+		this.getCommand("evento").setExecutor(new Evento(this));
+		this.getCommand("parkour").setExecutor(new Parkour(this));
+		this.getCommand("rdmset").setExecutor(new SetarRdm(this));
+		this.getCommand("sumoset").setExecutor(new SetSumo(this));
+		this.getCommand("s1set").setExecutor(new SetS1(this));
+		this.getCommand("s2set").setExecutor(new SetS2(this));
+		this.getCommand("fpsset").setExecutor(new SetFps(this));
+		this.getCommand("fishset").setExecutor(new SetFish(this));
+		this.getCommand("ssset").setExecutor(new SetSS(this));
+		this.getCommand("txset").setExecutor(new SetTextura(this));
+		this.getCommand("kbset").setExecutor(new SetKnockback(this));
+		this.getCommand("potionset").setExecutor(new SetPotion(this));
+		this.getCommand("challengeset").setExecutor(new SetLava(this));
+		this.getCommand("eventoset").setExecutor(new SetEvento(this));
+		this.getCommand("parkourset").setExecutor(new SetParkour(this));
+		this.getCommand("mainset").setExecutor(new Setthemain(this));
+		this.getCommand("mdrset").setExecutor(new SetMDR(this));
+		this.getCommand("mlgset").setExecutor(new SetMLG(this));
+		this.getCommand("voidset").setExecutor(new SetVoid(this));
+		this.getCommand("spawnset").setExecutor(new SetSpawn(this));
+		this.getCommand("loc1set").setExecutor(new SetLoc1(this));
+		this.getCommand("loc2set").setExecutor(new SetLoc2(this));
+		this.getCommand("1v1set").setExecutor(new Set1v1(this));
+		this.getCommand("main").setExecutor(new TheMain(this));
+		this.getCommand("arena").setExecutor(new ARENA(this));
+		this.getCommand("mdr").setExecutor(new MDR(this));
+		this.getCommand("1v1").setExecutor(new Warp1v1(this));
+		this.getCommand("speed1v1").setExecutor(new CmdsSpeed());
+		this.getCommand("mlg").setExecutor(new MLG(this));
+		this.getCommand("potion").setExecutor(new Potion(this));
+		this.getCommand("spawn").setExecutor(new Spawn(this));
+		this.getCommand("lojakits").setExecutor(new MenuLojaKits(this));
+		this.getCommand("rdm").setExecutor(new WarpRdm(this));
+		this.getCommand("lojaextras").setExecutor(new MenuLojaExtras(this));
+	}
 
-   public static boolean isVeryOldVersion()
-   {
-     if (version == Version.v1_6) {
-       return true;
-     }
-     if (version == Version.v1_5) {
-       return true;
-     }
-     return false;
-   }
-   public void Eventos() {
-      PluginManager Eventos = Bukkit.getPluginManager();
-      Eventos.registerEvents(new AntiBot(), this);
-      Eventos.registerEvents(new PlacaDaLava(), this);
-      Eventos.registerEvents(new PlacaDeRecraft(), this);
-      Eventos.registerEvents(new Proteção(), this);
-      Eventos.registerEvents(new Admin(this), this);
-      Eventos.registerEvents(new Diamante(), this);
-      Eventos.registerEvents(new EndPortal(), this);
-      Eventos.registerEvents(new Ferro(), this);
-      Eventos.registerEvents(new Esponja(), this);
-      Eventos.registerEvents(new GmCommand(this), this);
-      Eventos.registerEvents(new TheTitle(), this);
-      Eventos.registerEvents(new AntFlood(this), this);
-      Eventos.registerEvents(new Entrar(), this);
-      Eventos.registerEvents(new CcCommand(this), this);
-      Eventos.registerEvents(new MenuGeral(), this);
-      Eventos.registerEvents(new Direito(), this);
-      Eventos.registerEvents(new CombatLog(), this);
-      Eventos.registerEvents(new XpDiario(), this);
-      Eventos.registerEvents(new BroadcastCommand(), this);
-      Eventos.registerEvents(new SSCommand(), this);
-      Eventos.registerEvents(new SetArenaCommand(this), this);
-      Eventos.registerEvents(new KitCommand(this), this);
-      Eventos.registerEvents(new Geral(), this);
-      Eventos.registerEvents(new MenuPerfil(), this);
-      Eventos.registerEvents(new MenuOutros(), this);
-      Eventos.registerEvents(new TabPersonalizado(), this);
-      Eventos.registerEvents(new InvCommand(), this);
-      Eventos.registerEvents(new GanharXP(), this);
-      Eventos.registerEvents(new MyConfigManager(this), this);
-      Eventos.registerEvents(new ZeyCoins(), this);
-      Eventos.registerEvents(new ChatForm(), this);
-      Eventos.registerEvents(new Status(), this);
-      Eventos.registerEvents(new PvPCommand(), this);
-      Eventos.registerEvents(new BuildCommand(), this);
-      Eventos.registerEvents(new MenuKits2(this), this);
-      Eventos.registerEvents(new MenuKits(this), this);
-      Eventos.registerEvents(new MenuVip(), this);
-      Eventos.registerEvents(new TagCommand(), this);
-      Eventos.registerEvents(new HeadCommand(), this);
-      Eventos.registerEvents(new Fps(this), this);
-      Eventos.registerEvents(new Textura(this), this);
-      Eventos.registerEvents(new Lava(this), this);
-      Eventos.registerEvents(new Potion(this), this);
-      Eventos.registerEvents(new Evento(this), this);
-      Eventos.registerEvents(new Parkour(this), this);
-      Eventos.registerEvents(new SetarRdm(this), this);
-      Eventos.registerEvents(new SetFps(this), this);
-      Eventos.registerEvents(new SetLoc1(this), this);
-      Eventos.registerEvents(new Set1v1(this), this);
-      Eventos.registerEvents(new SetLoc2(this), this);
-      Eventos.registerEvents(new SetTextura(this), this);
-      Eventos.registerEvents(new SetKnockback(this), this);
-      Eventos.registerEvents(new Caixas(), this);
-      Eventos.registerEvents(new SetSS(this), this);
-      Eventos.registerEvents(new SetMDR(this), this);
-      Eventos.registerEvents(new SetMLG(this), this);
-      Eventos.registerEvents(new SetPotion(this), this);
-      Eventos.registerEvents(new SetLava(this), this);
-      Eventos.registerEvents(new SetEvento(this), this);
-      Eventos.registerEvents(new SetParkour(this), this);
-      Eventos.registerEvents(new PlacaDeSopa(this), this);
-      Eventos.registerEvents(new PlacaDePotion(this), this);
-      Eventos.registerEvents(new SetSpawn(this), this);
-      Eventos.registerEvents(new Setthemain(this), this);
-      Eventos.registerEvents(new Spawn(this), this);
-      Eventos.registerEvents(new TheMain(this), this);
-      Eventos.registerEvents(new ARENA(this), this);
-      Eventos.registerEvents(new MDR(this), this);
-      Eventos.registerEvents(new MLG(this), this);
-      Eventos.registerEvents(new WarpRdm(this), this);
-      Eventos.registerEvents(new MenuWarps(), this);
-      Eventos.registerEvents(new MenuLojaKits(this), this);
-      Eventos.registerEvents(new MenuLojaVips(), this);
-      Eventos.registerEvents(new MenuEventos(), this);
-      Eventos.registerEvents(new MenuLojaExtras(this), this);
-      Eventos.registerEvents(new MacroTestCommand(), this);
-      Eventos.registerEvents(new ParkourJump(this), this);
-      Eventos.registerEvents(new Vis(), this);
-      Eventos.registerEvents(new MenuCabeças(this), this);
-      Eventos.registerEvents(new ApostasListener(), this);
-      Eventos.registerEvents(new ChatCommand(this), this);
-      Eventos.registerEvents(new SpeedSumo(), this);
-      Eventos.registerEvents(new EventsSumo(), this);
-      Eventos.registerEvents(new Speed1v1(), this);
-      Eventos.registerEvents(new Events1v1(), this);
-   }
-
-   void Comandos() {
-      this.getCommand("admin").setExecutor(new AdminCommand(this));
-      this.getCommand("morrer").setExecutor(new Morrer());
-      this.getCommand("autosoup").setExecutor(new AutoSoupCommand(this));
-      this.getCommand("bc").setExecutor(new BroadcastCommand());
-      this.getCommand("build").setExecutor(new BuildCommand());
-      this.getCommand("reloadcfg").setExecutor(new ConfigCommand());
-      this.getCommand("cage").setExecutor(new CageCommand());
-      this.getCommand("ss").setExecutor(new SSCommand());
-      this.getCommand("cc").setExecutor(new CcCommand(this));
-      this.getCommand("chat").setExecutor(new ChatCommand(this));
-      this.getCommand("darcoins").setExecutor(new DarCoinsCommand());
-      this.getCommand("doar").setExecutor(new DoarCommand());
-      this.getCommand("finalizar").setExecutor(new FinalizarCommand());
-      this.getCommand("fly").setExecutor(new FlyCommand());
-      this.getCommand("gm").setExecutor(new GmCommand(this));
-      this.getCommand("head").setExecutor(new HeadCommand());
-      this.getCommand("sudo").setExecutor(new Sudo());
-      this.getCommand("consolesudo").setExecutor(new Sudo());
-      this.getCommand("iniciar").setExecutor(new IniciarCommand());
-      this.getCommand("inv").setExecutor(new InvCommand());
-      this.getCommand("kit").setExecutor(new KitCommand(this));
-      this.getCommand("liga").setExecutor(new LigaCommand());
-      this.getCommand("crash").setExecutor(new Crashar());
-      this.getCommand("marca").setExecutor(new MarcaCommand());
-      this.getCommand("testmacro").setExecutor(new MacroTestCommand());
-      this.getCommand("ping").setExecutor(new LagCommand());
-      this.getCommand("lag").setExecutor(new LagCommand());
-      this.getCommand("pvp").setExecutor(new PvPCommand());
-      this.getCommand("clan").setExecutor(new ClanCommand());
-      this.getCommand("score").setExecutor(new ScoreCommand());
-      this.getCommand("setarena").setExecutor(new SetArenaCommand(this));
-      this.getCommand("setgroup").setExecutor(new SetGroupCommand());
-      this.getCommand("setvip").setExecutor(new SetVipCommand());
-      this.getCommand("regras").setExecutor(new Regras());
-      this.getCommand("status").setExecutor(new StatusCommand());
-      this.getCommand("skit").setExecutor(new sKit(this));
-      this.getCommand("sortearkit").setExecutor(new SortearKit());
-      this.getCommand("sortearvip").setExecutor(new SortearVip());
-      this.getCommand("tag").setExecutor(new TagCommand());
-      this.getCommand("tpall").setExecutor(new TpAllCommand());
-      this.getCommand("tpevento").setExecutor(new TpAllEvento());
-      this.getCommand("tp").setExecutor(new TpCommand());
-      this.getCommand("tphere").setExecutor(new TpHereCommand());
-      this.getCommand("vis").setExecutor(new Vis());
-      this.getCommand("sc").setExecutor(new SCCommand());
-      this.getCommand("limpartela").setExecutor(new LimparTelaCommand());
-      this.getCommand("recraft").setExecutor(new RecraftCommand());
-      this.getCommand("tell").setExecutor(new TellCommand());
-      this.getCommand("aplicar").setExecutor(new AplicarCommand());
-      this.getCommand("youtuber").setExecutor(new YTCommand());
-      this.getCommand("ajuda").setExecutor(new InfoCommand());
-      this.getCommand("report").setExecutor(new ReportCommand(this));
-      this.getCommand("fps").setExecutor(new Fps(this));
-      this.getCommand("warps").setExecutor(new MenuWarps());
-      this.getCommand("loja").setExecutor(new MenuVip());
-      this.getCommand("textura").setExecutor(new Textura(this));
-      this.getCommand("knockback").setExecutor(new Knockback(this));
-      this.getCommand("fisherman").setExecutor(new wFisherman(this));
-      this.getCommand("challenge").setExecutor(new Lava(this));
-      this.getCommand("void").setExecutor(new VoidC(this));
-      this.getCommand("sumo").setExecutor(new WarpSumo(this));
-      this.getCommand("speedsumo").setExecutor(new CmdsSpeedSumo());
-      this.getCommand("evento").setExecutor(new Evento(this));
-      this.getCommand("parkour").setExecutor(new Parkour(this));
-      this.getCommand("rdmset").setExecutor(new SetarRdm(this));
-      this.getCommand("sumoset").setExecutor(new SetSumo(this));
-      this.getCommand("s1set").setExecutor(new SetS1(this));
-      this.getCommand("s2set").setExecutor(new SetS2(this));
-      this.getCommand("fpsset").setExecutor(new SetFps(this));
-      this.getCommand("fishset").setExecutor(new SetFish(this));
-      this.getCommand("ssset").setExecutor(new SetSS(this));
-      this.getCommand("txset").setExecutor(new SetTextura(this));
-      this.getCommand("kbset").setExecutor(new SetKnockback(this));
-      this.getCommand("potionset").setExecutor(new SetPotion(this));
-      this.getCommand("challengeset").setExecutor(new SetLava(this));
-      this.getCommand("eventoset").setExecutor(new SetEvento(this));
-      this.getCommand("parkourset").setExecutor(new SetParkour(this));
-      this.getCommand("mainset").setExecutor(new Setthemain(this));
-      this.getCommand("mdrset").setExecutor(new SetMDR(this));
-      this.getCommand("mlgset").setExecutor(new SetMLG(this));
-      this.getCommand("voidset").setExecutor(new SetVoid(this));
-      this.getCommand("spawnset").setExecutor(new SetSpawn(this));
-      this.getCommand("loc1set").setExecutor(new SetLoc1(this));
-      this.getCommand("loc2set").setExecutor(new SetLoc2(this));
-      this.getCommand("1v1set").setExecutor(new Set1v1(this));
-      this.getCommand("main").setExecutor(new TheMain(this));
-      this.getCommand("arena").setExecutor(new ARENA(this));
-      this.getCommand("mdr").setExecutor(new MDR(this));
-      this.getCommand("1v1").setExecutor(new Warp1v1(this));
-      this.getCommand("speed1v1").setExecutor(new CmdsSpeed());
-      this.getCommand("mlg").setExecutor(new MLG(this));
-      this.getCommand("potion").setExecutor(new Potion(this));
-      this.getCommand("spawn").setExecutor(new Spawn(this));
-      this.getCommand("lojakits").setExecutor(new MenuLojaKits(this));
-      this.getCommand("rdm").setExecutor(new WarpRdm(this));
-      this.getCommand("lojaextras").setExecutor(new MenuLojaExtras(this));
-   }
-
-   public void Kits() {
-      PluginManager Eventos = Bukkit.getPluginManager();
-      Eventos.registerEvents(new Ajnin(), this);
-      Eventos.registerEvents(new Anchor(), this);
-      Eventos.registerEvents(new Armor(), this);
-      Eventos.registerEvents(new Avatar(), this);
-      Eventos.registerEvents(new Flash(), this);
-      Eventos.registerEvents(new C4(), this);
-      Eventos.registerEvents(new Nerfs(), this);
-      Eventos.registerEvents(new Alladin(), this);
-      Eventos.registerEvents(new Ryu(), this);
-      Eventos.registerEvents(new DeshFire(this), this);
-      Eventos.registerEvents(new Fisherman(this), this);
-      Eventos.registerEvents(new Gladiator(this), this);
-      Eventos.registerEvents(new Hulk(), this);
-      Eventos.registerEvents(new JellyFish(), this);
-      Eventos.registerEvents(new MiniGun(), this);
-      Eventos.registerEvents(new Phantom(), this);
-      Eventos.registerEvents(new Kangaroo(), this);
-      Eventos.registerEvents(new Magma(), this);
-      Eventos.registerEvents(new Monk(), this);
-      Eventos.registerEvents(new MenuAdm(), this);
-      Eventos.registerEvents(new Ninja(this), this);
-      Eventos.registerEvents(new Poseidon(), this);
-      Eventos.registerEvents(new Resouper(), this);
-      Eventos.registerEvents(new Snail(this), this);
-      Eventos.registerEvents(new Sonic(this), this);
-      Eventos.registerEvents(new Stomper(), this);
-      Eventos.registerEvents(new Switcher(), this);
-      Eventos.registerEvents(new Swords(), this);
-      Eventos.registerEvents(new Grappler(this), this);
-      Eventos.registerEvents(new TheForceField(this), this);
-      Eventos.registerEvents(new Thor(), this);
-      Eventos.registerEvents(new Thresh(this), this);
-      Eventos.registerEvents(new QuickDropper(), this);
-      Eventos.registerEvents(new Turtle(), this);
-      Eventos.registerEvents(new Camel(), this);
-      Eventos.registerEvents(new Rain(), this);
-      Eventos.registerEvents(new TimeLord(), this);
-      Eventos.registerEvents(new Confuser(), this);
-      Eventos.registerEvents(new Viking(), this);
-      Eventos.registerEvents(new Viper(this), this);
-      Eventos.registerEvents(new AntiTower(), this);
-      Eventos.registerEvents(new Madman(), this);
-      Eventos.registerEvents(new Specialist(), this);
-      Eventos.registerEvents(new HotPotato(), this);
-   }
+	public void Kits() {
+		PluginManager Eventos = Bukkit.getPluginManager();
+		Eventos.registerEvents(new Ajnin(), this);
+		Eventos.registerEvents(new Anchor(), this);
+		Eventos.registerEvents(new Armor(), this);
+		Eventos.registerEvents(new Avatar(), this);
+		Eventos.registerEvents(new Flash(), this);
+		Eventos.registerEvents(new C4(), this);
+		Eventos.registerEvents(new Nerfs(), this);
+		Eventos.registerEvents(new Alladin(), this);
+		Eventos.registerEvents(new Ryu(), this);
+		Eventos.registerEvents(new DeshFire(this), this);
+		Eventos.registerEvents(new Fisherman(this), this);
+		Eventos.registerEvents(new Gladiator(this), this);
+		Eventos.registerEvents(new Hulk(), this);
+		Eventos.registerEvents(new JellyFish(), this);
+		Eventos.registerEvents(new MiniGun(), this);
+		Eventos.registerEvents(new Phantom(), this);
+		Eventos.registerEvents(new Kangaroo(), this);
+		Eventos.registerEvents(new Magma(), this);
+		Eventos.registerEvents(new Monk(), this);
+		Eventos.registerEvents(new MenuAdm(), this);
+		Eventos.registerEvents(new Ninja(this), this);
+		Eventos.registerEvents(new Poseidon(), this);
+		Eventos.registerEvents(new Resouper(), this);
+		Eventos.registerEvents(new Snail(this), this);
+		Eventos.registerEvents(new Sonic(this), this);
+		Eventos.registerEvents(new Stomper(), this);
+		Eventos.registerEvents(new Switcher(), this);
+		Eventos.registerEvents(new Swords(), this);
+		Eventos.registerEvents(new Grappler(this), this);
+		Eventos.registerEvents(new TheForceField(this), this);
+		Eventos.registerEvents(new Thor(), this);
+		Eventos.registerEvents(new Thresh(this), this);
+		Eventos.registerEvents(new QuickDropper(), this);
+		Eventos.registerEvents(new Turtle(), this);
+		Eventos.registerEvents(new Camel(), this);
+		Eventos.registerEvents(new Rain(), this);
+		Eventos.registerEvents(new TimeLord(), this);
+		Eventos.registerEvents(new Confuser(), this);
+		Eventos.registerEvents(new Viking(), this);
+		Eventos.registerEvents(new Viper(this), this);
+		Eventos.registerEvents(new AntiTower(), this);
+		Eventos.registerEvents(new Madman(), this);
+		Eventos.registerEvents(new Specialist(), this);
+		Eventos.registerEvents(new HotPotato(), this);
+	}
 }

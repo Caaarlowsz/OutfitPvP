@@ -7,16 +7,16 @@ import org.bukkit.entity.Player;
 
 import Outfit.PvP.Main.Main;
 
-
 public class MarcaCommand implements CommandExecutor {
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		Player p = (Player) sender;
-		if(cmd.getName().equalsIgnoreCase("marca")) {
-			if(args.length == 0) {
+		if (cmd.getName().equalsIgnoreCase("marca")) {
+			if (args.length == 0) {
 				p.sendMessage(" ");
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §fAqui estão há lista de todas as Marcas, do servidor:");
+				p.sendMessage(
+						String.valueOf(Main.prefix) + " §8➸ §fAqui estão há lista de todas as Marcas, do servidor:");
 				p.sendMessage("                              ");
 				p.sendMessage("§8[§d$512000 §f- §d$1000000§8] §aGUCCI");
 				p.sendMessage("§8[§d$256000 §f- §d$512000§8] §bROLEX");
@@ -30,7 +30,8 @@ public class MarcaCommand implements CommandExecutor {
 				p.sendMessage("§8[§d$1000 §f- §d$2000§8] §3CAMELO");
 				p.sendMessage("§8[§d$0 §f- §d$1000§8] §7Mendigo");
 				p.sendMessage("                              ");
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §fVocê pode adquirir estas Marcas, matando jogadores. Apos matar os jogadores você ganhara uns dolls, e com esse dolls você ira upar, voce poder apostar para ganhar mais dolls! Boa sorte.");
+				p.sendMessage(String.valueOf(Main.prefix)
+						+ " §8➸ §fVocê pode adquirir estas Marcas, matando jogadores. Apos matar os jogadores você ganhara uns dolls, e com esse dolls você ira upar, voce poder apostar para ganhar mais dolls! Boa sorte.");
 				p.sendMessage(" ");
 			}
 		}

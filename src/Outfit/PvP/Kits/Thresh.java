@@ -1,75 +1,81 @@
 package Outfit.PvP.Kits;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
-import org.bukkit.event.player.*;
-import org.bukkit.event.block.*;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
+import org.bukkit.entity.Snowball;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
-import Outfit.PvP.Essencial.*;
-import Outfit.PvP.Main.*;
+import Outfit.PvP.Essencial.KitAPI;
+import Outfit.PvP.Main.Main;
 
-import java.util.concurrent.*;
-import org.bukkit.event.*;
-import org.bukkit.event.entity.*;
-import org.bukkit.potion.*;
-import org.bukkit.entity.*;
-import org.bukkit.*;
+public class Thresh implements Listener {
+	public static HashMap<String, Long> cooldown;
+	public static HashMap<String, Snowball> tiros;
 
-public class Thresh implements Listener
-{
-    public static HashMap<String, Long> cooldown;
-    public static HashMap<String, Snowball> tiros;
-    
-    static {
-        Thresh.cooldown = new HashMap<String, Long>();
-        Thresh.tiros = new HashMap<String, Snowball>();
-    }
-    
-    public Thresh(final Main main) {
-    }
-    
-    @EventHandler
-    public void disparar(final PlayerInteractEvent e) {
-        final Player p = e.getPlayer();
-        if ((e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) && p.getItemInHand().getType() == Material.LEVER && KitAPI.Thresh.contains(p.getName())) {
-            if (!Thresh.cooldown.containsKey(p.getName()) || Thresh.cooldown.get(p.getName()) <= System.currentTimeMillis()) {
-                e.setCancelled(true);
-                p.updateInventory();
-				final Snowball tiro = (Snowball)p.launchProjectile((Class<? extends Projectile>)Snowball.class);
-                final Vector vec = p.getLocation().getDirection();
-                tiro.setVelocity(new Vector(vec.getX() * 1.0 * 3.5, vec.getY() * 1.0 * 4.0, vec.getZ() * 1.0 * 3.5));
-                Thresh.tiros.put(p.getName(), tiro);
-                Thresh.cooldown.put(p.getName(), System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(15L));
-                p.playSound(p.getLocation(), Sound.GLASS, 1.0f, 1.0f);
-                p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aVocê usou seu Thresh.");
-                return;
-            }
-            p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cAguarde o cooldown terminar.");
-        }
-    }
-    
-    @SuppressWarnings("deprecation")
+	static {
+		Thresh.cooldown = new HashMap<String, Long>();
+		Thresh.tiros = new HashMap<String, Snowball>();
+	}
+
+	public Thresh(final Main main) {
+	}
+
 	@EventHandler
-    public void onEntityDamagerByEntity(final EntityDamageByEntityEvent e) {
-        final Entity ent = e.getEntity();
-        final Entity damager = e.getDamager();
-        if (ent instanceof Player) {
-            final Player hit = (Player)ent;
-            if (damager instanceof Snowball) {
-                final Snowball snowball = (Snowball)damager;
-                if (snowball.getShooter() instanceof Player) {
-                    final Player shooter = (Player)snowball.getShooter();
-                    if (!KitAPI.Thresh.contains(shooter.getName())) {
-                        return;
-                    }
-                    final Location ploc = shooter.getLocation();
-                    hit.teleport(ploc);
-                    hit.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 100, 1));
-                    hit.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 1));
-                    hit.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê foi pego por um Thresh.");
-                }
-            }
-        }
-    }
+	public void disparar(final PlayerInteractEvent e) {
+		final Player p = e.getPlayer();
+		if ((e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)
+				&& p.getItemInHand().getType() == Material.LEVER && KitAPI.Thresh.contains(p.getName())) {
+			if (!Thresh.cooldown.containsKey(p.getName())
+					|| Thresh.cooldown.get(p.getName()) <= System.currentTimeMillis()) {
+				e.setCancelled(true);
+				p.updateInventory();
+				final Snowball tiro = (Snowball) p.launchProjectile((Class<? extends Projectile>) Snowball.class);
+				final Vector vec = p.getLocation().getDirection();
+				tiro.setVelocity(new Vector(vec.getX() * 1.0 * 3.5, vec.getY() * 1.0 * 4.0, vec.getZ() * 1.0 * 3.5));
+				Thresh.tiros.put(p.getName(), tiro);
+				Thresh.cooldown.put(p.getName(), System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(15L));
+				p.playSound(p.getLocation(), Sound.GLASS, 1.0f, 1.0f);
+				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aVocê usou seu Thresh.");
+				return;
+			}
+			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cAguarde o cooldown terminar.");
+		}
+	}
+
+	@EventHandler
+	public void onEntityDamagerByEntity(final EntityDamageByEntityEvent e) {
+		final Entity ent = e.getEntity();
+		final Entity damager = e.getDamager();
+		if (ent instanceof Player) {
+			final Player hit = (Player) ent;
+			if (damager instanceof Snowball) {
+				final Snowball snowball = (Snowball) damager;
+				if (snowball.getShooter() instanceof Player) {
+					final Player shooter = (Player) snowball.getShooter();
+					if (!KitAPI.Thresh.contains(shooter.getName())) {
+						return;
+					}
+					final Location ploc = shooter.getLocation();
+					hit.teleport(ploc);
+					hit.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 100, 1));
+					hit.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 1));
+					hit.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê foi pego por um Thresh.");
+				}
+			}
+		}
+	}
 }

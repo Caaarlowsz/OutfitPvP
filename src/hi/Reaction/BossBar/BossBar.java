@@ -51,13 +51,13 @@ public class BossBar extends BukkitRunnable {
 	protected final int ID;
 
 	protected final Player receiver;
-	protected       String message;
-	protected       float  health;
-	protected       float  healthMinus;
+	protected String message;
+	protected float health;
+	protected float healthMinus;
 	protected float minHealth = 1;
 
 	protected Location location;
-	protected World    world;
+	protected World world;
 	protected boolean visible = false;
 	protected Object dataWatcher;
 
@@ -128,7 +128,9 @@ public class BossBar extends BukkitRunnable {
 	}
 
 	public void setVisible(boolean flag) {
-		if (flag == this.visible) { return; }
+		if (flag == this.visible) {
+			return;
+		}
 		if (flag) {
 			this.spawn();
 		} else {
@@ -141,7 +143,9 @@ public class BossBar extends BukkitRunnable {
 	}
 
 	protected void updateMovement() {
-		if (!this.visible) { return; }
+		if (!this.visible) {
+			return;
+		}
 		this.location = this.makeLocation(this.receiver.getLocation());
 		try {
 			Object packet = ClassBuilder.buildTeleportPacket(this.ID, this.getLocation(), false, false);
@@ -151,7 +155,6 @@ public class BossBar extends BukkitRunnable {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	protected void updateDataWatcher() {
 		if (this.dataWatcher == null) {
 			try {
@@ -159,7 +162,8 @@ public class BossBar extends BukkitRunnable {
 				ClassBuilder.setDataWatcherValue(this.dataWatcher, 17, new Integer(0));
 				ClassBuilder.setDataWatcherValue(this.dataWatcher, 18, new Integer(0));
 				ClassBuilder.setDataWatcherValue(this.dataWatcher, 19, new Integer(0));
-				ClassBuilder.setDataWatcherValue(this.dataWatcher, 20, new Integer(1000));// Invulnerable time (1000 = very small)
+				ClassBuilder.setDataWatcherValue(this.dataWatcher, 20, new Integer(1000));// Invulnerable time (1000 =
+																							// very small)
 
 				ClassBuilder.setDataWatcherValue(this.dataWatcher, 0, Byte.valueOf((byte) (0 | 1 << 5)));// Invisible
 			} catch (Exception e) {
@@ -209,7 +213,8 @@ public class BossBar extends BukkitRunnable {
 		} catch (IllegalStateException e) {
 		}
 		try {
-			Object packet = NMSClass.PacketPlayOutEntityDestroy.getConstructor(int[].class).newInstance(new int[] { this.ID });
+			Object packet = NMSClass.PacketPlayOutEntityDestroy.getConstructor(int[].class)
+					.newInstance(new int[] { this.ID });
 			BossBarAPI.sendPacket(this.receiver, packet);
 			this.visible = false;
 		} catch (Exception e) {

@@ -43,10 +43,10 @@ public abstract class AccessUtil {
 	/**
 	 * Set a specified Field accessible
 	 *
-	 * @param f
-	 *            Field set accessible
+	 * @param f Field set accessible
 	 */
-	public static Field setAccessible(Field f) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+	public static Field setAccessible(Field f)
+			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
 		f.setAccessible(true);
 		Field modifiersField = Field.class.getDeclaredField("modifiers");
 		modifiersField.setAccessible(true);
@@ -57,10 +57,10 @@ public abstract class AccessUtil {
 	/**
 	 * Set a specified Method accessible
 	 *
-	 * @param m
-	 *            Method set accessible
+	 * @param m Method set accessible
 	 */
-	public static Method setAccessible(Method m) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+	public static Method setAccessible(Method m)
+			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
 		m.setAccessible(true);
 		return m;
 	}

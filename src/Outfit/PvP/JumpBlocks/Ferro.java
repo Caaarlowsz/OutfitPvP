@@ -16,13 +16,13 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
 
 public class Ferro implements Listener {
-	
+
 	public static ArrayList<String> jump = new ArrayList<>();
-	
+
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void aoMove(PlayerMoveEvent e) {
 		Player p = e.getPlayer();
-		if(e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == Material.IRON_BLOCK) {
+		if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == Material.IRON_BLOCK) {
 			jump.remove(p.getName());
 			Location loc = e.getTo().getBlock().getLocation();
 			Vector sponge = p.getLocation().getDirection().multiply(0).setY(2);
@@ -33,11 +33,12 @@ public class Ferro implements Listener {
 			return;
 		}
 	}
+
 	@EventHandler
 	public void aoQueda(EntityDamageEvent e) {
 		Player p = (Player) e.getEntity();
-		if(e.getEntity() instanceof Player) {
-			if((e.getCause().equals(EntityDamageEvent.DamageCause.FALL)) && (jump.contains(p.getName()))) {
+		if (e.getEntity() instanceof Player) {
+			if ((e.getCause().equals(EntityDamageEvent.DamageCause.FALL)) && (jump.contains(p.getName()))) {
 				e.setCancelled(true);
 				jump.remove(p.getName());
 			}
