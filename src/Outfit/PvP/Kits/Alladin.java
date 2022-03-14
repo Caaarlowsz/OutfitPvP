@@ -14,7 +14,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
 
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Alladin implements Listener {
 	public static ArrayList<String> cooldown = new ArrayList<String>();
@@ -26,7 +26,7 @@ public class Alladin implements Listener {
 				&& e.getAction() == Action.RIGHT_CLICK_AIR) {
 			e.setCancelled(true);
 			if (cooldown.contains(p.getName())) {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cKit em cooldown!");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §cKit em cooldown!");
 				return;
 			}
 
@@ -43,17 +43,17 @@ public class Alladin implements Listener {
 			Vector pular = vec.multiply(0.1D).setY(0.17D * (double) forca);
 			Vector olhar = loc.getDirection().normalize().multiply(1.5D);
 			tapete.setVelocity(pular.add(olhar));
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.getPlugin(), new Runnable() {
 				public void run() {
 					tapete.remove();
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §eTapete Removido!");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §eTapete Removido!");
 				}
 			}, 50L);
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.getPlugin(), new Runnable() {
 				public void run() {
 					if (Alladin.cooldown.contains(p.getName())) {
 						Alladin.cooldown.remove(p.getName());
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aCooldown acabou!");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §aCooldown acabou!");
 					}
 
 				}

@@ -8,7 +8,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class AntFlood implements Listener {
 	public static HashMap<Player, Long> chat;
@@ -17,7 +17,7 @@ public class AntFlood implements Listener {
 		AntFlood.chat = new HashMap<Player, Long>();
 	}
 
-	public AntFlood(final Main main) {
+	public AntFlood(final OutfitPvP main) {
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = false)
@@ -41,7 +41,7 @@ public class AntFlood implements Listener {
 			if (AntFlood.chat.get(p) < System.currentTimeMillis() || p.hasPermission("zey.pvp.flodar")) {
 				return;
 			}
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cAguarde para digitar novamente.");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §cAguarde para digitar novamente.");
 			e.setCancelled(true);
 		}
 	}

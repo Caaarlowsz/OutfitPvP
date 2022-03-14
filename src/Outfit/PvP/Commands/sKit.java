@@ -11,13 +11,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class sKit implements Listener, CommandExecutor {
 	public HashMap<String, ItemStack[]> itens = new HashMap<String, ItemStack[]>();
 	public HashMap<String, ItemStack[]> armor = new HashMap<String, ItemStack[]>();
 
-	public sKit(Main main) {
+	public sKit(OutfitPvP main) {
 	}
 
 	public boolean isInt(String s) {
@@ -39,7 +39,7 @@ public class sKit implements Listener, CommandExecutor {
 
 			if (Args.length == 0) {
 				p.sendMessage("       ");
-				p.sendMessage("                " + Main.prefix);
+				p.sendMessage("                " + OutfitPvP.prefix);
 				p.sendMessage("");
 				p.sendMessage("§b» §eUtilize /skit criar [Kit]");
 				p.sendMessage("§b» §eUtilize /skit aplicar [Kit] [Raio de Blocos]");
@@ -50,26 +50,26 @@ public class sKit implements Listener, CommandExecutor {
 			String nome;
 			if (Args[0].equalsIgnoreCase("criar")) {
 				if (Args.length == 1) {
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cUse: /skit para ver um mini-tutorial.");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §cUse: /skit para ver um mini-tutorial.");
 					return true;
 				}
 
 				nome = Args[1];
 				this.itens.put(nome, p.getInventory().getContents());
 				this.armor.put(nome, p.getInventory().getArmorContents());
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aO Kit: §e" + Args[1] + " §aFoi Criado");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aO Kit: §e" + Args[1] + " §aFoi Criado");
 				return true;
 			}
 
 			if (Args[0].equalsIgnoreCase("aplicar")) {
 				if (Args.length <= 2) {
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cUtlize /skit para ver um mini-tutorial.");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §cUtlize /skit para ver um mini-tutorial.");
 					return true;
 				}
 
 				nome = Args[1];
 				if (!this.itens.containsKey(nome) && !this.armor.containsKey(nome)) {
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cO Kit §e" + nome + " §cnão existe");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §cO Kit §e" + nome + " §cnão existe");
 					return true;
 				}
 
@@ -84,10 +84,10 @@ public class sKit implements Listener, CommandExecutor {
 					}
 
 					Bukkit.getServer().broadcastMessage("");
-					Bukkit.getServer().broadcastMessage(String.valueOf(Main.prefix) + " §f» §7O Kit §e" + nome
+					Bukkit.getServer().broadcastMessage(OutfitPvP.prefix + " §f» §7O Kit §e" + nome
 							+ " §7foi aplicado em um raio de §e" + n + " §ablocos");
 					Bukkit.getServer().broadcastMessage("");
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você aplicou o kit §e" + nome
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você aplicou o kit §e" + nome
 							+ " §7em um raio de §e" + n + " §7blocos");
 					return true;
 				}

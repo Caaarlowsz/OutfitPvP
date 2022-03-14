@@ -13,7 +13,7 @@ import org.bukkit.util.Vector;
 import Outfit.PvP.Essencial.Cooldown;
 import Outfit.PvP.Essencial.KitUtil;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Utils.Proteção;
 
 public class Flash implements Listener {
@@ -31,17 +31,17 @@ public class Flash implements Listener {
 			Location loc = p.getTargetBlock(null, 150).getLocation().add(new Vector(0, 1, 0));
 			if (p.getLocation().distance(loc.getBlock().getLocation()) > 100.0D) {
 				p.sendMessage(
-						String.valueOf(Main.prefix) + " §8➸ §cVocê não consegue se teletransportar para tao longe!");
+                        OutfitPvP.prefix + " §8➸ §cVocê não consegue se teletransportar para tao longe!");
 				return;
 			}
 
 			if (p.getTargetBlock(null, 100).getType() == Material.GLASS) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §cVocê não pode utilizar o kit Flash durante um duelo no Gladiator!");
 				return;
 			}
 
-			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getInstace(), new Runnable() {
+			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.getInstace(), new Runnable() {
 				public void run() {
 					Proteção.setImortal(p, false);
 					Proteção.isImortal(p);
@@ -53,7 +53,7 @@ public class Flash implements Listener {
 			p.teleport(loc);
 			p.getWorld().strikeLightning(loc);
 			e.setCancelled(true);
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 				public void run() {
 					KitUtil.ccooldown(p);
 				}

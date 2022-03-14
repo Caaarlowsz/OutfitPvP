@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 import Outfit.PvP.APIs.TheTitle;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Utils.Proteção;
 
 public class CmdsSpeedSumo implements CommandExecutor {
@@ -40,21 +40,21 @@ public class CmdsSpeedSumo implements CommandExecutor {
 						SpeedSumo.Iniciou.remove(Player2);
 						SpeedSumo.Partida1 = false;
 					}
-					World w = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("s2.world"));
-					double x = Main.instance.getConfig().getDouble("s2.x");
-					double y = Main.instance.getConfig().getDouble("s2.y");
-					double z = Main.instance.getConfig().getDouble("s2.z");
+					World w = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("s2.world"));
+					double x = OutfitPvP.instance.getConfig().getDouble("s2.x");
+					double y = OutfitPvP.instance.getConfig().getDouble("s2.y");
+					double z = OutfitPvP.instance.getConfig().getDouble("s2.z");
 					Location s2 = new Location(w, x, y, z);
-					s2.setPitch((float) Main.instance.getConfig().getDouble("s2.pitch"));
-					s2.setYaw((float) Main.instance.getConfig().getDouble("s2.yaw"));
+					s2.setPitch((float) OutfitPvP.instance.getConfig().getDouble("s2.pitch"));
+					s2.setYaw((float) OutfitPvP.instance.getConfig().getDouble("s2.yaw"));
 					Player2.teleport(s2);
-					World a = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("s1.world"));
-					double b = Main.instance.getConfig().getDouble("s1.x");
-					double c = Main.instance.getConfig().getDouble("s1.y");
-					double d = Main.instance.getConfig().getDouble("s1.z");
+					World a = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("s1.world"));
+					double b = OutfitPvP.instance.getConfig().getDouble("s1.x");
+					double c = OutfitPvP.instance.getConfig().getDouble("s1.y");
+					double d = OutfitPvP.instance.getConfig().getDouble("s1.z");
 					Location s1 = new Location(a, b, c, d);
-					s1.setPitch((float) Main.instance.getConfig().getDouble("s1.pitch"));
-					s1.setYaw((float) Main.instance.getConfig().getDouble("s1.yaw"));
+					s1.setPitch((float) OutfitPvP.instance.getConfig().getDouble("s1.pitch"));
+					s1.setYaw((float) OutfitPvP.instance.getConfig().getDouble("s1.yaw"));
 					p.teleport(s1);
 					TheTitle.sendTitle(Player2, " ");
 					TheTitle.sendSubTitle(Player2, "§d" + Player2.getName() + " §7vs§d " + p.getName());
@@ -73,7 +73,7 @@ public class CmdsSpeedSumo implements CommandExecutor {
 					Proteção.setImortal(Player2, false);
 					Proteção.setImortal(p, false);
 
-					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
+					Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.getPlugin(), new Runnable() {
 						public void run() {
 							Player[] arrayOfPlayer;
 							int j = (arrayOfPlayer = Bukkit.getOnlinePlayers()).length;
@@ -87,7 +87,7 @@ public class CmdsSpeedSumo implements CommandExecutor {
 						}
 					}, 2L);
 
-					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+					Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 						public void run() {
 							if (EventsSumo.congelar.contains(p)) {
 								p.setMaxHealth(20);
@@ -97,7 +97,7 @@ public class CmdsSpeedSumo implements CommandExecutor {
 							}
 						}
 					}, 20L);
-					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+					Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 						public void run() {
 							if (EventsSumo.congelar.contains(p)) {
 								p.setMaxHealth(20);
@@ -107,7 +107,7 @@ public class CmdsSpeedSumo implements CommandExecutor {
 							}
 						}
 					}, 40L);
-					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+					Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 						public void run() {
 							if (EventsSumo.congelar.contains(p)) {
 								p.setMaxHealth(20);

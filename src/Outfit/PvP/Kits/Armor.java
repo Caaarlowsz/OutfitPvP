@@ -17,7 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import Outfit.PvP.Essencial.Cooldown;
 import Outfit.PvP.Essencial.KitUtil;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Armor implements Listener {
 	public static HashMap<String, ItemStack[]> salvararmor = new HashMap<String, ItemStack[]>();
@@ -42,22 +42,22 @@ public class Armor implements Listener {
 
 			salvararmor.put(p.getName(), p.getInventory().getArmorContents());
 			KitUtil.tirarArmadura(p);
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você recebeu sua armadura temporaria.");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você recebeu sua armadura temporaria.");
 			p.getInventory()
 					.setArmorContents(new ItemStack[] { darArmaduraI(Material.GOLD_HELMET),
 							darArmaduraI(Material.GOLD_CHESTPLATE), darArmaduraI(Material.GOLD_LEGGINGS),
 							darArmaduraI(Material.GOLD_BOOTS) });
 			p.updateInventory();
 			Cooldown.add(p, 25);
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.getPlugin(), new Runnable() {
 				public void run() {
 					KitUtil.tirarArmadura(p);
-					p.getInventory().setArmorContents((ItemStack[]) Armor.salvararmor.get(p.getName()));
+					p.getInventory().setArmorContents(Armor.salvararmor.get(p.getName()));
 					Armor.salvararmor.remove(p.getName());
 					p.updateInventory();
 				}
 			}, 200L);
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.getPlugin(), new Runnable() {
 				public void run() {
 					KitUtil.ccooldown(p);
 				}

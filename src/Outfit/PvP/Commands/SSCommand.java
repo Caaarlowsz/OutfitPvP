@@ -21,7 +21,7 @@ import Outfit.PvP.APIs.TagsAPI;
 import Outfit.PvP.APIs.TheTitle;
 import Outfit.PvP.Essencial.KitAPI;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Menus.MenuWarps;
 import Outfit.PvP.Score.SPlayer;
 import Outfit.PvP.Utils.Proteção;
@@ -48,22 +48,22 @@ public class SSCommand implements CommandExecutor, Listener {
 
 					if (target == null) {
 						p.sendMessage(
-								String.valueOf(Main.prefix) + " §8➸ §cEste jogador(a) está offline ou não existe.");
+								OutfitPvP.prefix + " §8➸ §cEste jogador(a) está offline ou não existe.");
 						return true;
 					}
 
-					final World w = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("ss.world"));
-					final double x = Main.instance.getConfig().getDouble("ss.x");
-					final double y = Main.instance.getConfig().getDouble("ss.y");
-					final double z = Main.instance.getConfig().getDouble("ss.z");
+					final World w = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("ss.world"));
+					final double x = OutfitPvP.instance.getConfig().getDouble("ss.x");
+					final double y = OutfitPvP.instance.getConfig().getDouble("ss.y");
+					final double z = OutfitPvP.instance.getConfig().getDouble("ss.z");
 					final Location lobby = new Location(w, x, y, z);
-					lobby.setPitch((float) Main.instance.getConfig().getDouble("ss.pitch"));
-					lobby.setYaw((float) Main.instance.getConfig().getDouble("ss.yaw"));
+					lobby.setPitch((float) OutfitPvP.instance.getConfig().getDouble("ss.pitch"));
+					lobby.setYaw((float) OutfitPvP.instance.getConfig().getDouble("ss.yaw"));
 					target.teleport(lobby);
 
 					if (p.hasPermission("zey.pvp.admin") && Outfit.PvP.APIs.WarpAPI.getWarp(p) == "Nenhuma") {
-						Main.admins.remove(p.getName());
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você saiu do modo §c§lADMIN");
+						OutfitPvP.admins.remove(p.getName());
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você saiu do modo §c§lADMIN");
 
 						for (Player players : Bukkit.getOnlinePlayers()) {
 							players.showPlayer(p);
@@ -78,8 +78,8 @@ public class SSCommand implements CommandExecutor, Listener {
 					Habilidade.removeAbility(target);
 					KitAPI.removeAbility(target);
 
-					Bukkit.getServer().getScheduler().scheduleSyncDelayedTask((Plugin) Main.getInstace(),
-							(Runnable) new Runnable() {
+					Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.getInstace(),
+							new Runnable() {
 								@Override
 								public void run() {
 									p.teleport(lobby);
@@ -93,16 +93,16 @@ public class SSCommand implements CommandExecutor, Listener {
 								}
 							}, 8L);
 
-					target.getInventory().setBoots((ItemStack) null);
-					target.getInventory().setChestplate((ItemStack) null);
-					target.getInventory().setLeggings((ItemStack) null);
-					target.getInventory().setHelmet((ItemStack) null);
+					target.getInventory().setBoots(null);
+					target.getInventory().setChestplate(null);
+					target.getInventory().setLeggings(null);
+					target.getInventory().setHelmet(null);
 					target.getInventory().clear();
 
-					p.getInventory().setBoots((ItemStack) null);
-					p.getInventory().setChestplate((ItemStack) null);
-					p.getInventory().setLeggings((ItemStack) null);
-					p.getInventory().setHelmet((ItemStack) null);
+					p.getInventory().setBoots(null);
+					p.getInventory().setChestplate(null);
+					p.getInventory().setLeggings(null);
+					p.getInventory().setHelmet(null);
 					p.getInventory().clear();
 
 					target.setExp(0.0f);
@@ -127,8 +127,8 @@ public class SSCommand implements CommandExecutor, Listener {
 
 					BossBarAPI.setMessage(target, "§d§lSCREENSHARE §f- §c§lNAO DESLOGUE!");
 
-					target.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVoce foi puxado para §c§lSCREENSHARE§c!");
-					Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §7O jogador(a): §d" + target.getName()
+					target.sendMessage(OutfitPvP.prefix + " §8➸ §cVoce foi puxado para §c§lSCREENSHARE§c!");
+					Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §7O jogador(a): §d" + target.getName()
 							+ " §7foi §c§lPUXADO§7 para §d§lSCREENSHARE §7pelo staffer §d" + p.getName() + "§7!");
 					return true;
 				}
@@ -137,7 +137,7 @@ public class SSCommand implements CommandExecutor, Listener {
 
 					if (target == null) {
 						p.sendMessage(
-								String.valueOf(Main.prefix) + " §8➸ §cEste jogador(a) está offline ou não existe.");
+								OutfitPvP.prefix + " §8➸ §cEste jogador(a) está offline ou não existe.");
 						return true;
 					}
 
@@ -148,13 +148,13 @@ public class SSCommand implements CommandExecutor, Listener {
 					p.performCommand("spawn");
 
 					BossBarAPI.removeBar(target);
-					target.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aVoce foi liberado do §a§lSCREENSHARE§a!");
-					Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §7O jogador(a): §d" + target.getName()
+					target.sendMessage(OutfitPvP.prefix + " §8➸ §aVoce foi liberado do §a§lSCREENSHARE§a!");
+					Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §7O jogador(a): §d" + target.getName()
 							+ " §7foi §a§lLIBERADO§7 do §d§lSCREENSHARE §7pelo staffer §d" + p.getName() + "§7!");
 					return true;
 				}
 			} else {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §cErrado, utilize a sintaxe correta: /ss [Puxar | Liberar] [Jogador(a)]");
 				return true;
 			}
@@ -168,7 +168,7 @@ public class SSCommand implements CommandExecutor, Listener {
 		if (Outfit.PvP.APIs.WarpAPI.getWarp(p) == "SCREENSHARE"
 				&& ((event.getMessage().toLowerCase().startsWith("/")))) {
 			event.setCancelled(true);
-			p.sendMessage(String.valueOf(Main.prefix) + (" §8➸ §cVoce nao pode usar comandos no §c§lSCREENSHARE§c!"));
+			p.sendMessage(OutfitPvP.prefix + (" §8➸ §cVoce nao pode usar comandos no §c§lSCREENSHARE§c!"));
 		}
 	}
 

@@ -14,13 +14,13 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import Outfit.PvP.Config.ZeyCoins;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Admin implements Listener {
 
-	public Main main;
+	public OutfitPvP main;
 
-	public Admin(Main main) {
+	public Admin(OutfitPvP main) {
 		this.main = main;
 	}
 
@@ -34,14 +34,14 @@ public class Admin implements Listener {
 
 		String player_name = player.getName();
 
-		if (Main.admins.contains(player_name)) {
+		if (OutfitPvP.admins.contains(player_name)) {
 			if (player.getItemInHand().getType() == Material.AIR) {
 				player.openInventory(clicked.getInventory());
 
-				player.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você está vendo o inventario do jogador(a): §c"
+				player.sendMessage(OutfitPvP.prefix + " §8➸ §7Você está vendo o inventario do jogador(a): §c"
 						+ clicked.getName());
 				e.setCancelled(true);
-			} else if (player.getItemInHand().getType().equals((Object) Material.BEDROCK)
+			} else if (player.getItemInHand().getType().equals(Material.BEDROCK)
 					&& player.getItemInHand().getItemMeta().hasDisplayName() && player.getItemInHand().getItemMeta()
 							.getDisplayName().equalsIgnoreCase("§cSS §7(Clique No Player)")) {
 				player.performCommand("ss puxar " + clicked.getName());
@@ -55,11 +55,11 @@ public class Admin implements Listener {
 		final Player player = e.getPlayer();
 		String player_name = player.getName();
 
-		if (Main.admins.contains(player_name)) {
+		if (OutfitPvP.admins.contains(player_name)) {
 			if (player.getItemInHand() == null || !player.getItemInHand().hasItemMeta())
 				return;
 
-			if (player.getItemInHand().getType().equals((Object) Material.SLIME_BALL)
+			if (player.getItemInHand().getType().equals(Material.SLIME_BALL)
 					&& player.getItemInHand().getItemMeta().hasDisplayName() && player.getItemInHand().getItemMeta()
 							.getDisplayName().equalsIgnoreCase("§cTroca-Rapida §7(Clique)")) {
 				player.performCommand("admin");
@@ -79,16 +79,16 @@ public class Admin implements Listener {
 		Player player = e.getPlayer();
 		Player t = (Player) e.getRightClicked();
 		if (player.hasPermission("zey.pvp.infoplayer")) {
-			if (player.getItemInHand().getType().equals((Object) Material.PAPER)
+			if (player.getItemInHand().getType().equals(Material.PAPER)
 					&& player.getItemInHand().getItemMeta().hasDisplayName() && player.getItemInHand().getItemMeta()
 							.getDisplayName().equalsIgnoreCase("§cInformações §7(Clique No Player)")) {
 				Damageable hp = t;
 				player.sendMessage("§cInformacoes do Player §e" + t.getName() + "§c.");
-				player.sendMessage("§cVida: §7" + (int) hp.getHealth());
+				player.sendMessage("§cVida: §7" + hp.getHealth());
 				player.sendMessage("§cKills: §7"
-						+ Main.plugin.getConfig().getInt("status." + t.getName().toLowerCase() + ".kills"));
+						+ OutfitPvP.plugin.getConfig().getInt("status." + t.getName().toLowerCase() + ".kills"));
 				player.sendMessage("§cDeaths: §7"
-						+ Main.plugin.getConfig().getInt("status." + t.getName().toLowerCase() + ".mortes"));
+						+ OutfitPvP.plugin.getConfig().getInt("status." + t.getName().toLowerCase() + ".mortes"));
 				player.sendMessage("§cMoney: §7" + ZeyCoins.getPlayerMoney(t) + " Dolls§c.");
 				player.sendMessage("§clP: §7" + t.getAddress().getHostString());
 				player.sendMessage("§clP (Reverso): §7" + t.getAddress().getHostName());
@@ -100,7 +100,7 @@ public class Admin implements Listener {
 	private void onPlayerDropItemAdmin(PlayerDropItemEvent e) {
 		Player player = e.getPlayer();
 
-		if (Main.admins.contains(player.getName())) {
+		if (OutfitPvP.admins.contains(player.getName())) {
 			if (!e.getItemDrop().getItemStack().hasItemMeta())
 				return;
 
@@ -115,7 +115,7 @@ public class Admin implements Listener {
 	private void onPlayerPickUpAdmin(PlayerPickupItemEvent e) {
 		Player player = e.getPlayer();
 
-		if (Main.admins.contains(player.getName())) {
+		if (OutfitPvP.admins.contains(player.getName())) {
 			e.setCancelled(true);
 		}
 	}
@@ -125,7 +125,7 @@ public class Admin implements Listener {
 		Player player = e.getPlayer();
 
 		for (Player players : Bukkit.getOnlinePlayers()) {
-			if (Main.admins.contains(players.getName()) && !player.hasPermission("zey.pvp.admin.ver")) {
+			if (OutfitPvP.admins.contains(players.getName()) && !player.hasPermission("zey.pvp.admin.ver")) {
 				player.hidePlayer(players);
 			}
 		}

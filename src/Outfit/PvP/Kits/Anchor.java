@@ -10,7 +10,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.util.Vector;
 
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Anchor implements Listener {
 	@EventHandler(priority = EventPriority.HIGH)
@@ -22,7 +22,7 @@ public class Anchor implements Listener {
 				if (Habilidade.getAbility(p).equalsIgnoreCase("Anchor")) {
 					p.setVelocity(new Vector());
 					p.playSound(p.getLocation(), Sound.ANVIL_BREAK, 4.0F, 4.0F);
-					Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
+					Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.instance, new Runnable() {
 						public void run() {
 							p.setVelocity(new Vector());
 						}
@@ -32,7 +32,7 @@ public class Anchor implements Listener {
 				if (Habilidade.getAbility(a).equalsIgnoreCase("Anchor")) {
 					a.playSound(a.getLocation(), Sound.ANVIL_BREAK, 4.0F, 4.0F);
 					p.setVelocity(new Vector());
-					Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
+					Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.instance, new Runnable() {
 						public void run() {
 							p.setVelocity(new Vector());
 						}

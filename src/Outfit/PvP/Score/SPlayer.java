@@ -12,12 +12,12 @@ import Outfit.PvP.Config.ClanConfig;
 import Outfit.PvP.Config.Status;
 import Outfit.PvP.Config.ZeyCoins;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class SPlayer {
-	private String player;
-	private ScoreB sb;
-	public static Main plugin;
+	private final String player;
+	private final ScoreB sb;
+	public static OutfitPvP plugin;
 
 	public static String Clan(Player p) {
 		Clan clan = ClanAPI.getClanPlayer(p);
@@ -43,7 +43,7 @@ public class SPlayer {
 	}
 
 	public static String Rank(Player p) {
-		double a = (double) Status.getKills(p);
+		double a = Status.getKills(p);
 		if (a <= 100.0D) {
 			return "§8[§f-§8]";
 		} else if (a <= 200.0D) {
@@ -65,12 +65,12 @@ public class SPlayer {
 		} else if (a <= 1000.0D) {
 			return "§8[§3✷§8]";
 		} else {
-			return a <= 1500.0D ? "§8[§4✪§8]" : "§8[§4✪§8]";
+			return "§8[§4✪§8]";
 		}
 	}
 
 	public static String RankC(Player p) {
-		double a = (double) Status.getKills(p);
+		double a = Status.getKills(p);
 		if (a <= 100.0D) {
 			return "§8[§f- §8| ";
 		} else if (a <= 200.0D) {
@@ -92,12 +92,12 @@ public class SPlayer {
 		} else if (a <= 1000.0D) {
 			return "§8[§3✷ §8| ";
 		} else {
-			return a <= 1500.0D ? "§8[§4✪ §8| " : "§8[§4✪ §8| ";
+			return "§8[§4✪ §8| ";
 		}
 	}
 
 	public static String getRankConfig(Player p) {
-		double a = (double) Status.getKills(p);
+		double a = Status.getKills(p);
 		if (a <= 100.0D) {
 			return "§7Unranked";
 		} else if (a <= 200.0D) {
@@ -119,12 +119,12 @@ public class SPlayer {
 		} else if (a <= 1000.0D) {
 			return "§3SAFIRA";
 		} else {
-			return a <= 1500.0D ? "§4LENDARIO" : "§4LENDARIO";
+			return "§4LENDARIO";
 		}
 	}
 
 	public static String getNomeRank(Player p) {
-		double a = (double) Status.getKills(p);
+		double a = Status.getKills(p);
 		if (a <= 100.0D) {
 			return "§7Unranked";
 		} else if (a <= 200.0D) {
@@ -146,12 +146,12 @@ public class SPlayer {
 		} else if (a <= 1000.0D) {
 			return "§3SAFIRA";
 		} else {
-			return a <= 1500.0D ? "§4LENDARIO" : "§4LENDARIO";
+			return "§4LENDARIO";
 		}
 	}
 
 	public static String Liga(Player p) {
-		double a = (double) Status.getKills(p);
+		double a = Status.getKills(p);
 		if (a <= 100.0D) {
 			return "§7Unranked";
 		} else if (a <= 200.0D) {
@@ -173,12 +173,12 @@ public class SPlayer {
 		} else if (a <= 1000.0D) {
 			return "§3SAFIRA";
 		} else {
-			return a <= 1500.0D ? "§4LENDARIO" : "§4LENDARIO";
+			return "§4LENDARIO";
 		}
 	}
 
 	public static String Marca(Player p) {
-		double a = (double) ZeyCoins.getPlayerMoney(p);
+		double a = ZeyCoins.getPlayerMoney(p);
 		if (a <= 1000.0D) {
 			return "§7Mendigo";
 		} else if (a <= 2000.0D) {
@@ -200,12 +200,12 @@ public class SPlayer {
 		} else if (a <= 512000.0D) {
 			return "§bROLEX";
 		} else {
-			return a <= 1000000.0D ? "§aGUCCI" : "§aGUCCI";
+			return "§aGUCCI";
 		}
 	}
 
 	public static String MarcaC(Player p) {
-		double a = (double) ZeyCoins.getPlayerMoney(p);
+		double a = ZeyCoins.getPlayerMoney(p);
 		if (a <= 1000.0D) {
 			return "§7Mendigo";
 		} else if (a <= 2000.0D) {
@@ -227,7 +227,7 @@ public class SPlayer {
 		} else if (a <= 512000.0D) {
 			return "§bROLEX";
 		} else {
-			return a <= 1000000.0D ? "§aGUCCI" : "§aGUCCI";
+			return "§aGUCCI";
 		}
 	}
 
@@ -257,7 +257,7 @@ public class SPlayer {
 		}
 
 		Player p = Bukkit.getPlayer(this.player);
-		this.sb.setName(Main.bk.getText());
+		this.sb.setName(OutfitPvP.bk.getText());
 		this.sb.updateLine(14, "§fCargo §4» §f" + Grupos.getGrupos(p));
 		this.sb.updateLine(10, "§fMatou §5» §a" + Status.getKills(p));
 		this.sb.updateLine(8, "§fMorreu §3» §c" + Status.getDeaths(p));

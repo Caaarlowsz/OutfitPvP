@@ -5,7 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Regras implements CommandExecutor {
 	public boolean onCommand(CommandSender Sender, Command Cmd, String Label, String[] Args) {
@@ -14,7 +14,7 @@ public class Regras implements CommandExecutor {
 			player.sendMessage("§7 ");
 			player.sendMessage("§7 ");
 			player.sendMessage("§7 ");
-			player.sendMessage(String.valueOf(Main.prefix) + " §8➸ §c§lREGRAS DO SERVIDOR!");
+			player.sendMessage(OutfitPvP.prefix + " §8➸ §c§lREGRAS DO SERVIDOR!");
 			player.sendMessage("§7 ");
 			player.sendMessage("§8➸ §d§l1º §7Nao peça pra ler seu formulario!");
 			player.sendMessage("§8➸ §d§l2º §7Nao peça informações sobre o plugin do servidor!");

@@ -27,7 +27,7 @@ public class PlacaDeRecraft implements Listener {
 
 	@EventHandler
 	public void Inv(PlayerInteractEvent e) {
-		Player p = (Player) e.getPlayer();
+		Player p = e.getPlayer();
 		if ((e.getAction() == Action.RIGHT_CLICK_BLOCK)
 				&& (e.getClickedBlock() != null && (e.getClickedBlock().getType() == Material.WALL_SIGN)
 						|| (e.getClickedBlock().getType() == Material.SIGN_POST))) {

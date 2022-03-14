@@ -9,7 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class TellCommand implements CommandExecutor {
 	public static HashMap<Player, Player> gettell = new HashMap<Player, Player>();
@@ -23,28 +23,28 @@ public class TellCommand implements CommandExecutor {
 		String allArgs;
 		if (label.equalsIgnoreCase("tell")) {
 			if (args.length == 0) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §cErrado, utilize a sintaxe correta: /tell [Jogador(a)] (msg)");
 				return true;
 			}
 
 			target = Bukkit.getPlayer(args[0]);
-			if (args[0].toLowerCase().equalsIgnoreCase("on")) {
+			if (args[0].equalsIgnoreCase("on")) {
 				telloff.remove(p);
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você §a§lHABILITOU §7seu tell");
-			} else if (args[0].toLowerCase().equalsIgnoreCase("off")) {
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você §a§lHABILITOU §7seu tell");
+			} else if (args[0].equalsIgnoreCase("off")) {
 				telloff.add(p);
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você §c§lDESABILITOU §7seu tell");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você §c§lDESABILITOU §7seu tell");
 			}
 
 			if (args.length > 1) {
 				if (target == null) {
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cEste jogador(a) está offline ou não existe.");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §cEste jogador(a) está offline ou não existe.");
 					return true;
 				}
 
 				if (telloff.contains(target)) {
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cO tell desse player esta desabilitado.");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §cO tell desse player esta desabilitado.");
 					return true;
 				}
 
@@ -62,23 +62,23 @@ public class TellCommand implements CommandExecutor {
 			}
 		} else if (label.equalsIgnoreCase("off")) {
 			if (args.length == 0) {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cO tell desse player esta desabilitado.");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §cO tell desse player esta desabilitado.");
 				return true;
 			}
 
 			if (!gettell.containsKey(p)) {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você não tem ninguem para responder.");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você não tem ninguem para responder.");
 				return true;
 			}
 
-			target = (Player) gettell.get(p);
+			target = gettell.get(p);
 			if (target == null) {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cEste jogador(a) está offline ou não existe.");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §cEste jogador(a) está offline ou não existe.");
 				return true;
 			}
 
 			if (telloff.contains(target)) {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cO tell desse player esta desabilitado.");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §cO tell desse player esta desabilitado.");
 				return true;
 			}
 

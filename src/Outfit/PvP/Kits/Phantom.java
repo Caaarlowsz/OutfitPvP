@@ -16,7 +16,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import Outfit.PvP.Essencial.Cooldown;
 import Outfit.PvP.Essencial.KitUtil;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Phantom implements Listener {
 
@@ -66,13 +66,13 @@ public class Phantom implements Listener {
 				p.getInventory().setBoots(Bota);
 				p.updateInventory();
 
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aVocê pode voar por 5 segundos!");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aVocê pode voar por 5 segundos!");
 				Cooldown.add(p, 25);
 
 				p.setAllowFlight(true);
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.getPlugin(), new Runnable() {
 					public void run() {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cO seu modo pássaro acabou!");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cO seu modo pássaro acabou!");
 						p.getInventory().setArmorContents(null);
 
 						p.closeInventory();

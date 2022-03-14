@@ -19,13 +19,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import Outfit.PvP.Config.ZeyCoins;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Score.SPlayer;
 
 public class MenuPerfil implements Listener, CommandExecutor {
 	@SuppressWarnings({ "rawtypes", "unchecked", "unused" })
 	public static void guiKits(final Player p) {
-		final Inventory inv = Bukkit.getServer().createInventory((InventoryHolder) p, 27, "§8[§dPERFIL§8]");
+		final Inventory inv = Bukkit.getServer().createInventory(p, 27, "§8[§dPERFIL§8]");
 
 		final ItemStack vidro = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 0);
 		final ItemMeta vidrox = vidro.getItemMeta();
@@ -72,7 +72,7 @@ public class MenuPerfil implements Listener, CommandExecutor {
 		ItemMeta metapyro = pyro.getItemMeta();
 		metapyro.setDisplayName("§c§lVOLTAR");
 		ArrayList descpyro1 = new ArrayList();
-		metapyro.setLore((List) descpyro1);
+		metapyro.setLore(descpyro1);
 		pyro.setItemMeta(metapyro);
 		inv.setItem(0, pyro);
 
@@ -82,8 +82,8 @@ public class MenuPerfil implements Listener, CommandExecutor {
 		descpyro1 = new ArrayList();
 		descpyro1.add("§f  ");
 		descpyro1.add("§f§ §d§lDEATHS");
-		descpyro1.add("§7" + Main.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".mortes"));
-		metapyro.setLore((List) descpyro1);
+		descpyro1.add("§7" + OutfitPvP.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".mortes"));
+		metapyro.setLore(descpyro1);
 		pyro.setItemMeta(metapyro);
 		inv.setItem(11, pyro);
 
@@ -93,8 +93,8 @@ public class MenuPerfil implements Listener, CommandExecutor {
 		descpyro1 = new ArrayList();
 		descpyro1.add("§f  ");
 		descpyro1.add("§f§ §d§lKILLS");
-		descpyro1.add("§7" + Main.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".kills"));
-		metapyro.setLore((List) descpyro1);
+		descpyro1.add("§7" + OutfitPvP.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".kills"));
+		metapyro.setLore(descpyro1);
 		pyro.setItemMeta(metapyro);
 		inv.setItem(12, pyro);
 
@@ -105,7 +105,7 @@ public class MenuPerfil implements Listener, CommandExecutor {
 		descpyro1.add("§f  ");
 		descpyro1.add("§f§ §d§lMOEDAS");
 		descpyro1.add("§7" + ZeyCoins.getPlayerMoney(p));
-		metapyro.setLore((List) descpyro1);
+		metapyro.setLore(descpyro1);
 		pyro.setItemMeta(metapyro);
 		inv.setItem(13, pyro);
 
@@ -116,7 +116,7 @@ public class MenuPerfil implements Listener, CommandExecutor {
 		descpyro1.add("§f  ");
 		descpyro1.add("§f§ §d§lRANK");
 		descpyro1.add(SPlayer.Liga(p));
-		metapyro.setLore((List) descpyro1);
+		metapyro.setLore(descpyro1);
 		pyro.setItemMeta(metapyro);
 		inv.setItem(14, pyro);
 
@@ -127,7 +127,7 @@ public class MenuPerfil implements Listener, CommandExecutor {
 		descpyro1.add("§f  ");
 		descpyro1.add("§f§ §d§lMARCA");
 		descpyro1.add(SPlayer.Marca(p));
-		metapyro.setLore((List) descpyro1);
+		metapyro.setLore(descpyro1);
 		pyro.setItemMeta(metapyro);
 		inv.setItem(22, pyro);
 
@@ -138,7 +138,7 @@ public class MenuPerfil implements Listener, CommandExecutor {
 		descpyro1.add("§f  ");
 		descpyro1.add("§f§ §d§lLIGA");
 		descpyro1.add(SPlayer.Rank(p));
-		metapyro.setLore((List) descpyro1);
+		metapyro.setLore(descpyro1);
 		pyro.setItemMeta(metapyro);
 		inv.setItem(15, pyro);
 

@@ -71,7 +71,7 @@ public abstract class Reflection {
 
 	public static Object getHandle(Object obj) {
 		try {
-			return getMethod(obj.getClass(), "getHandle", new Class[0]).invoke(obj, new Object[0]);
+			return getMethod(obj.getClass(), "getHandle", new Class[0]).invoke(obj);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

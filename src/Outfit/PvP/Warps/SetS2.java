@@ -6,12 +6,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class SetS2 implements Listener, CommandExecutor {
-	public static Main plugin;
+	public static OutfitPvP plugin;
 
-	public SetS2(Main main) {
+	public SetS2(OutfitPvP main) {
 		plugin = main;
 	}
 
@@ -30,7 +30,7 @@ public class SetS2 implements Listener, CommandExecutor {
 				plugin.getConfig().set("s2.yaw", Float.valueOf(p.getLocation().getYaw()));
 				plugin.getConfig().set("s2.world", p.getLocation().getWorld().getName());
 				plugin.saveConfig();
-				p.sendMessage(String.valueOf(Main.prefix) + " §7-> §aA S2 foi setada com sucesso");
+				p.sendMessage(OutfitPvP.prefix + " §7-> §aA S2 foi setada com sucesso");
 			}
 			return true;
 		}

@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Score.ScoreB;
 
 public class ScoreCommand implements CommandExecutor {
@@ -14,17 +14,17 @@ public class ScoreCommand implements CommandExecutor {
 		Player p = (Player) sender;
 		if (label.equalsIgnoreCase("score")) {
 			if (args.length == 0) {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cUtilize: /score <on> <off>");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §cUtilize: /score <on> <off>");
 				return true;
 			}
 
 			Bukkit.getPlayer(args[0]);
-			if (args[0].toLowerCase().equalsIgnoreCase("on")) {
+			if (args[0].equalsIgnoreCase("on")) {
 				ScoreB.addScore(p);
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você §a§lHABILITOU §7sua score!");
-			} else if (args[0].toLowerCase().equalsIgnoreCase("off")) {
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você §a§lHABILITOU §7sua score!");
+			} else if (args[0].equalsIgnoreCase("off")) {
 				ScoreB.removeScore(p);
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você §c§lDESABILITOU §7sua score!");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você §c§lDESABILITOU §7sua score!");
 			}
 		}
 

@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class PvPCommand implements CommandExecutor, Listener {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -16,12 +16,12 @@ public class PvPCommand implements CommandExecutor, Listener {
 			if (p.getWorld().getPVP()) {
 				p.getWorld().setPVP(false);
 				Bukkit.getServer().broadcastMessage(
-						String.valueOf(Main.prefix) + " §8➸ §7O PvP do servidor foi §c§lDESATIVADO§7.");
+						OutfitPvP.prefix + " §8➸ §7O PvP do servidor foi §c§lDESATIVADO§7.");
 				return true;
 			} else {
 				p.getWorld().setPVP(true);
 				Bukkit.getServer()
-						.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §7O PvP do servidor foi §a§lATIVADO§7.");
+						.broadcastMessage(OutfitPvP.prefix + " §8➸ §7O PvP do servidor foi §a§lATIVADO§7.");
 				return true;
 			}
 		} else {

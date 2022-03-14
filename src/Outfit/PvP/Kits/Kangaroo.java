@@ -21,10 +21,10 @@ import org.bukkit.util.Vector;
 
 import Outfit.PvP.Essencial.KitAPI;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Kangaroo implements Listener {
-	public static Main plugin;
+	public static OutfitPvP plugin;
 	public static ArrayList<Player> kanga;
 	public static List<String> KitNerf = new ArrayList<>();
 	public static ArrayList<Player> fujao;
@@ -45,7 +45,7 @@ public class Kangaroo implements Listener {
 						|| event.getAction() == Action.RIGHT_CLICK_AIR)) {
 			event.setCancelled(true);
 			if (KitNerf.contains(p.getName())) {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVoce foi hitado aguarde!");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §cVoce foi hitado aguarde!");
 				return;
 			}
 
@@ -93,7 +93,7 @@ public class Kangaroo implements Listener {
 					public void run() {
 						Kangaroo.KitNerf.remove(p.getName());
 					}
-				}).runTaskLater(Main.getPlugin(), 100L);
+				}).runTaskLater(OutfitPvP.getPlugin(), 100L);
 			}
 		}
 

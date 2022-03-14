@@ -7,7 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Utils.Proteção;
 
 public class TpCommand implements CommandExecutor {
@@ -29,7 +29,7 @@ public class TpCommand implements CommandExecutor {
 			}
 
 			if (Args.length == 0) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §cErrado, utilize a sintaxe correta: /tp [Jogador(a)] [Alvo] ou (x) (y) (z)");
 				return true;
 			}
@@ -42,33 +42,33 @@ public class TpCommand implements CommandExecutor {
 
 				Integer X = Integer.parseInt(Args[0]);
 				if (Args.length == 1) {
-					p.sendMessage(String.valueOf(Main.prefix)
+					p.sendMessage(OutfitPvP.prefix
 							+ " §8➸ §cErrado, utilize a sintaxe correta: /tp [Jogador(a)] [Alvo] ou (x) (y) (z)");
 					return true;
 				}
 
 				if (!this.CheckarNumero(Args[1])) {
-					p.sendMessage(String.valueOf(Main.prefix)
+					p.sendMessage(OutfitPvP.prefix
 							+ " §8➸ §cÉ necessário utilizar apenas números para teleportar para uma coordenada.");
 					return true;
 				}
 
 				Integer Y = Integer.parseInt(Args[1]);
 				if (Args.length == 2) {
-					p.sendMessage(String.valueOf(Main.prefix)
+					p.sendMessage(OutfitPvP.prefix
 							+ " §8➸ §cÉ necessário utilizar apenas números para teleportar para uma coordenada.");
 					return true;
 				}
 
 				if (!this.CheckarNumero(Args[2])) {
-					p.sendMessage(String.valueOf(Main.prefix)
+					p.sendMessage(OutfitPvP.prefix
 							+ " §8➸ §cÉ necessário utilizar apenas números para teleportar para uma coordenada.");
 					return true;
 				}
 
 				Integer Z = Integer.parseInt(Args[2]);
 				p.teleport(new Location(p.getWorld(), (double) X, (double) Y, (double) Z));
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você foi §a§lTELEPORTADO §7até as coordenadas " + X
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você foi §a§lTELEPORTADO §7até as coordenadas " + X
 						+ " " + Y + " " + Z);
 				return true;
 			}
@@ -87,14 +87,14 @@ public class TpCommand implements CommandExecutor {
 				t.teleport(t2.getLocation());
 				Proteção.setImortal(t, false);
 				Proteção.isImortal(t);
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê teleportou o jogador(a): §e" + t.getName()
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §cVocê teleportou o jogador(a): §e" + t.getName()
 						+ " §caté você!");
 				return true;
 			}
 
 			p.teleport(t.getLocation());
 			p.sendMessage(
-					String.valueOf(Main.prefix) + " §8➸ §cVocê foi teleportado até o jogador(a): §e" + t.getName());
+					OutfitPvP.prefix + " §8➸ §cVocê foi teleportado até o jogador(a): §e" + t.getName());
 		}
 
 		return false;

@@ -37,7 +37,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import BossBarAPI.ClassBuilder;
 import BossBarAPI.NMSClass;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 /**
  * © Copyright 2015 inventivetalent
@@ -77,7 +77,7 @@ public class BossBar extends BukkitRunnable {
 
 		if (timeout > 0) {
 			this.healthMinus = this.getMaxHealth() / timeout;
-			this.runTaskTimer(Main.getPlugin(), 20, 20);
+			this.runTaskTimer(OutfitPvP.getPlugin(), 20, 20);
 		}
 	}
 

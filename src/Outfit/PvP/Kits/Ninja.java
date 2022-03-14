@@ -13,14 +13,14 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 
 import Outfit.PvP.Essencial.KitAPI;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Ninja implements Listener {
 	public static HashMap<Player, Player> a = new HashMap<>();
 	public static HashMap<Player, Long> b = new HashMap<>();
 	public static List<Player> cooldownbk = new ArrayList<>();
 
-	public Ninja(Main main) {
+	public Ninja(OutfitPvP main) {
 	}
 
 	@EventHandler
@@ -31,7 +31,7 @@ public class Ninja implements Listener {
 			Player localPlayer2 = (Player) paramEntityDamageByEntityEvent.getEntity();
 			if (KitAPI.Ninja.contains(localPlayer1.getName())) {
 				a.put(localPlayer1, localPlayer2);
-				Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+				Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 					public void run() {
 						Ninja.cooldownbk.remove(localPlayer1);
 					}
@@ -46,37 +46,37 @@ public class Ninja implements Listener {
 		Player localPlayer1 = paramPlayerToggleSneakEvent.getPlayer();
 		Player localPlayer2;
 		if (paramPlayerToggleSneakEvent.isSneaking() && KitAPI.Ninja.contains(localPlayer1.getName())
-				&& a.containsKey(localPlayer1) && (localPlayer2 = (Player) a.get(localPlayer1)) != null
+				&& a.containsKey(localPlayer1) && (localPlayer2 = a.get(localPlayer1)) != null
 				&& !localPlayer2.isDead()) {
 			String str = null;
 			if (b.get(localPlayer1) != null) {
-				long l = (Long) b.get(localPlayer1) - System.currentTimeMillis();
+				long l = b.get(localPlayer1) - System.currentTimeMillis();
 				DecimalFormat localDecimalFormat = new DecimalFormat("##");
 				int i = (int) l / 1000;
-				str = localDecimalFormat.format((long) i);
+				str = localDecimalFormat.format(i);
 			}
 
-			if (b.get(localPlayer1) != null && (Long) b.get(localPlayer1) >= System.currentTimeMillis()) {
-				localPlayer1.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cAguarde " + str + " segundos");
+			if (b.get(localPlayer1) != null && b.get(localPlayer1) >= System.currentTimeMillis()) {
+				localPlayer1.sendMessage(OutfitPvP.prefix + " §8➸ §cAguarde " + str + " segundos");
 			} else if (localPlayer1.getLocation().distance(localPlayer2.getLocation()) < 100.0D) {
 				if (Gladiator.lutando.containsKey(localPlayer2)) {
 					localPlayer1.sendMessage(
-							String.valueOf(Main.prefix) + " §8➸ §cEste jogador está em um duelo nas alturas!");
+                            OutfitPvP.prefix + " §8➸ §cEste jogador está em um duelo nas alturas!");
 					return;
 				}
 
 				if (Gladiator.lutando.containsKey(localPlayer1)) {
-					localPlayer1.sendMessage(String.valueOf(Main.prefix)
+					localPlayer1.sendMessage(OutfitPvP.prefix
 							+ " §8➸ §cVocê não pode utilizar o kit Ninja durante um duelo no Gladiator!");
 					return;
 				}
 
 				localPlayer1.teleport(localPlayer2.getLocation());
-				localPlayer1.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aVocê usou seu ninja.");
+				localPlayer1.sendMessage(OutfitPvP.prefix + " §8➸ §aVocê usou seu ninja.");
 				b.put(localPlayer1, System.currentTimeMillis() + 6000L);
 			} else {
 				localPlayer1.sendMessage(
-						String.valueOf(Main.prefix) + " §8➸ §cO ultimo jogador(a) hitado se afastou muito de você.");
+                        OutfitPvP.prefix + " §8➸ §cO ultimo jogador(a) hitado se afastou muito de você.");
 			}
 		}
 

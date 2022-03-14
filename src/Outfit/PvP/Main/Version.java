@@ -77,7 +77,7 @@ public enum Version {
 		return DESCONHECIDA;
 	}
 
-	private Version(int value) {
+	Version(int value) {
 		this.value = value;
 	}
 }

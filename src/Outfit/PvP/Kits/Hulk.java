@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import Outfit.PvP.Essencial.Cooldown;
 import Outfit.PvP.Essencial.KitUtil;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Hulk implements Listener {
 	@EventHandler
@@ -31,16 +31,16 @@ public class Hulk implements Listener {
 				}
 				if (p.getPassenger() != null) {
 					p.sendMessage(
-							String.valueOf(Main.prefix) + " §8➸ §cAguarde o outro jogador(a) sair da sua cabeça.");
+                            OutfitPvP.prefix + " §8➸ §cAguarde o outro jogador(a) sair da sua cabeça.");
 					return;
 				}
 				if (r.getPassenger() != null) {
 					return;
 				}
 				Cooldown.add(p, 6);
-				p.setPassenger((Entity) r);
+				p.setPassenger(r);
 				r.sendMessage(
-						String.valueOf(Main.prefix) + " §8➸ §7Um Hulk lhe predeu Aperde §a§lSHIFT§7 para se soltar.");
+                        OutfitPvP.prefix + " §8➸ §7Um Hulk lhe predeu Aperde §a§lSHIFT§7 para se soltar.");
 			}
 		}
 	}

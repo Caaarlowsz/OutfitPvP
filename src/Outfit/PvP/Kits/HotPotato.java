@@ -19,7 +19,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import Outfit.PvP.Essencial.Cooldown;
 import Outfit.PvP.Essencial.KitUtil;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class HotPotato implements Listener {
 	public static ArrayList<String> emhotpotato;
@@ -34,7 +34,7 @@ public class HotPotato implements Listener {
 		final Player p = e.getPlayer();
 		if (e.getRightClicked() instanceof Player) {
 			final Player k = (Player) e.getRightClicked();
-			if (p.getItemInHand().getType().equals((Object) Material.POTATO)
+			if (p.getItemInHand().getType().equals(Material.POTATO)
 					&& Habilidade.getAbility(p).equalsIgnoreCase("HotPotato")) {
 				if (Gladiator.lutando.containsKey(p.getName())) {
 				} else {
@@ -44,10 +44,10 @@ public class HotPotato implements Listener {
 					}
 					Cooldown.add(p, 20);
 					HotPotato.emhotpotato.add(k.getName());
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aHotPotato Colocada");
-					k.sendMessage(String.valueOf(Main.prefix)
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §aHotPotato Colocada");
+					k.sendMessage(OutfitPvP.prefix
 							+ " §8➸ §eVocê está com a tnt do hotpotato tire ou ira explodir em 5 segundos!");
-					k.sendMessage(String.valueOf(Main.prefix)
+					k.sendMessage(OutfitPvP.prefix
 							+ " §8➸ §cClique com o botao direito na hotpotato para tira-la.");
 
 					final ItemStack tnt = new ItemStack(Material.TNT);
@@ -60,35 +60,35 @@ public class HotPotato implements Listener {
 					new BukkitRunnable() {
 						public void run() {
 							if (HotPotato.emhotpotato.contains(k.getName())) {
-								k.sendMessage(String.valueOf(Main.prefix)
+								k.sendMessage(OutfitPvP.prefix
 										+ " §8➸ §eVocê está com a tnt, ela será explodida em 4 segundos");
 							}
 						}
-					}.runTaskLater((Plugin) Main.getInstance1(), 0L);
+					}.runTaskLater(OutfitPvP.getInstance1(), 0L);
 					new BukkitRunnable() {
 						public void run() {
 							if (HotPotato.emhotpotato.contains(k.getName())) {
-								k.sendMessage(String.valueOf(Main.prefix)
+								k.sendMessage(OutfitPvP.prefix
 										+ " §8➸ §eVocê está com a tnt, ela será explodida em 3 segundos");
 							}
 						}
-					}.runTaskLater((Plugin) Main.getInstance1(), 20L);
+					}.runTaskLater(OutfitPvP.getInstance1(), 20L);
 					new BukkitRunnable() {
 						public void run() {
 							if (HotPotato.emhotpotato.contains(k.getName())) {
-								k.sendMessage(String.valueOf(Main.prefix)
+								k.sendMessage(OutfitPvP.prefix
 										+ " §8➸ §eVocê está com a tnt, ela será explodida em 2 segundos");
 							}
 						}
-					}.runTaskLater((Plugin) Main.getInstance1(), 40L);
+					}.runTaskLater(OutfitPvP.getInstance1(), 40L);
 					new BukkitRunnable() {
 						public void run() {
 							if (HotPotato.emhotpotato.contains(k.getName())) {
-								k.sendMessage(String.valueOf(Main.prefix)
+								k.sendMessage(OutfitPvP.prefix
 										+ " §8➸ §e§lVocê está com a tnt, ela será explodida em 1 segundo");
 							}
 						}
-					}.runTaskLater((Plugin) Main.getInstance1(), 60L);
+					}.runTaskLater(OutfitPvP.getInstance1(), 60L);
 					new BukkitRunnable() {
 						public void run() {
 							if (HotPotato.emhotpotato.contains(k.getName())) {
@@ -98,8 +98,8 @@ public class HotPotato implements Listener {
 								HotPotato.emhotpotato.remove(k.getName());
 							}
 						}
-					}.runTaskLater((Plugin) Main.getInstance1(), 80L);
-					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+					}.runTaskLater(OutfitPvP.getInstance1(), 80L);
+					Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 						@Override
 						public void run() {
 							KitUtil.ccooldown(p);
@@ -114,13 +114,13 @@ public class HotPotato implements Listener {
 	public void onRemoverTNT(final InventoryClickEvent e) {
 		final Player p = (Player) e.getWhoClicked();
 		if (Habilidade.getAbility(p) != "Nenhum" && e.getSlot() == 39
-				&& e.getCurrentItem().getType().equals((Object) Material.TNT)
+				&& e.getCurrentItem().getType().equals(Material.TNT)
 				&& HotPotato.emhotpotato.contains(p.getName())) {
 			HotPotato.emhotpotato.remove(p.getName());
 			e.setCancelled(true);
-			p.getInventory().setHelmet((ItemStack) null);
+			p.getInventory().setHelmet(null);
 			p.playSound(p.getLocation(), Sound.CREEPER_HISS, 2.0f, 2.0f);
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aVocê desarmou a hotpotato.");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §aVocê desarmou a hotpotato.");
 			p.closeInventory();
 		}
 	}

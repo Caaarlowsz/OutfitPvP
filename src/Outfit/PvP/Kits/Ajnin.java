@@ -15,7 +15,7 @@ import org.bukkit.event.player.PlayerToggleSneakEvent;
 import Outfit.PvP.Essencial.Cooldown;
 import Outfit.PvP.Essencial.KitUtil;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Ajnin implements Listener {
 	public HashMap<Player, Player> ajinhash = new HashMap<Player, Player>();
@@ -28,7 +28,7 @@ public class Ajnin implements Listener {
 			Player t = (Player) e.getEntity();
 			if (Habilidade.getAbility(p).equalsIgnoreCase("Ajnin")) {
 				this.ajinhash.put(p, t);
-				Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getInstace(), new Runnable() {
+				Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.getInstace(), new Runnable() {
 					public void run() {
 					}
 				}, 200L);
@@ -44,7 +44,7 @@ public class Ajnin implements Listener {
 			KitUtil.MensagemCooldown(p);
 		} else {
 			if (e.isSneaking() && Habilidade.getAbility(p).equalsIgnoreCase("Ajnin") && this.ajinhash.containsKey(p)) {
-				Player t = (Player) this.ajinhash.get(p);
+				Player t = this.ajinhash.get(p);
 				if (t != null && !t.isDead()) {
 					if (this.ajincooldown.get(p) != null) {
 						new DecimalFormat("##");
@@ -53,26 +53,26 @@ public class Ajnin implements Listener {
 					if (p.getLocation().distance(t.getLocation()) < 100.0D) {
 						if (Gladiator.lutando.containsKey(t)) {
 							p.sendMessage(
-									String.valueOf(Main.prefix) + " §8➸ §cEste jogador está em um duelo nas alturas!");
+                                    OutfitPvP.prefix + " §8➸ §cEste jogador está em um duelo nas alturas!");
 							return;
 						}
 
 						if (Gladiator.lutando.containsKey(p)) {
-							p.sendMessage(String.valueOf(Main.prefix)
+							p.sendMessage(OutfitPvP.prefix
 									+ " §8➸ §cVocê não pode utilizar o kit Ajnin durante um duelo no Gladiator!");
 							return;
 						}
 
 						t.teleport(p.getLocation());
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aVocê teleportou o jogador(a) para você.");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §aVocê teleportou o jogador(a) para você.");
 						Cooldown.add(p, 6);
-						Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstace(), new Runnable() {
+						Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.getInstace(), new Runnable() {
 							public void run() {
 								KitUtil.ccooldown(p);
 							}
 						}, 140L);
 					} else {
-						p.sendMessage(String.valueOf(Main.prefix)
+						p.sendMessage(OutfitPvP.prefix
 								+ " §8➸ §cO ultimo jogador(a) hitado se afastou muito de você.");
 					}
 				}
@@ -84,7 +84,7 @@ public class Ajnin implements Listener {
 	@EventHandler
 	public void aomorrer(PlayerDeathEvent e) {
 		Player p = e.getEntity();
-		Player t = (Player) this.ajinhash.get(p);
+		Player t = this.ajinhash.get(p);
 		this.ajinhash.remove(t);
 		this.ajinhash.remove(p);
 	}
@@ -92,7 +92,7 @@ public class Ajnin implements Listener {
 	@EventHandler
 	public void aosair(PlayerQuitEvent e) {
 		Player p = e.getPlayer();
-		Player t = (Player) this.ajinhash.get(p);
+		Player t = this.ajinhash.get(p);
 		this.ajinhash.remove(t);
 		this.ajinhash.remove(p);
 	}

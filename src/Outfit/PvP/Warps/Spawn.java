@@ -21,15 +21,15 @@ import Outfit.PvP.Commands.BuildCommand;
 import Outfit.PvP.Essencial.KitAPI;
 import Outfit.PvP.Eventos.CombatLog;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Menus.MenuWarps;
 import Outfit.PvP.OneVsOne.Speed1v1;
 import Outfit.PvP.Utils.Proteção;
 
 public class Spawn implements Listener, CommandExecutor {
-	public static Main plugin;
+	public static OutfitPvP plugin;
 
-	public Spawn(Main main) {
+	public Spawn(OutfitPvP main) {
 		plugin = main;
 	}
 
@@ -53,10 +53,10 @@ public class Spawn implements Listener, CommandExecutor {
 			p.sendMessage("");
 			p.sendMessage("");
 			p.sendMessage("");
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aTeleportado com sucesso");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §aTeleportado com sucesso");
 			if (p.hasPermission("zey.pvp.admin") && WarpAPI.getWarp(p) == "Nenhuma") {
-				Main.admins.remove(p.getName());
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você saiu do modo §c§lADMIN");
+				OutfitPvP.admins.remove(p.getName());
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você saiu do modo §c§lADMIN");
 				Player[] var17;
 				int var16 = (var17 = Bukkit.getOnlinePlayers()).length;
 
@@ -75,9 +75,7 @@ public class Spawn implements Listener, CommandExecutor {
 			p.setGameMode(GameMode.SURVIVAL);
 			MenuWarps.RemoveWarp(p);
 			WarpAPI.setWarp(p, "Spawn");
-			if (CombatLog.Sair.contains(p.getName())) {
-				CombatLog.Sair.remove(p.getName());
-			}
+			CombatLog.Sair.remove(p.getName());
 
 			if (Speed1v1.NeginhoSegundos.contains(p)) {
 				Speed1v1.Partida1 = false;
@@ -86,10 +84,10 @@ public class Spawn implements Listener, CommandExecutor {
 				Speed1v1.NeginhoSegundos.remove(p);
 			}
 
-			p.getInventory().setBoots((ItemStack) null);
-			p.getInventory().setChestplate((ItemStack) null);
-			p.getInventory().setLeggings((ItemStack) null);
-			p.getInventory().setHelmet((ItemStack) null);
+			p.getInventory().setBoots(null);
+			p.getInventory().setChestplate(null);
+			p.getInventory().setLeggings(null);
+			p.getInventory().setHelmet(null);
 			p.getInventory().clear();
 			p.teleport(lobby);
 			p.setExp(0.0F);

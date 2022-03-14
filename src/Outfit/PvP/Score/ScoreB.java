@@ -17,10 +17,10 @@ import com.google.common.base.Splitter;
 
 public class ScoreB {
 	public static final String objective = "NoFlicker";
-	private Scoreboard scoreboard;
-	private ConcurrentHashMap<Integer, String> storedLines;
-	private Team[] teams;
-	private List<ChatColor> chatMap;
+	private final Scoreboard scoreboard;
+	private final ConcurrentHashMap<Integer, String> storedLines;
+	private final Team[] teams;
+	private final List<ChatColor> chatMap;
 
 	public ScoreB() {
 		this.storedLines = new ConcurrentHashMap<Integer, String>();
@@ -56,7 +56,7 @@ public class ScoreB {
 
 	private String fixDuplicates(String text) {
 		while (this.storedLines.contains(text)) {
-			text = String.valueOf(text) + "§r";
+			text = text + "§r";
 		}
 		return text;
 	}
@@ -69,7 +69,7 @@ public class ScoreB {
 		this.teams[scoreValue].addEntry(idd);
 		this.storedLines.put(scoreValue, idd);
 		this.scoreboard.getObjective("NoFlicker").getScore(idd).setScore(scoreValue);
-		final Iterator<String> iterator = Splitter.fixedLength(16).split((CharSequence) name).iterator();
+		final Iterator<String> iterator = Splitter.fixedLength(16).split(name).iterator();
 		String prefix = iterator.next();
 		final boolean shouldInsert = name.length() >= 16 && prefix.charAt(15) == '§';
 		if (shouldInsert) {
@@ -82,7 +82,7 @@ public class ScoreB {
 			if (shouldInsert) {
 				suffix = "§" + suffix;
 			} else {
-				suffix = String.valueOf(chatcolor) + suffix;
+				suffix = chatcolor + suffix;
 			}
 			if (suffix.length() > 16) {
 				suffix = suffix.substring(0, 16);
@@ -114,7 +114,7 @@ public class ScoreB {
 			return;
 		}
 		newName = this.fixDuplicates(newName);
-		final Iterator<String> iterator = Splitter.fixedLength(16).split((CharSequence) newName).iterator();
+		final Iterator<String> iterator = Splitter.fixedLength(16).split(newName).iterator();
 		String prefix = iterator.next();
 		final boolean shouldInsert = newName.length() > 16 && prefix.charAt(15) == '§';
 		if (shouldInsert) {
@@ -127,7 +127,7 @@ public class ScoreB {
 			if (shouldInsert) {
 				suffix = "§" + suffix;
 			} else {
-				suffix = String.valueOf(chatcolor) + suffix;
+				suffix = chatcolor + suffix;
 			}
 			if (suffix.length() > 16) {
 				suffix = suffix.substring(0, 16);
@@ -139,7 +139,7 @@ public class ScoreB {
 	}
 
 	public String getLine(final int id) {
-		return String.valueOf(this.teams[id].getPrefix()) + this.teams[id].getSuffix();
+		return this.teams[id].getPrefix() + this.teams[id].getSuffix();
 	}
 
 	public boolean hasBoard(final Player player) {

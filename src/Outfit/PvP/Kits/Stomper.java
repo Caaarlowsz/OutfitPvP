@@ -37,7 +37,7 @@ public class Stomper implements Listener {
 					}
 					if (plr.isSneaking() || Habilidade.getAbility(plr) == "AntiTower") {
 
-						plr.damage(6.0D, (Entity) p);
+						plr.damage(6.0D, p);
 						continue;
 					}
 					plr.damage(e.getDamage(), (Entity) p);

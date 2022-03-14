@@ -20,7 +20,7 @@ import org.bukkit.util.BlockIterator;
 import org.bukkit.util.Vector;
 
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Ryu implements Listener {
 	public static ArrayList<Player> ryu = new ArrayList<Player>();
@@ -32,7 +32,7 @@ public class Ryu implements Listener {
 		if (((e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK))
 				&& (Habilidade.getAbility(p).equalsIgnoreCase("Ryu"))
 				&& (p.getItemInHand().getType() == Material.DIAMOND_BLOCK) && ((!this.cooldown.containsKey(p.getName()))
-						|| (((Long) this.cooldown.get(p.getName())).longValue() <= System.currentTimeMillis()))) {
+						|| (this.cooldown.get(p.getName()).longValue() <= System.currentTimeMillis()))) {
 			Location location = p.getEyeLocation();
 			BlockIterator blocksToAdd = new BlockIterator(location, 0.0D, 40);
 			while (blocksToAdd.hasNext()) {
@@ -40,18 +40,18 @@ public class Ryu implements Listener {
 				p.getWorld().playEffect(blockToAdd, Effect.STEP_SOUND, Material.DIAMOND_BLOCK, 20);
 				p.playSound(blockToAdd, Sound.IRONGOLEM_THROW, 3.0F, 3.0F);
 			}
-			Snowball h = (Snowball) p.launchProjectile(Snowball.class);
+			Snowball h = p.launchProjectile(Snowball.class);
 			Vector velo1 = p.getLocation().getDirection().normalize().multiply(10);
 			h.setVelocity(velo1);
-			h.setMetadata("hadouken", new FixedMetadataValue(Main.getPlugin(), Boolean.valueOf(true)));
+			h.setMetadata("hadouken", new FixedMetadataValue(OutfitPvP.getPlugin(), Boolean.valueOf(true)));
 			this.cooldown.put(p.getName(), Long.valueOf(System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(15L)));
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §bHadooouken !!");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §bHadooouken !!");
 		} else if (((e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK))
 				&& (Habilidade.getAbility(p).equalsIgnoreCase("Ryu"))
 				&& (p.getItemInHand().getType() == Material.DIAMOND_BLOCK)) {
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Aguarde §d"
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Aguarde §d"
 					+ TimeUnit.MILLISECONDS
-							.toSeconds(((Long) this.cooldown.get(p.getName())).longValue() - System.currentTimeMillis())
+							.toSeconds(this.cooldown.get(p.getName()).longValue() - System.currentTimeMillis())
 					+ "§7 segundos para usar novamente!");
 			e.setCancelled(true);
 			return;

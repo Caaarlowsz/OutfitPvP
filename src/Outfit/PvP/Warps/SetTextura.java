@@ -6,12 +6,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class SetTextura implements Listener, CommandExecutor {
-	public static Main plugin;
+	public static OutfitPvP plugin;
 
-	public SetTextura(Main main) {
+	public SetTextura(OutfitPvP main) {
 		plugin = main;
 	}
 
@@ -32,7 +32,7 @@ public class SetTextura implements Listener, CommandExecutor {
 				plugin.getConfig().set("tx.yaw", p.getLocation().getYaw());
 				plugin.getConfig().set("tx.world", p.getLocation().getWorld().getName());
 				plugin.saveConfig();
-				p.sendMessage(String.valueOf(Main.prefix) + " §7» §aWarp Textura foi setada com sucesso");
+				p.sendMessage(OutfitPvP.prefix + " §7» §aWarp Textura foi setada com sucesso");
 			}
 
 			return true;

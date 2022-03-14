@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.Plugin;
 
 import Outfit.PvP.Essencial.KitAPI;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class TimeLord implements Listener {
 	public static ArrayList<String> freeze;
@@ -41,7 +41,7 @@ public class TimeLord implements Listener {
 				&& player.getItemInHand().getType() == Material.WATCH
 				&& KitAPI.TimeLord.contains(event.getPlayer().getName())) {
 			if (TimeLord.cooldownt.contains(player.getName())) {
-				player.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cAguarde o cooldown terminar.");
+				player.sendMessage(OutfitPvP.prefix + " §8➸ §cAguarde o cooldown terminar.");
 			} else {
 				for (final Entity frozen : player.getNearbyEntities(2.0, 3.0, 2.0)) {
 					if (frozen != null && frozen instanceof Player) {
@@ -53,16 +53,16 @@ public class TimeLord implements Listener {
 						player.getWorld().playSound(player.getLocation(), Sound.WITHER_SHOOT, 10.0f, 1.0f);
 						TimeLord.freezing.add(player.getName());
 						TimeLord.cooldownt.add(player.getName());
-						Bukkit.getServer().getScheduler().scheduleSyncDelayedTask((Plugin) Main.getInstace(),
-								(Runnable) new Runnable() {
-									@Override
-									public void run() {
-										TimeLord.freezing.remove(player.getName());
-										TimeLord.cooldownt.remove(player.getName());
-										player.sendMessage(
-												String.valueOf(Main.prefix) + " §8➸ §aSeu cooldown terminou.");
-									}
-								}, 500L);
+						Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.getInstace(),
+                                new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        TimeLord.freezing.remove(player.getName());
+                                        TimeLord.cooldownt.remove(player.getName());
+                                        player.sendMessage(
+OutfitPvP.prefix + " §8➸ §aSeu cooldown terminou.");
+                                    }
+                                }, 500L);
 					}
 				}
 			}
@@ -74,14 +74,14 @@ public class TimeLord implements Listener {
 		final Player player = event.getPlayer();
 		if (TimeLord.freeze.contains(player.getName()) && !TimeLord.freezing.contains(player.getName())) {
 			event.setTo(player.getLocation());
-			player.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cUm §e§lTIMELORD§c congelou o tempo.");
-			Main.getInstace().getServer().getScheduler().scheduleSyncDelayedTask((Plugin) Main.getInstace(),
-					(Runnable) new Runnable() {
-						@Override
-						public void run() {
-							TimeLord.freeze.remove(player.getName());
-						}
-					}, 100L);
+			player.sendMessage(OutfitPvP.prefix + " §8➸ §cUm §e§lTIMELORD§c congelou o tempo.");
+			OutfitPvP.getInstace().getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.getInstace(),
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            TimeLord.freeze.remove(player.getName());
+                        }
+                    }, 100L);
 		}
 	}
 }

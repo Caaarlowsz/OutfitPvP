@@ -7,7 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class CageCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -18,7 +18,7 @@ public class CageCommand implements CommandExecutor {
 			Player player = (Player) sender;
 			if (label.equalsIgnoreCase("cage") && player.hasPermission("zey.pvp.cage")) {
 				if (args.length == 0) {
-					player.sendMessage(String.valueOf(Main.prefix)
+					player.sendMessage(OutfitPvP.prefix
 							+ " §8➸ §cErrado, utilize a sintaxe correta: /cage [Jogador(a)]");
 					return true;
 				}
@@ -27,11 +27,11 @@ public class CageCommand implements CommandExecutor {
 					Player target = Bukkit.getPlayerExact(args[0]);
 					if (target != null) {
 						this.cagePlayer(target);
-						player.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você prendeu o jogador(a): §e"
+						player.sendMessage(OutfitPvP.prefix + " §8➸ §7Você prendeu o jogador(a): §e"
 								+ target.getName());
 					} else {
 						player.sendMessage(
-								String.valueOf(Main.prefix) + " §8➸ §cEste jogador(a) está offline ou não existe.");
+								OutfitPvP.prefix + " §8➸ §cEste jogador(a) está offline ou não existe.");
 					}
 				}
 			}

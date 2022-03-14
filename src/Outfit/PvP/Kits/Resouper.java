@@ -16,7 +16,7 @@ public class Resouper implements Listener {
 			final Player p = e.getEntity().getKiller();
 			if (Habilidade.getAbility(p).equalsIgnoreCase("Resouper")) {
 				for (int i = 0; i < p.getInventory().getSize(); ++i) {
-					p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP) });
+					p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP));
 					p.updateInventory();
 				}
 			}

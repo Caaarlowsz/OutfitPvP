@@ -12,7 +12,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class Speed1v1 implements Listener {
@@ -39,8 +39,8 @@ public class Speed1v1 implements Listener {
 				Partida1 = true;
 				Iniciou.add(p);
 				this.Trocar(p);
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aVocê entrou na fila para o 1v1 rápido.");
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aVocê entrou na fila para o 1v1 rápido.");
+				Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 					public void run() {
 						Speed1v1.NeginhoSegundos.add(p);
 					}
@@ -69,8 +69,8 @@ public class Speed1v1 implements Listener {
 				Nome = "";
 				Iniciou.remove(p);
 				NeginhoSegundos.remove(p);
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê saiu da fila de 1v1 rápido.");
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §cVocê saiu da fila de 1v1 rápido.");
+				Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 					public void run() {
 						p.getInventory().setItem(5, Join1v1.Cinza);
 						p.updateInventory();

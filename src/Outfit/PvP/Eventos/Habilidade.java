@@ -10,17 +10,17 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Habilidade implements Listener {
 	public static Map<String, String> powerMap = new HashMap<String, String>();
 
-	public Habilidade(Main main) {
+	public Habilidade(OutfitPvP main) {
 	}
 
 	public static String NomeDoKit(String original) {
 		return original.length() == 0 ? original
-				: String.valueOf(original.substring(0, 1).toUpperCase()) + original.substring(1);
+				: original.substring(0, 1).toUpperCase() + original.substring(1);
 	}
 
 	public static String getAbility(Player player) {
@@ -28,7 +28,7 @@ public class Habilidade implements Listener {
 			powerMap.put(player.getName(), "Nenhum");
 		}
 
-		return (String) powerMap.get(player.getName());
+		return powerMap.get(player.getName());
 	}
 
 	public static void setAbility(Player player, String ability) {

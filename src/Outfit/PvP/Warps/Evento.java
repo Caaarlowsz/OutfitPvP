@@ -21,14 +21,14 @@ import Outfit.PvP.Commands.BuildCommand;
 import Outfit.PvP.Commands.IniciarCommand;
 import Outfit.PvP.Essencial.KitAPI;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Menus.MenuWarps;
 import Outfit.PvP.Utils.Proteção;
 
 public class Evento implements Listener, CommandExecutor {
-	public static Main plugin;
+	public static OutfitPvP plugin;
 
-	public Evento(Main main) {
+	public Evento(OutfitPvP main) {
 		plugin = main;
 	}
 
@@ -36,7 +36,7 @@ public class Evento implements Listener, CommandExecutor {
 		if (cmd.getName().equalsIgnoreCase("evento")) {
 			Player d = (Player) sender;
 			if (!IniciarCommand.evento) {
-				d.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cNão é possivel acessar essa Warp, nesse momento.");
+				d.sendMessage(OutfitPvP.prefix + " §8➸ §cNão é possivel acessar essa Warp, nesse momento.");
 				return true;
 			}
 
@@ -60,12 +60,12 @@ public class Evento implements Listener, CommandExecutor {
 			p.sendMessage("");
 			p.sendMessage("");
 			p.sendMessage("");
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aTeleportado com sucesso");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §aTeleportado com sucesso");
 			TheTitle.sendTitle(p, "§d§lEVENTO");
 			TheTitle.sendSubTitle(p, "§7Teleportado com sucesso!");
 			if (p.hasPermission("zey.pvp.admin") && WarpAPI.getWarp(p) == "Nenhuma") {
-				Main.admins.remove(p.getName());
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você saiu do modo §c§lADMIN");
+				OutfitPvP.admins.remove(p.getName());
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você saiu do modo §c§lADMIN");
 				Player[] var18;
 				int var17 = (var18 = Bukkit.getOnlinePlayers()).length;
 
@@ -84,10 +84,10 @@ public class Evento implements Listener, CommandExecutor {
 			MenuWarps.RemoveWarp(p);
 			p.setGameMode(GameMode.SURVIVAL);
 			WarpAPI.setWarp(p, "Evento");
-			p.getInventory().setBoots((ItemStack) null);
-			p.getInventory().setChestplate((ItemStack) null);
-			p.getInventory().setLeggings((ItemStack) null);
-			p.getInventory().setHelmet((ItemStack) null);
+			p.getInventory().setBoots(null);
+			p.getInventory().setChestplate(null);
+			p.getInventory().setLeggings(null);
+			p.getInventory().setHelmet(null);
 			p.setHealthScale(20.0D);
 			Proteção.setImortal(p, false);
 			Proteção.isImortal(p);
@@ -108,63 +108,63 @@ public class Evento implements Listener, CommandExecutor {
 			p.getInventory().setItem(14, cogur);
 			p.getInventory().setItem(15, cogum);
 			p.setFireTicks(0);
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
-			p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.MUSHROOM_SOUP, 1) });
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
+			p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
 			for (final PotionEffect effect : p.getActivePotionEffects()) {
 				p.removePotionEffect(effect.getType());
 			}

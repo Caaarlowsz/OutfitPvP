@@ -16,7 +16,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class MenuVip implements Listener, CommandExecutor {
 	static int inFps = 0;
@@ -160,7 +160,7 @@ public class MenuVip implements Listener, CommandExecutor {
 				p.sendMessage("§7");
 				p.sendMessage("§7");
 				p.sendMessage(
-						String.valueOf(Main.prefix) + " §8➸ §7Acesse o link abaixo para comprar §a§lVIP NORMAL§7:");
+						OutfitPvP.prefix + " §8➸ §7Acesse o link abaixo para comprar §a§lVIP NORMAL§7:");
 				p.sendMessage("§dhttps://kombonetwork.buycraft.net");
 				p.sendMessage("§7");
 				p.sendMessage("§7");
@@ -175,7 +175,7 @@ public class MenuVip implements Listener, CommandExecutor {
 				p.sendMessage("§7");
 				p.sendMessage("§7");
 				p.sendMessage("§7");
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Acesse o link abaixo para comprar §9§lVIP MVP§7:");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Acesse o link abaixo para comprar §9§lVIP MVP§7:");
 				p.sendMessage("§dhttps://kombonetwork.buycraft.net");
 				p.sendMessage("§7");
 				p.sendMessage("§7");
@@ -191,7 +191,7 @@ public class MenuVip implements Listener, CommandExecutor {
 				p.sendMessage("§7");
 				p.sendMessage("§7");
 				p.sendMessage(
-						String.valueOf(Main.prefix) + " §8➸ §7Acesse o link abaixo para comprar §d§lVIP KOMBO§7:");
+						OutfitPvP.prefix + " §8➸ §7Acesse o link abaixo para comprar §d§lVIP KOMBO§7:");
 				p.sendMessage("§dhttps://kombonetwork.buycraft.net");
 				p.sendMessage("§7");
 				p.sendMessage("§7");

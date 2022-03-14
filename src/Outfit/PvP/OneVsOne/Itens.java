@@ -26,9 +26,7 @@ public class Itens {
 		}
 		meta.setLore(l);
 		item.setItemMeta(meta);
-		if (items.containsKey(item)) {
-			items.remove(item);
-		}
+		items.remove(item);
 		items.put(item, id);
 		return item;
 	}
@@ -41,7 +39,7 @@ public class Itens {
 	public ItemStack getItemByID(String id) {
 		if (getItems().containsValue(id)) {
 			for (Map.Entry en : items.entrySet()) {
-				if (((String) en.getValue()).equals(id)) {
+				if (en.getValue().equals(id)) {
 					return (ItemStack) en.getKey();
 				}
 			}

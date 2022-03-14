@@ -24,13 +24,13 @@ import org.bukkit.util.Vector;
 
 import Outfit.PvP.Essencial.KitAPI;
 import Outfit.PvP.Essencial.KitUtil;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Sonic implements Listener {
 	public int boost;
 	public static ArrayList<String> Sonic;
 	public static HashMap<String, ItemStack[]> Armadura;
-	public static Main plugin;
+	public static OutfitPvP plugin;
 	public static HashMap<String, ItemStack[]> saveinv;
 	public static HashMap<String, ItemStack[]> armadura;
 	public static HashMap<String, ItemStack[]> Armadura2;
@@ -45,7 +45,7 @@ public class Sonic implements Listener {
 		Outfit.PvP.Kits.Sonic.cooldownm = new ArrayList<Player>();
 	}
 
-	public Sonic(final Main main) {
+	public Sonic(final OutfitPvP main) {
 		this.boost = Integer.valueOf(6);
 	}
 
@@ -59,7 +59,7 @@ public class Sonic implements Listener {
 				event.setCancelled(true);
 			}
 			if (Outfit.PvP.Kits.Sonic.cooldownm.contains(p)) {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cAguarde o cooldown terminar.");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §cAguarde o cooldown terminar.");
 				return;
 			}
 			Outfit.PvP.Kits.Sonic.cooldownm.add(p);
@@ -77,33 +77,33 @@ public class Sonic implements Listener {
 			final ItemStack Capacete = new ItemStack(Material.LEATHER_HELMET);
 			final LeatherArmorMeta kCapacete = (LeatherArmorMeta) Capacete.getItemMeta();
 			kCapacete.setColor(Color.BLUE);
-			Capacete.setItemMeta((ItemMeta) kCapacete);
+			Capacete.setItemMeta(kCapacete);
 			final ItemStack Peitoral = new ItemStack(Material.LEATHER_CHESTPLATE);
 			final LeatherArmorMeta kPeitoral = (LeatherArmorMeta) Peitoral.getItemMeta();
 			kPeitoral.setColor(Color.BLUE);
-			Peitoral.setItemMeta((ItemMeta) kPeitoral);
+			Peitoral.setItemMeta(kPeitoral);
 			final ItemStack Calss = new ItemStack(Material.LEATHER_LEGGINGS);
 			final LeatherArmorMeta kCalss = (LeatherArmorMeta) Calss.getItemMeta();
 			kCalss.setColor(Color.BLUE);
-			Calss.setItemMeta((ItemMeta) kCalss);
+			Calss.setItemMeta(kCalss);
 			final ItemStack Bota = new ItemStack(Material.LEATHER_BOOTS);
 			final LeatherArmorMeta kBota = (LeatherArmorMeta) Capacete.getItemMeta();
 			kBota.setColor(Color.BLUE);
-			Bota.setItemMeta((ItemMeta) kBota);
+			Bota.setItemMeta(kBota);
 			Outfit.PvP.Kits.Sonic.Armadura.put(p.getName(), p.getInventory().getArmorContents());
 			p.getInventory().setHelmet(Capacete);
 			p.getInventory().setChestplate(Peitoral);
 			p.getInventory().setLeggings(Calss);
 			p.getInventory().setBoots(Bota);
 			p.updateInventory();
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 				@Override
 				public void run() {
-					p.getInventory().setArmorContents((ItemStack[]) null);
+					p.getInventory().setArmorContents(null);
 					p.updateInventory();
 				}
 			}, 50L);
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 				@SuppressWarnings("unlikely-arg-type")
 				@Override
 				public void run() {

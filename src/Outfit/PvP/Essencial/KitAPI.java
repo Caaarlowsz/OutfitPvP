@@ -19,7 +19,7 @@ import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.flags.DefaultFlag;
 
 import Outfit.PvP.APIs.WarpAPI;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class KitAPI implements Listener {
 	public static final String Kitado;
@@ -140,7 +140,7 @@ public class KitAPI implements Listener {
 		KitAPI.refillTestTime = new HashMap<String, Integer>();
 	}
 
-	public KitAPI(final Main main) {
+	public KitAPI(final OutfitPvP main) {
 	}
 
 	public static void remove(final Player p) {
@@ -195,83 +195,83 @@ public class KitAPI implements Listener {
 		final ItemMeta ksopa = sopa.getItemMeta();
 		ksopa.setDisplayName("§dSopa");
 		sopa.setItemMeta(ksopa);
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
-		p.getInventory().addItem(new ItemStack[] { sopa });
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
+		p.getInventory().addItem(sopa);
 	}
 
 	public static void recraft(final Player p) {
@@ -310,7 +310,7 @@ public class KitAPI implements Listener {
 		LeatherArmorMeta kPeito = (LeatherArmorMeta) Peito.getItemMeta();
 		kPeito.setColor(Color.RED);
 		Peito.setItemMeta(kPeito);
-		p.getInventory().setChestplate((ItemStack) Peito);
+		p.getInventory().setChestplate(Peito);
 
 		p.setAllowFlight(false);
 		p.setFlying(false);
@@ -332,10 +332,10 @@ public class KitAPI implements Listener {
 		Peito.setItemMeta(kPeito);
 
 		p.getInventory().setItem(0, espada);
-		p.getInventory().setBoots((ItemStack) null);
-		p.getInventory().setChestplate((ItemStack) Peito);
-		p.getInventory().setLeggings((ItemStack) null);
-		p.getInventory().setHelmet((ItemStack) null);
+		p.getInventory().setBoots(null);
+		p.getInventory().setChestplate(Peito);
+		p.getInventory().setLeggings(null);
+		p.getInventory().setHelmet(null);
 
 		p.setAllowFlight(false);
 		p.setFlying(false);

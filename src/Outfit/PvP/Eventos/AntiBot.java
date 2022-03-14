@@ -17,7 +17,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.maxgamer.maxbans.MaxBans;
 import org.maxgamer.maxbans.banmanager.IPBan;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class AntiBot implements Listener {
 	static int BotAttack = 0;
@@ -26,7 +26,7 @@ public class AntiBot implements Listener {
 	public static List<String> FastLogin = new ArrayList<>();
 
 	@EventHandler(priority = EventPriority.MONITOR)
-	public void NoBot(AsyncPlayerPreLoginEvent event) throws MalformedURLException, IOException {
+	public void NoBot(AsyncPlayerPreLoginEvent event) throws IOException {
 		final String ip = event.getAddress().getHostAddress();
 		IPBan ipban = MaxBans.instance.getBanManager().getIPBan(ip);
 		String ip2 = event.getAddress().getHostName();
@@ -45,7 +45,7 @@ public class AntiBot implements Listener {
 			if (BotAttack >= 100) {
 				event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER,
 						"§4§lANTIBOT§r\n§cWhitelist ativada!\n§7O servidor esta sofrendo ataques de bot's nesse momento tente entrar novamente em 5 minutos!\n\n§fDiscord: §ddiscord.gg/FuxCUsufhk");
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 					public void run() {
 						if (AntiBot.BotAttack >= 100) {
 							AntiBot.BotAttack = 0;
@@ -83,7 +83,7 @@ public class AntiBot implements Listener {
 							"§d§lCHECKING§r\n§aSua conexao foi verificada com sucesso!\n§7Relogue novamente ao servidor!\n\n§fDiscord: §ddiscord.gg/FuxCUsufhk");
 				}
 				FastLogin.add(ip);
-				Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
+				Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.getPlugin(), new Runnable() {
 					public void run() {
 						AntiBot.NoBot.add(ip);
 						AntiBot.FastLogin.remove(ip);
@@ -101,7 +101,7 @@ public class AntiBot implements Listener {
 							"§d§lCHECKING§r\n§cFalha ao verificar sua conexao com o servidor!\n§7Relogue novamente ao servidor!\n\n§fDiscord: §ddiscord.gg/FuxCUsufhk");
 				}
 				FastLogin.add(ip);
-				Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
+				Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.getPlugin(), new Runnable() {
 					public void run() {
 						AntiBot.NoBot.add(ip);
 						AntiBot.FastLogin.remove(ip);

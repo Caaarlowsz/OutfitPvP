@@ -9,12 +9,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class HeadCommand implements CommandExecutor, Listener {
-	Main main;
+	OutfitPvP main;
 
-	public HeadCommand(Main plugin) {
+	public HeadCommand(OutfitPvP plugin) {
 		plugin = this.main;
 	}
 
@@ -23,13 +23,13 @@ public class HeadCommand implements CommandExecutor, Listener {
 
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (!(sender instanceof Player)) {
-			sender.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cApenas jogadores podem usar isso.");
+			sender.sendMessage(OutfitPvP.prefix + " §8➸ §cApenas jogadores podem usar isso.");
 			return true;
 		} else {
 			if (sender instanceof Player) {
 				Player p = (Player) sender;
 				if (args.length == 0) {
-					p.sendMessage(String.valueOf(Main.prefix)
+					p.sendMessage(OutfitPvP.prefix
 							+ " §8➸ §cErrado, utilize a sintaxe correta: /head [Jogador(a)]");
 				}
 
@@ -40,8 +40,8 @@ public class HeadCommand implements CommandExecutor, Listener {
 						SkullMeta skullMeta = (SkullMeta) skullItem.getItemMeta();
 						skullMeta.setOwner(args[0]);
 						skullItem.setItemMeta(skullMeta);
-						p.getInventory().addItem(new ItemStack[] { skullItem });
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aHead adicionada ao seu inventario.");
+						p.getInventory().addItem(skullItem);
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §aHead adicionada ao seu inventario.");
 					} else {
 						p.sendMessage("§cVocê não tem permissão para isso.");
 					}

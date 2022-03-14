@@ -17,7 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import Outfit.PvP.APIs.WarpAPI;
 import Outfit.PvP.Config.ZeyCoins;
 import Outfit.PvP.Essencial.KitAPI;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class PlacaDaLava implements Listener {
 	@EventHandler
@@ -76,18 +76,18 @@ public class PlacaDaLava implements Listener {
 			if (lines.length > 0 && lines[0].equals("") && lines.length > 1 && lines[1].equals("§c§lCHALLENGE")
 					&& lines.length > 2 && lines[2].equals("") && lines.length > 3 && lines[3].equals("§7(Fácil)")
 					&& WarpAPI.getWarp(p) == "Challenge") {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você completou o challenge §dfácil§7.");
-				ZeyCoins.addMoney((Player) p, 200);
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você completou o challenge §dfácil§7.");
+				ZeyCoins.addMoney(p, 200);
 				p.getInventory().clear();
-				p.getInventory().setArmorContents((ItemStack[]) null);
+				p.getInventory().setArmorContents(null);
 				KitAPI.remove(p);
-				w = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("lava.world"));
-				x = Main.instance.getConfig().getDouble("lava.x");
-				y = Main.instance.getConfig().getDouble("lava.y");
-				z = Main.instance.getConfig().getDouble("lava.z");
+				w = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("lava.world"));
+				x = OutfitPvP.instance.getConfig().getDouble("lava.x");
+				y = OutfitPvP.instance.getConfig().getDouble("lava.y");
+				z = OutfitPvP.instance.getConfig().getDouble("lava.z");
 				lobby = new Location(w, x, y, z);
-				lobby.setPitch((float) Main.instance.getConfig().getDouble("lava.pitch"));
-				lobby.setYaw((float) Main.instance.getConfig().getDouble("lava.yaw"));
+				lobby.setPitch((float) OutfitPvP.instance.getConfig().getDouble("lava.pitch"));
+				lobby.setYaw((float) OutfitPvP.instance.getConfig().getDouble("lava.yaw"));
 				p.teleport(lobby);
 				Habilidade.setAbility(p, "Warp");
 				sopa = new ItemStack(Material.MUSHROOM_SOUP);
@@ -109,24 +109,24 @@ public class PlacaDaLava implements Listener {
 				p.getInventory().setItem(14, cogur);
 				p.getInventory().setItem(15, cogum);
 				p.updateInventory();
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você ganhou §d200 Dolls§7.");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você ganhou §d200 Dolls§7.");
 			}
 
 			if (lines.length > 0 && lines[0].equals("") && lines.length > 1 && lines[1].equals("§c§lCHALLENGE")
 					&& lines.length > 2 && lines[2].equals("") && lines.length > 3 && lines[3].equals("§7(Médio)")
 					&& WarpAPI.getWarp(p) == "Challenge") {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você completou o challenge §dmedio§7.");
-				ZeyCoins.addMoney((Player) p, 300);
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você completou o challenge §dmedio§7.");
+				ZeyCoins.addMoney(p, 300);
 				p.getInventory().clear();
-				p.getInventory().setArmorContents((ItemStack[]) null);
+				p.getInventory().setArmorContents(null);
 				KitAPI.remove(p);
-				w = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("lava.world"));
-				x = Main.instance.getConfig().getDouble("lava.x");
-				y = Main.instance.getConfig().getDouble("lava.y");
-				z = Main.instance.getConfig().getDouble("lava.z");
+				w = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("lava.world"));
+				x = OutfitPvP.instance.getConfig().getDouble("lava.x");
+				y = OutfitPvP.instance.getConfig().getDouble("lava.y");
+				z = OutfitPvP.instance.getConfig().getDouble("lava.z");
 				lobby = new Location(w, x, y, z);
-				lobby.setPitch((float) Main.instance.getConfig().getDouble("lava.pitch"));
-				lobby.setYaw((float) Main.instance.getConfig().getDouble("lava.yaw"));
+				lobby.setPitch((float) OutfitPvP.instance.getConfig().getDouble("lava.pitch"));
+				lobby.setYaw((float) OutfitPvP.instance.getConfig().getDouble("lava.yaw"));
 				p.teleport(lobby);
 				Habilidade.setAbility(p, "Warp");
 				sopa = new ItemStack(Material.MUSHROOM_SOUP);
@@ -148,24 +148,24 @@ public class PlacaDaLava implements Listener {
 				p.getInventory().setItem(14, cogur);
 				p.getInventory().setItem(15, cogum);
 				p.updateInventory();
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você ganhou §d300 Dolls§7.");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você ganhou §d300 Dolls§7.");
 			}
 
 			if (lines.length > 0 && lines[0].equals("") && lines.length > 1 && lines[1].equals("§c§lCHALLENGE")
 					&& lines.length > 2 && lines[2].equals("") && lines.length > 3 && lines[3].equals("§7(Difícil)")
 					&& WarpAPI.getWarp(p) == "Challenge") {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você completou o challenge §ddifício§7.");
-				ZeyCoins.addMoney((Player) p, 500);
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você completou o challenge §ddifício§7.");
+				ZeyCoins.addMoney(p, 500);
 				p.getInventory().clear();
-				p.getInventory().setArmorContents((ItemStack[]) null);
+				p.getInventory().setArmorContents(null);
 				KitAPI.remove(p);
-				w = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("lava.world"));
-				x = Main.instance.getConfig().getDouble("lava.x");
-				y = Main.instance.getConfig().getDouble("lava.y");
-				z = Main.instance.getConfig().getDouble("lava.z");
+				w = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("lava.world"));
+				x = OutfitPvP.instance.getConfig().getDouble("lava.x");
+				y = OutfitPvP.instance.getConfig().getDouble("lava.y");
+				z = OutfitPvP.instance.getConfig().getDouble("lava.z");
 				lobby = new Location(w, x, y, z);
-				lobby.setPitch((float) Main.instance.getConfig().getDouble("lava.pitch"));
-				lobby.setYaw((float) Main.instance.getConfig().getDouble("lava.yaw"));
+				lobby.setPitch((float) OutfitPvP.instance.getConfig().getDouble("lava.pitch"));
+				lobby.setYaw((float) OutfitPvP.instance.getConfig().getDouble("lava.yaw"));
 				p.teleport(lobby);
 				Habilidade.setAbility(p, "Warp");
 				sopa = new ItemStack(Material.MUSHROOM_SOUP);
@@ -187,28 +187,28 @@ public class PlacaDaLava implements Listener {
 				p.getInventory().setItem(14, cogur);
 				p.getInventory().setItem(15, cogum);
 				p.updateInventory();
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você ganhou §d500 Dolls§7.");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você ganhou §d500 Dolls§7.");
 			}
 
 			if (lines.length > 0 && lines[0].equals("") && lines.length > 1 && lines[1].equals("§c§lCHALLENGE")
 					&& lines.length > 2 && lines[2].equals("") && lines.length > 3 && lines[3].equals("§7(Extremo)")
 					&& WarpAPI.getWarp(p) == "Challenge") {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você completou o challenge §dextremo§7.");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você completou o challenge §dextremo§7.");
 				Bukkit.broadcastMessage(" ");
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §7O jogador(a): §d" + p.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §7O jogador(a): §d" + p.getName()
 						+ " §7completou o challenger, §c§LEXTREMO§7.");
 				Bukkit.broadcastMessage(" ");
-				ZeyCoins.addMoney((Player) p, 1000);
+				ZeyCoins.addMoney(p, 1000);
 				p.getInventory().clear();
-				p.getInventory().setArmorContents((ItemStack[]) null);
+				p.getInventory().setArmorContents(null);
 				KitAPI.remove(p);
-				w = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("lava.world"));
-				x = Main.instance.getConfig().getDouble("lava.x");
-				y = Main.instance.getConfig().getDouble("lava.y");
-				z = Main.instance.getConfig().getDouble("lava.z");
+				w = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("lava.world"));
+				x = OutfitPvP.instance.getConfig().getDouble("lava.x");
+				y = OutfitPvP.instance.getConfig().getDouble("lava.y");
+				z = OutfitPvP.instance.getConfig().getDouble("lava.z");
 				lobby = new Location(w, x, y, z);
-				lobby.setPitch((float) Main.instance.getConfig().getDouble("lava.pitch"));
-				lobby.setYaw((float) Main.instance.getConfig().getDouble("lava.yaw"));
+				lobby.setPitch((float) OutfitPvP.instance.getConfig().getDouble("lava.pitch"));
+				lobby.setYaw((float) OutfitPvP.instance.getConfig().getDouble("lava.yaw"));
 				p.teleport(lobby);
 				Habilidade.setAbility(p, "Warp");
 				sopa = new ItemStack(Material.MUSHROOM_SOUP);
@@ -230,7 +230,7 @@ public class PlacaDaLava implements Listener {
 				p.getInventory().setItem(14, cogur);
 				p.getInventory().setItem(15, cogum);
 				p.updateInventory();
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você ganhou §d1500 Dolls§7.");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você ganhou §d1500 Dolls§7.");
 			}
 		}
 

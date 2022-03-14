@@ -7,28 +7,28 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class InvCommand implements Listener, CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String Label, String[] args) {
 		if (!(sender instanceof Player)) {
-			sender.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cApenas jogadores podem usar isso.");
+			sender.sendMessage(OutfitPvP.prefix + " §8➸ §cApenas jogadores podem usar isso.");
 			return true;
 		} else {
 			Player p = (Player) sender;
 			if (cmd.getName().equalsIgnoreCase("inv")) {
 				if (sender.hasPermission("zey.pvp.inv")) {
-					sender.sendMessage(String.valueOf(Main.prefix)
+					sender.sendMessage(OutfitPvP.prefix
 							+ " §8➸ §cErrado, utilize a sintaxe correta: /inv [Jogador(a)]");
 					if (args.length > 0) {
 						Player player = Bukkit.getPlayer(args[0]);
 						if (player == null) {
 							sender.sendMessage(
-									String.valueOf(Main.prefix) + " §8➸ §cEste jogador(a) está offline ou não existe.");
+									OutfitPvP.prefix + " §8➸ §cEste jogador(a) está offline ou não existe.");
 							return true;
 						}
 
-						sender.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Inventario §a§lABERTO§7 com sucesso.");
+						sender.sendMessage(OutfitPvP.prefix + " §8➸ §7Inventario §a§lABERTO§7 com sucesso.");
 						p.openInventory(player.getInventory());
 					}
 				} else {

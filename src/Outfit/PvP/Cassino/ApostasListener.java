@@ -23,7 +23,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import Outfit.PvP.Config.ConfigManager;
 import Outfit.PvP.Config.ZeyCoins;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class ApostasListener extends ConfigManager implements Listener {
 	public static HashMap<String, Integer> valor = new HashMap<String, Integer>();
@@ -62,15 +62,11 @@ public class ApostasListener extends ConfigManager implements Listener {
 	}
 
 	public static void Seletor(Player p) {
-		if (ApostasListener.apostado.containsKey(p.getName())) {
-			ApostasListener.apostado.remove(p.getName());
-		}
+		ApostasListener.apostado.remove(p.getName());
 
-		if (valor.containsKey(p.getName())) {
-			valor.remove(p.getName());
-		}
+		valor.remove(p.getName());
 
-		Inventory inv = Bukkit.createInventory((InventoryHolder) null, 36, "§c§lCASSINO");
+		Inventory inv = Bukkit.createInventory(null, 36, "§c§lCASSINO");
 		ItemStack coins = getItem(Material.GOLD_INGOT, "§6$" + ZeyCoins.getPlayerMoney(p), 1, 0);
 		ItemStack milm = getItem(Material.STAINED_CLAY, "§a$1,000", 1, 5);
 		ItemStack cincom = getItem(Material.STAINED_CLAY, "§a$5,000", 5, 5);
@@ -113,7 +109,7 @@ public class ApostasListener extends ConfigManager implements Listener {
 	}
 
 	public static void SeletorApostar(final Player p) {
-		final Inventory inv = Bukkit.createInventory((InventoryHolder) null, 18, "§6§lAPOSTANDO...");
+		final Inventory inv = Bukkit.createInventory(null, 18, "§6§lAPOSTANDO...");
 		ItemStack ll = getItem(Material.HOPPER, "-", 1, 0);
 		inv.setItem(4, ll);
 		ItemStack glass = getItem(Material.THIN_GLASS, "-", 1, 0);
@@ -139,7 +135,7 @@ public class ApostasListener extends ConfigManager implements Listener {
 		(new BukkitRunnable() {
 			public void run() {
 				if (p.getInventory() != inv) {
-					if ((Integer) ApostasListener.numero.get(p.getName()) < 21) {
+					if (ApostasListener.numero.get(p.getName()) < 21) {
 						inv.setItem(10, inv.getItem(11));
 						inv.setItem(11, inv.getItem(12));
 						inv.setItem(12, inv.getItem(13));
@@ -148,63 +144,47 @@ public class ApostasListener extends ConfigManager implements Listener {
 						inv.setItem(15, inv.getItem(16));
 						inv.setItem(16, ApostasListener.randomItem());
 						p.playSound(p.getLocation(), Sound.CLICK, 1.0F, 1.0F);
-						ApostasListener.numero.put(p.getName(), (Integer) ApostasListener.numero.get(p.getName()) + 1);
+						ApostasListener.numero.put(p.getName(), ApostasListener.numero.get(p.getName()) + 1);
 					} else {
 						this.cancel();
 						if (inv.getItem(13).getData().getData() == 3
-								&& ((String) ApostasListener.apostado.get(p.getName())).equalsIgnoreCase("Azul")) {
+								&& ApostasListener.apostado.get(p.getName()).equalsIgnoreCase("Azul")) {
 							p.sendMessage("§aVocê ganhou $" + ApostasListener.getAposta(p) * 2);
 							ZeyCoins.addMoney(p, ApostasListener.getAposta(p) * 2);
-							if (ApostasListener.apostado.containsKey(p.getName())) {
-								ApostasListener.apostado.remove(p.getName());
-							}
+							ApostasListener.apostado.remove(p.getName());
 
-							if (ApostasListener.valor.containsKey(p.getName())) {
-								ApostasListener.valor.remove(p.getName());
-							}
+							ApostasListener.valor.remove(p.getName());
 
 							return;
 						}
 
 						if (inv.getItem(13).getData().getData() == 14
-								&& ((String) ApostasListener.apostado.get(p.getName())).equalsIgnoreCase("Vermelho")) {
+								&& ApostasListener.apostado.get(p.getName()).equalsIgnoreCase("Vermelho")) {
 							p.sendMessage("§aVocê ganhou $" + ApostasListener.getAposta(p) * 2);
 							ZeyCoins.addMoney(p, ApostasListener.getAposta(p) * 2);
-							if (ApostasListener.apostado.containsKey(p.getName())) {
-								ApostasListener.apostado.remove(p.getName());
-							}
+							ApostasListener.apostado.remove(p.getName());
 
-							if (ApostasListener.valor.containsKey(p.getName())) {
-								ApostasListener.valor.remove(p.getName());
-							}
+							ApostasListener.valor.remove(p.getName());
 
 							return;
 						}
 
 						if (inv.getItem(13).getData().getData() == 4
-								&& ((String) ApostasListener.apostado.get(p.getName())).equalsIgnoreCase("Ouro")) {
+								&& ApostasListener.apostado.get(p.getName()).equalsIgnoreCase("Ouro")) {
 							p.sendMessage("§aVocê ganhou $" + ApostasListener.getAposta(p) * 4);
 							ZeyCoins.addMoney(p, ApostasListener.getAposta(p) * 4);
-							if (ApostasListener.apostado.containsKey(p.getName())) {
-								ApostasListener.apostado.remove(p.getName());
-							}
+							ApostasListener.apostado.remove(p.getName());
 
-							if (ApostasListener.valor.containsKey(p.getName())) {
-								ApostasListener.valor.remove(p.getName());
-							}
+							ApostasListener.valor.remove(p.getName());
 
 							return;
 						}
 
 						if (inv.getItem(0) != null) {
 							p.sendMessage("§cInfelizmente, você perdeu.");
-							if (ApostasListener.apostado.containsKey(p.getName())) {
-								ApostasListener.apostado.remove(p.getName());
-							}
+							ApostasListener.apostado.remove(p.getName());
 
-							if (ApostasListener.valor.containsKey(p.getName())) {
-								ApostasListener.valor.remove(p.getName());
-							}
+							ApostasListener.valor.remove(p.getName());
 						}
 					}
 				} else {
@@ -212,7 +192,7 @@ public class ApostasListener extends ConfigManager implements Listener {
 				}
 
 			}
-		}).runTaskTimer(Main.getPlugin(), 0L, 5L);
+		}).runTaskTimer(OutfitPvP.getPlugin(), 0L, 5L);
 		p.openInventory(inv);
 	}
 
@@ -443,11 +423,9 @@ public class ApostasListener extends ConfigManager implements Listener {
 	public void aa(InventoryCloseEvent e) {
 		Inventory inv = e.getInventory();
 		if (inv.getTitle() != null && inv.getTitle().equalsIgnoreCase("§6§lAPOSTANDO...")) {
-			if (apostado.containsKey(e.getPlayer().getName())) {
-				apostado.remove(e.getPlayer().getName());
-			}
+			apostado.remove(e.getPlayer().getName());
 
-			if (valor.containsKey(e.getPlayer().getName()) && (Integer) numero.get(e.getPlayer().getName()) < 21) {
+			if (valor.containsKey(e.getPlayer().getName()) && numero.get(e.getPlayer().getName()) < 21) {
 				ZeyCoins.addMoney(e.getPlayer().getName(), getAposta((Player) e.getPlayer()));
 				valor.remove(e.getPlayer().getName());
 			}
@@ -456,6 +434,6 @@ public class ApostasListener extends ConfigManager implements Listener {
 	}
 
 	public static int getAposta(Player p) {
-		return valor.containsKey(p.getName()) ? (Integer) valor.get(p.getName()) : 0;
+		return valor.containsKey(p.getName()) ? valor.get(p.getName()) : 0;
 	}
 }

@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class SetGroupCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -18,7 +18,7 @@ public class SetGroupCommand implements CommandExecutor {
 			}
 
 			if (args.length != 2) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §cErrado, utilize a sintaxe correta: /setgroup [Jogador(a)] [Grupo]");
 				p.sendMessage(
 						"§cGrupos disponiveis§f: §7NORMAL§f, §bYT§f, §3YT+§f, §2BUILDER§f, §eHELPER§f, §dTRIAL§f, §1GC§f, §5MOD§f, §3MODGC§f, §5MOD+§f, §cADMIN§f, §cGERENTE§f, §3DEV§f, §fCOORDENADOR§f, §4DIRETOR§f, §4DONO§f.");

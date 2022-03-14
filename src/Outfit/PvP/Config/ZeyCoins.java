@@ -3,7 +3,7 @@ package Outfit.PvP.Config;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class ZeyCoins implements Listener {
 	public static MyConfig PlayerMoney;
@@ -14,7 +14,7 @@ public class ZeyCoins implements Listener {
 	}
 
 	public static void loadMoneyManager() {
-		ZeyCoins.PlayerMoney = Main.manager.getNewConfig("ZeyCoins.yml");
+		ZeyCoins.PlayerMoney = OutfitPvP.manager.getNewConfig("ZeyCoins.yml");
 	}
 
 	public static int getPlayerMoney(final Player p) {

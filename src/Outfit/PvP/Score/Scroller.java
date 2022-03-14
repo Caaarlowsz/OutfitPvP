@@ -8,7 +8,7 @@ import org.bukkit.ChatColor;
 public class Scroller {
 	private static final char COLOUR_CHAR = '§';
 	private int position;
-	private List<String> list;
+	private final List<String> list;
 	private ChatColor colour = ChatColor.RESET;
 
 	/**
@@ -50,14 +50,14 @@ public class Scroller {
 		// Add space between repeats
 		StringBuilder space = new StringBuilder();
 		for (int i = 0; i < spaceBetween; ++i) {
-			list.add(message.substring(message.length() - width + (i > width ? width : i), message.length()) + space);
+			list.add(message.substring(message.length() - width + (i > width ? width : i)) + space);
 			if (space.length() < width)
 				space.append(" ");
 		}
 
 		// Wrap
 		for (int i = 0; i < width - spaceBetween; ++i)
-			list.add(message.substring(message.length() - width + spaceBetween + i, message.length()) + space
+			list.add(message.substring(message.length() - width + spaceBetween + i) + space
 					+ message.substring(0, i));
 
 		// Join up
@@ -92,7 +92,7 @@ public class Scroller {
 	}
 
 	private StringBuilder getNext() {
-		return new StringBuilder(list.get(position++ % list.size()).substring(0));
+		return new StringBuilder(list.get(position++ % list.size()));
 	}
 
 }

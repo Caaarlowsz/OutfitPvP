@@ -18,7 +18,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import Outfit.PvP.APIs.TheTitle;
 import Outfit.PvP.Config.ZeyCoins;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public class Caixas implements Listener {
@@ -44,10 +44,10 @@ public class Caixas implements Listener {
 		ItemMeta metainfo = info.getItemMeta();
 		metainfo.setDisplayName("§8§m§l----------------------------------");
 		metainfo.setLore(Arrays.asList(
-				new String[] { "   ", "§7Oque sao as §d§lCAIXAS§7?", "   ", "§8§m§l----------------------------------",
-						"  ", "§7 As caixas dao vantagens aos jogadores.", "§7 Porem, o jogador so consegue",
-						"§7 comprar sua caixa com muito esforço.", "§7 As caixas podem ser compradas pelo site ",
-						"§7 ou por dinheiro do jogo.", "   ", "§8§m§l----------------------------------" }));
+				"   ", "§7Oque sao as §d§lCAIXAS§7?", "   ", "§8§m§l----------------------------------",
+				"  ", "§7 As caixas dao vantagens aos jogadores.", "§7 Porem, o jogador so consegue",
+				"§7 comprar sua caixa com muito esforço.", "§7 As caixas podem ser compradas pelo site ",
+				"§7 ou por dinheiro do jogo.", "   ", "§8§m§l----------------------------------"));
 		info.setItemMeta(metainfo);
 
 		ItemStack normal = new ItemStack(Material.getMaterial(328));
@@ -248,7 +248,7 @@ public class Caixas implements Listener {
 	@EventHandler
 	public void ClicarNoBloco(PlayerInteractEvent e) {
 		Player p = e.getPlayer();
-		if ((p.getItemInHand().getType() == Material.ENDER_CHEST) && (!Main.admins.contains(p.getName()))) {
+		if ((p.getItemInHand().getType() == Material.ENDER_CHEST) && (!OutfitPvP.admins.contains(p.getName()))) {
 			e.setCancelled(true);
 			caixas(p);
 			p.playSound(p.getLocation(), Sound.CLICK, 5.0f, 5.0f);

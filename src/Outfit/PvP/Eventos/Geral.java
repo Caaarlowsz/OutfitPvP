@@ -59,7 +59,7 @@ import Outfit.PvP.APIs.WarpAPI;
 import Outfit.PvP.Config.Status;
 import Outfit.PvP.Config.ZeyCoins;
 import Outfit.PvP.Essencial.KitUtil;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Score.SPlayer;
 import Outfit.PvP.Warps.Parkour;
 import hi.Reaction.BossBar.BossBarAPI;
@@ -114,7 +114,7 @@ public class Geral implements Listener {
 				|| event.getMessage().toLowerCase().startsWith("//evaluate")
 				|| event.getMessage().toLowerCase().startsWith("//calculate")) {
 			event.setCancelled(true);
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cEsse comando nao foi encontrado.");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §cEsse comando nao foi encontrado.");
 		}
 
 	}
@@ -167,7 +167,7 @@ public class Geral implements Listener {
 				if (WarpAPI.getWarp(p) == "Fps" || WarpAPI.getWarp(p) == "Main" || WarpAPI.getWarp(p) == "1v1"
 						|| WarpAPI.getWarp(p) == "Potion" || WarpAPI.getWarp(p) == "Evento") {
 					BossBarAPI.setMessage(hitter, "§fNick: §7" + p.getName() + " §fClan: " + SPlayer.ClanHIT(p));
-					Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
+					Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.getPlugin(), new Runnable() {
 						public void run() {
 							BossBarAPI.removeBar(hitter);
 						}
@@ -177,7 +177,7 @@ public class Geral implements Listener {
 				if (WarpAPI.getWarp(p) == "Arena") {
 					BossBarAPI.setMessage(hitter, "§fNick: §7" + p.getName() + " §fClan: §7" + SPlayer.ClanHIT(p)
 							+ " §fKit: §7" + Habilidade.getAbility(p));
-					Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
+					Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.getPlugin(), new Runnable() {
 						public void run() {
 							BossBarAPI.removeBar(hitter);
 						}
@@ -190,19 +190,19 @@ public class Geral implements Listener {
 
 	@EventHandler
 	public void onDeath(final PlayerDeathEvent e) {
-		e.setDeathMessage((String) null);
+		e.setDeathMessage(null);
 		final Player p = e.getEntity();
 		if (p.getKiller() instanceof Player) {
 			Player k = p.getKiller();
 			Location l = k.getLocation();
 			Location lp = p.getLocation();
-			int mortes = Main.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".mortes");
-			Main.plugin.getConfig().set("status." + p.getName().toLowerCase() + ".mortes", mortes + 1);
-			Main.plugin.saveConfig();
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você foi morto por §c" + k.getName());
-			k.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você adquiriu §d100 Dolls!");
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você perdeu §c50 Dolls!");
-			k.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você matou o jogador(a): §d" + p.getName());
+			int mortes = OutfitPvP.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".mortes");
+			OutfitPvP.plugin.getConfig().set("status." + p.getName().toLowerCase() + ".mortes", mortes + 1);
+			OutfitPvP.plugin.saveConfig();
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você foi morto por §c" + k.getName());
+			k.sendMessage(OutfitPvP.prefix + " §8➸ §7Você adquiriu §d100 Dolls!");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você perdeu §c50 Dolls!");
+			k.sendMessage(OutfitPvP.prefix + " §8➸ §7Você matou o jogador(a): §d" + p.getName());
 			k.playSound(l, Sound.FIREWORK_LAUNCH, 10.0F, 1.0F);
 			p.playSound(lp, Sound.ARROW_HIT, 10.0F, 1.0F);
 			if (WarpAPI.getWarp(p) == "Fps" || WarpAPI.getWarp(p) == "Potion" || WarpAPI.getWarp(p) == "Main") {
@@ -210,149 +210,149 @@ public class Geral implements Listener {
 			}
 
 			if (Status.getKs(p) >= 4) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d§l" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d§l" + k.getName()
 						+ " §7acabou com um §d§lKILLSTREAK §7de §d§l" + Status.getKs(p) + " §7do jogador: §d§l"
 						+ p.getName());
-				k.sendMessage(String.valueOf(Main.prefix)
+				k.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §7Você ganhou §d250 Dolls §7por acabar com o §dKillStreak §7do openente!");
-				ZeyCoins.addMoney((Player) k, 250);
+				ZeyCoins.addMoney(k, 250);
 			}
 
 			if (Status.getKs(k) == 4) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d§l" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d§l" + k.getName()
 						+ " §7está com um §d§lKILLSTREAK §7de §d§l5");
-				k.sendMessage(String.valueOf(Main.prefix)
+				k.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §7Você ganhou §d500 Dolls §7por fazer um §dKillStreak §7de §d5§7!");
-				ZeyCoins.addMoney((Player) k, 500);
+				ZeyCoins.addMoney(k, 500);
 			}
 
 			if (Status.getKs(k) == 9) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d§l" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d§l" + k.getName()
 						+ " §7está com um §d§lKILLSTREAK §7de §d§l10");
-				k.sendMessage(String.valueOf(Main.prefix)
+				k.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §7Você ganhou §d1000 Dolls §7por fazer um §dKillStreak §7de §d10§7!");
-				ZeyCoins.addMoney((Player) k, 1000);
+				ZeyCoins.addMoney(k, 1000);
 			}
 
 			if (Status.getKs(k) == 14) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d§l" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d§l" + k.getName()
 						+ " §7está com um §d§lKILLSTREAK §7de §d§l15");
-				k.sendMessage(String.valueOf(Main.prefix)
+				k.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §7Você ganhou §d1500 Dolls §7por fazer um §dKillStreak §7de §d15§7!");
-				ZeyCoins.addMoney((Player) k, 1500);
+				ZeyCoins.addMoney(k, 1500);
 			}
 
 			if (Status.getKs(k) == 19) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d§l" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d§l" + k.getName()
 						+ " §7está com um §d§lKILLSTREAK §7de §d§l20");
-				k.sendMessage(String.valueOf(Main.prefix)
+				k.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §7Você ganhou §d2000 Dolls §7por fazer um §dKillStreak §7de §d20§7!");
-				ZeyCoins.addMoney((Player) k, 2000);
+				ZeyCoins.addMoney(k, 2000);
 			}
 
 			if (Status.getKs(k) == 24) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d§l" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d§l" + k.getName()
 						+ " §7está com um §d§lKILLSTREAK §7de §d§l25");
-				k.sendMessage(String.valueOf(Main.prefix)
+				k.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §7Você ganhou §d2500 Dolls §7por fazer um §dKillStreak §7de §d25§7!");
-				ZeyCoins.addMoney((Player) k, 2500);
+				ZeyCoins.addMoney(k, 2500);
 			}
 
 			if (Status.getKs(k) == 29) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d§l" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d§l" + k.getName()
 						+ " §7está com um §d§lKILLSTREAK §7de §d§l30");
-				k.sendMessage(String.valueOf(Main.prefix)
+				k.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §7Você ganhou §d3000 Dolls §7por fazer um §dKillStreak §7de §d30§7!");
-				ZeyCoins.addMoney((Player) k, 3000);
+				ZeyCoins.addMoney(k, 3000);
 			}
 
 			if (Status.getKs(k) == 34) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d" + k.getName()
 						+ " §7está com um §dKILLSTREAK §7de §d§l35");
-				k.sendMessage(String.valueOf(Main.prefix)
+				k.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §7Você ganhou §d3500 Dolls §7por fazer um §dKillStreak §7de §d35§7!");
-				ZeyCoins.addMoney((Player) k, 3500);
+				ZeyCoins.addMoney(k, 3500);
 			}
 
 			if (Status.getKs(k) == 39) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d§l" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d§l" + k.getName()
 						+ " §7está com um §d§lKILLSTREAK §7de §d§l40");
-				k.sendMessage(String.valueOf(Main.prefix)
+				k.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §7Você ganhou §d4000 Dolls §7por fazer um §dKillStreak §7de §d40§7!");
-				ZeyCoins.addMoney((Player) k, 4000);
+				ZeyCoins.addMoney(k, 4000);
 			}
 
 			if (Status.getKs(k) == 44) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d§l" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d§l" + k.getName()
 						+ " §7está com um §d§lKILLSTREAK §7de §d§l45");
-				k.sendMessage(String.valueOf(Main.prefix)
+				k.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §7Você ganhou §d4500 Dolls §7por fazer um §dKillStreak §7de §d45§7!");
-				ZeyCoins.addMoney((Player) k, 4500);
+				ZeyCoins.addMoney(k, 4500);
 			}
 
 			if (Status.getKs(k) == 49) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d§l" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d§l" + k.getName()
 						+ " §7está com um §d§lKILLSTREAK §7de §d§l50");
-				k.sendMessage(String.valueOf(Main.prefix)
+				k.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §7Você ganhou §d5000 Dolls §7por fazer um §dKillStreak §7de §d50§7!");
-				ZeyCoins.addMoney((Player) k, 5000);
+				ZeyCoins.addMoney(k, 5000);
 			}
 
 			if (Status.getKs(k) == 54) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d§l" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d§l" + k.getName()
 						+ " §7está com um §d§lKILLSTREAK §7de §d§l55");
 			}
 
 			if (Status.getKs(k) == 59) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d" + k.getName()
 						+ " §7está com um §dKILLSTREAK §7de §d§l60");
 			}
 
 			if (Status.getKs(k) == 64) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d" + k.getName()
 						+ " §7está com um §dKILLSTREAK §7de §d§l65");
 			}
 
 			if (Status.getKs(k) == 69) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d§l" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d§l" + k.getName()
 						+ " §7está com um §d§lKILLSTREAK §7de §d§l70");
 			}
 
 			if (Status.getKs(k) == 74) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d§l" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d§l" + k.getName()
 						+ " §7está com um §d§lKILLSTREAK §7de §d§l75");
 			}
 
 			if (Status.getKs(k) == 79) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d§l" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d§l" + k.getName()
 						+ " §7está com um §d§lKILLSTREAK §7de §d§l80");
 			}
 
 			if (Status.getKs(k) == 84) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d§l" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d§l" + k.getName()
 						+ " §7está com um §d§lKILLSTREAK §7de §d§l85");
 			}
 
 			if (Status.getKs(k) == 89) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d§l" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d§l" + k.getName()
 						+ " §7está com um §d§lKILLSTREAK §7de §d§l90");
 			}
 
 			if (Status.getKs(k) == 94) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d§l" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d§l" + k.getName()
 						+ " §7está com um §d§lKILLSTREAK §7de §d§l95");
 			}
 
 			if (Status.getKs(k) == 99) {
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d§l" + k.getName()
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d§l" + k.getName()
 						+ " §7alcançou o §d§lKILLSTREAK §7máximo de §d§l100§f!");
 			}
 
-			Main.plugin.getConfig().set("status." + p.getName().toLowerCase() + ".ks", 0);
-			Main.plugin.saveConfig();
+			OutfitPvP.plugin.getConfig().set("status." + p.getName().toLowerCase() + ".ks", 0);
+			OutfitPvP.plugin.saveConfig();
 		}
 
-		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+		Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 			public void run() {
 				double x;
 				double y;
@@ -361,73 +361,73 @@ public class Geral implements Listener {
 				World w;
 				if (WarpAPI.getWarp(p) == "Challenge") {
 					p.spigot().respawn();
-					w = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("lava.world"));
-					x = Main.instance.getConfig().getDouble("lava.x");
-					y = Main.instance.getConfig().getDouble("lava.y");
-					z = Main.instance.getConfig().getDouble("lava.z");
+					w = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("lava.world"));
+					x = OutfitPvP.instance.getConfig().getDouble("lava.x");
+					y = OutfitPvP.instance.getConfig().getDouble("lava.y");
+					z = OutfitPvP.instance.getConfig().getDouble("lava.z");
 					lobby = new Location(w, x, y, z);
-					lobby.setPitch((float) Main.instance.getConfig().getDouble("lava.pitch"));
-					lobby.setYaw((float) Main.instance.getConfig().getDouble("lava.yaw"));
+					lobby.setPitch((float) OutfitPvP.instance.getConfig().getDouble("lava.pitch"));
+					lobby.setYaw((float) OutfitPvP.instance.getConfig().getDouble("lava.yaw"));
 					p.teleport(lobby);
 				} else if (WarpAPI.getWarp(p) == "Void") {
 					p.spigot().respawn();
-					w = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("void.world"));
-					x = Main.instance.getConfig().getDouble("void.x");
-					y = Main.instance.getConfig().getDouble("void.y");
-					z = Main.instance.getConfig().getDouble("void.z");
+					w = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("void.world"));
+					x = OutfitPvP.instance.getConfig().getDouble("void.x");
+					y = OutfitPvP.instance.getConfig().getDouble("void.y");
+					z = OutfitPvP.instance.getConfig().getDouble("void.z");
 					lobby = new Location(w, x, y, z);
-					lobby.setPitch((float) Main.instance.getConfig().getDouble("void.pitch"));
-					lobby.setYaw((float) Main.instance.getConfig().getDouble("void.yaw"));
+					lobby.setPitch((float) OutfitPvP.instance.getConfig().getDouble("void.pitch"));
+					lobby.setYaw((float) OutfitPvP.instance.getConfig().getDouble("void.yaw"));
 					p.teleport(lobby);
 				} else if (WarpAPI.getWarp(p) == "Fps") {
 					p.spigot().respawn();
-					w = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("fps.world"));
-					x = Main.instance.getConfig().getDouble("fps.x");
-					y = Main.instance.getConfig().getDouble("fps.y");
-					z = Main.instance.getConfig().getDouble("fps.z");
+					w = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("fps.world"));
+					x = OutfitPvP.instance.getConfig().getDouble("fps.x");
+					y = OutfitPvP.instance.getConfig().getDouble("fps.y");
+					z = OutfitPvP.instance.getConfig().getDouble("fps.z");
 					lobby = new Location(w, x, y, z);
-					lobby.setPitch((float) Main.instance.getConfig().getDouble("fps.pitch"));
-					lobby.setYaw((float) Main.instance.getConfig().getDouble("fps.yaw"));
+					lobby.setPitch((float) OutfitPvP.instance.getConfig().getDouble("fps.pitch"));
+					lobby.setYaw((float) OutfitPvP.instance.getConfig().getDouble("fps.yaw"));
 					p.teleport(lobby);
 				} else if (WarpAPI.getWarp(p) == "Main") {
 					p.spigot().respawn();
-					w = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("themain.world"));
-					x = Main.instance.getConfig().getDouble("themain.x");
-					y = Main.instance.getConfig().getDouble("themain.y");
-					z = Main.instance.getConfig().getDouble("themain.z");
+					w = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("themain.world"));
+					x = OutfitPvP.instance.getConfig().getDouble("themain.x");
+					y = OutfitPvP.instance.getConfig().getDouble("themain.y");
+					z = OutfitPvP.instance.getConfig().getDouble("themain.z");
 					lobby = new Location(w, x, y, z);
-					lobby.setPitch((float) Main.instance.getConfig().getDouble("themain.pitch"));
-					lobby.setYaw((float) Main.instance.getConfig().getDouble("themain.yaw"));
+					lobby.setPitch((float) OutfitPvP.instance.getConfig().getDouble("themain.pitch"));
+					lobby.setYaw((float) OutfitPvP.instance.getConfig().getDouble("themain.yaw"));
 					p.teleport(lobby);
 				} else if (WarpAPI.getWarp(p) == "Knockback") {
 					p.spigot().respawn();
-					w = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("kb.world"));
-					x = Main.instance.getConfig().getDouble("kb.x");
-					y = Main.instance.getConfig().getDouble("kb.y");
-					z = Main.instance.getConfig().getDouble("kb.z");
+					w = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("kb.world"));
+					x = OutfitPvP.instance.getConfig().getDouble("kb.x");
+					y = OutfitPvP.instance.getConfig().getDouble("kb.y");
+					z = OutfitPvP.instance.getConfig().getDouble("kb.z");
 					lobby = new Location(w, x, y, z);
-					lobby.setPitch((float) Main.instance.getConfig().getDouble("kb.pitch"));
-					lobby.setYaw((float) Main.instance.getConfig().getDouble("kb.yaw"));
+					lobby.setPitch((float) OutfitPvP.instance.getConfig().getDouble("kb.pitch"));
+					lobby.setYaw((float) OutfitPvP.instance.getConfig().getDouble("kb.yaw"));
 					p.teleport(lobby);
 				} else if (WarpAPI.getWarp(p) == "Fisherman") {
 					p.spigot().respawn();
-					w = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("fish.world"));
-					x = Main.instance.getConfig().getDouble("fish.x");
-					y = Main.instance.getConfig().getDouble("fish.y");
-					z = Main.instance.getConfig().getDouble("fish.z");
+					w = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("fish.world"));
+					x = OutfitPvP.instance.getConfig().getDouble("fish.x");
+					y = OutfitPvP.instance.getConfig().getDouble("fish.y");
+					z = OutfitPvP.instance.getConfig().getDouble("fish.z");
 					lobby = new Location(w, x, y, z);
-					lobby.setPitch((float) Main.instance.getConfig().getDouble("fish.pitch"));
-					lobby.setYaw((float) Main.instance.getConfig().getDouble("fish.yaw"));
+					lobby.setPitch((float) OutfitPvP.instance.getConfig().getDouble("fish.pitch"));
+					lobby.setYaw((float) OutfitPvP.instance.getConfig().getDouble("fish.yaw"));
 					p.teleport(lobby);
 				} else if (WarpAPI.getWarp(p) == "Potion") {
 					p.spigot().respawn();
-					w = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("potion.world"));
-					x = Main.instance.getConfig().getDouble("potion.x");
-					y = Main.instance.getConfig().getDouble("potion.y");
-					z = Main.instance.getConfig().getDouble("potion.z");
+					w = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("potion.world"));
+					x = OutfitPvP.instance.getConfig().getDouble("potion.x");
+					y = OutfitPvP.instance.getConfig().getDouble("potion.y");
+					z = OutfitPvP.instance.getConfig().getDouble("potion.z");
 					lobby = new Location(w, x, y, z);
-					lobby.setPitch((float) Main.instance.getConfig().getDouble("potion.pitch"));
-					lobby.setYaw((float) Main.instance.getConfig().getDouble("potion.yaw"));
+					lobby.setPitch((float) OutfitPvP.instance.getConfig().getDouble("potion.pitch"));
+					lobby.setYaw((float) OutfitPvP.instance.getConfig().getDouble("potion.yaw"));
 					p.teleport(lobby);
 				} else {
 					e.getEntity().setFlying(false);
@@ -539,17 +539,17 @@ public class Geral implements Listener {
 		int Motd = info.nextInt(3);
 		switch (Motd) {
 		case 0:
-			e.setMotd(Main.motd);
+			e.setMotd(OutfitPvP.motd);
 			break;
 		case 1:
-			e.setMotd(Main.motd2);
+			e.setMotd(OutfitPvP.motd2);
 			break;
 		case 2:
-			e.setMotd(Main.motd3);
+			e.setMotd(OutfitPvP.motd3);
 		}
 
 		if (Bukkit.hasWhitelist()) {
-			e.setMotd(Main.motd4);
+			e.setMotd(OutfitPvP.motd4);
 		}
 
 	}
@@ -697,13 +697,13 @@ public class Geral implements Listener {
 					}
 					parar = true;
 					e.getPlayer().setCompassTarget(entidades.getLocation());
-					e.getPlayer().sendMessage(String.valueOf(Main.prefix)
+					e.getPlayer().sendMessage(OutfitPvP.prefix
 							+ " §8➸ §7Bússola apontando para o jogador(a): §d" + ((Player) entidades).getName());
 					return;
 				}
 			}
 			if (!parar) {
-				e.getPlayer().sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Nenhum jogador(a) foi encontrado!");
+				e.getPlayer().sendMessage(OutfitPvP.prefix + " §8➸ §7Nenhum jogador(a) foi encontrado!");
 				e.getPlayer().setCompassTarget(new Location(e.getPlayer().getWorld(), 0.0, 100.0, 0.0));
 			}
 		}
@@ -775,7 +775,7 @@ public class Geral implements Listener {
 
 	@EventHandler
 	public void dropar(final ItemSpawnEvent e) {
-		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
+		Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.getPlugin(), new Runnable() {
 			public void run() {
 				e.getEntity().remove();
 				e.getEntity().getWorld().playEffect(e.getEntity().getLocation(), Effect.SMOKE, 1);
@@ -785,7 +785,7 @@ public class Geral implements Listener {
 
 	@EventHandler
 	public void entityDamagePedra(EntityDamageByEntityEvent e) {
-		if (e.getDamager() instanceof Player && (Player) e.getDamager() instanceof Player) {
+		if (e.getDamager() instanceof Player && e.getDamager() instanceof Player) {
 			Player p = (Player) e.getDamager();
 			if (e.getEntity() instanceof Player && p.getItemInHand().getType() == Material.STONE_SWORD) {
 				e.setDamage(e.getDamage() * 0.6D);
@@ -828,7 +828,7 @@ public class Geral implements Listener {
 			HelpTopic topic = Bukkit.getServer().getHelpMap().getHelpTopic(msg);
 			if (topic == null) {
 				event.setCancelled(true);
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cEsse comando nao foi encontrado!");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §cEsse comando nao foi encontrado!");
 			}
 
 		}
@@ -841,7 +841,7 @@ public class Geral implements Listener {
 		kpote.setDisplayName("§dPote");
 		pote.setItemMeta(kpote);
 		final Damageable hp;
-		final Player p = (Player) (hp = (Damageable) e.getPlayer());
+		final Player p = (Player) (hp = e.getPlayer());
 		if (hp.getHealth() != 20.0) {
 			if ((e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)
 					&& p.getItemInHand().getTypeId() == 282) {

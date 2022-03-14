@@ -21,7 +21,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class MenuAdm implements Listener, CommandExecutor {
 	@SuppressWarnings({ "rawtypes", "unchecked", "unused" })
 	public static void guiKits(final Player p) {
-		final Inventory inv = Bukkit.getServer().createInventory((InventoryHolder) p, 27, "§8[§dADMIN§8]");
+		final Inventory inv = Bukkit.getServer().createInventory(p, 27, "§8[§dADMIN§8]");
 		final ItemStack pyro = new ItemStack(Material.POTION, 1, (short) 8201);
 		final ItemMeta metapyro = pyro.getItemMeta();
 		metapyro.setDisplayName("§d§lADMIN");
@@ -30,7 +30,7 @@ public class MenuAdm implements Listener, CommandExecutor {
 		descpyro1.add("§8➸ §d§lUTILIDADE");
 		descpyro1.add("§7Testar Hackers");
 		descpyro1.add("§7E Prender Jogadores");
-		metapyro.setLore((List) descpyro1);
+		metapyro.setLore(descpyro1);
 		pyro.setItemMeta(metapyro);
 		inv.setItem(12, pyro);
 		final ItemStack pyro2 = new ItemStack(Material.EXP_BOTTLE);
@@ -41,7 +41,7 @@ public class MenuAdm implements Listener, CommandExecutor {
 		descpyro2.add("§8➸ §d§lUTILIDADE");
 		descpyro2.add("§7Ficar Totalmente");
 		descpyro2.add("§7Invisivel");
-		metapyro2.setLore((List) descpyro2);
+		metapyro2.setLore(descpyro2);
 		pyro2.setItemMeta(metapyro2);
 		inv.setItem(14, pyro2);
 		final ItemStack event1234 = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14);

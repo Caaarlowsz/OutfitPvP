@@ -15,7 +15,7 @@ import org.bukkit.potion.PotionEffectType;
 import Outfit.PvP.Essencial.Cooldown;
 import Outfit.PvP.Essencial.KitUtil;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Confuser implements Listener {
 	@EventHandler
@@ -35,7 +35,7 @@ public class Confuser implements Listener {
 				((LivingEntity) pertos).addPotionEffect(new PotionEffect(PotionEffectType.POISON, 100, 1));
 				((LivingEntity) pertos).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 2));
 			}
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 				@Override
 				public void run() {
 					KitUtil.ccooldown(p);

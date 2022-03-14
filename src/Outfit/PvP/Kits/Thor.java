@@ -12,7 +12,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import Outfit.PvP.Essencial.Cooldown;
 import Outfit.PvP.Essencial.KitUtil;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Thor implements Listener {
 	@EventHandler
@@ -29,23 +29,23 @@ public class Thor implements Listener {
 
 			Location loc = p.getTargetBlock(null, 30).getLocation();
 			p.getWorld().strikeLightning(loc);
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 				public void run() {
 					p.getWorld().strikeLightning(loc);
 				}
 			}, 10L);
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 				public void run() {
 					p.getWorld().strikeLightning(loc);
 				}
 			}, 20L);
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 				public void run() {
 					p.getWorld().strikeLightning(loc);
 				}
 			}, 40L);
 			e.setCancelled(true);
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 				public void run() {
 					KitUtil.ccooldown(p);
 				}

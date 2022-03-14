@@ -19,7 +19,7 @@ import Outfit.PvP.Cassino.ApostasListener;
 
 public class MenuGeral1 implements Listener, CommandExecutor {
 	public static void guiKits(final Player p) {
-		final Inventory inv = Bukkit.getServer().createInventory((InventoryHolder) p, 27, "§8[§dMENU§8]");
+		final Inventory inv = Bukkit.getServer().createInventory(p, 27, "§8[§dMENU§8]");
 
 		final ItemStack event458 = new ItemStack(Material.EMERALD);
 		final ItemMeta eventv2 = event458.getItemMeta();

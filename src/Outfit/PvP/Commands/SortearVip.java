@@ -12,7 +12,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import Outfit.PvP.Essencial.HorarioAPI;
 import Outfit.PvP.Essencial.ListVips;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class SortearVip implements CommandExecutor {
 
@@ -62,7 +62,7 @@ public class SortearVip implements CommandExecutor {
 
 				}
 
-			}.runTaskLater(Main.instance, 20 * 10);
+			}.runTaskLater(OutfitPvP.instance, 20 * 10);
 
 		}
 		return false;

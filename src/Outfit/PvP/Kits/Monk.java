@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import Outfit.PvP.Essencial.Cooldown;
 import Outfit.PvP.Essencial.KitUtil;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Monk implements Listener {
 	@EventHandler
@@ -33,11 +33,11 @@ public class Monk implements Listener {
 				ItemStack ItemMudado = jogadorClicado.getItemInHand();
 				jogadorClicado.setItemInHand(ItemSelecionado);
 				jogadorClicado.getInventory().setItem(random, ItemMudado);
-				jogadorClicado.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você foi §c§lMONKADO§7.");
-				p.sendMessage(String.valueOf(String.valueOf(Main.prefix) + " §8➸ §7Você §c§lMONKOU§7 o jogador(a): §e"
-						+ jogadorClicado.getName()));
+				jogadorClicado.sendMessage(OutfitPvP.prefix + " §8➸ §7Você foi §c§lMONKADO§7.");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você §c§lMONKOU§7 o jogador(a): §e"
+                        + jogadorClicado.getName());
 				Cooldown.add(p, 20);
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstace(), new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.getInstace(), new Runnable() {
 					public void run() {
 						KitUtil.ccooldown(p);
 					}

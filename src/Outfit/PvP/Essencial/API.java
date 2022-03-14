@@ -19,7 +19,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class API {
 	public static ItemStack capacete;
@@ -54,7 +54,7 @@ public class API {
 
 	public static ItemStack Item(final Material material, final int quantidade, final int id, final String nome) {
 
-		final ItemStack item = new ItemStack(material, quantidade, (short) (byte) id);
+		final ItemStack item = new ItemStack(material, quantidade, (byte) id);
 		final ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName(nome);
 		item.setItemMeta(meta);
@@ -65,7 +65,7 @@ public class API {
 	public static void CriarItem(final Player p, final Material material, final int quantidade, final byte id,
 			final String nome, final Enchantment ench, final int level, final boolean trueoufalse, final int lugar) {
 
-		final ItemStack item = new ItemStack(material, quantidade, (short) id);
+		final ItemStack item = new ItemStack(material, quantidade, id);
 		final ItemMeta itemm = item.getItemMeta();
 		itemm.setDisplayName(nome);
 		itemm.addEnchant(ench, level, trueoufalse);
@@ -79,7 +79,7 @@ public class API {
 		(API.sopameta = API.sopa.getItemMeta()).setDisplayName("§dSopa");
 		API.sopa.setItemMeta(API.sopameta);
 		for (int i = 1; i < 37; ++i) {
-			p.getInventory().addItem(new ItemStack[] { API.sopa });
+			p.getInventory().addItem(API.sopa);
 		}
 		CriarItem(p, Material.RED_MUSHROOM, 64, (byte) 0, "§6Recraft", Enchantment.ARROW_DAMAGE, 0, false, 13);
 		CriarItem(p, Material.BROWN_MUSHROOM, 64, (byte) 0, "§6Recraft", Enchantment.ARROW_DAMAGE, 0, false, 15);
@@ -91,7 +91,7 @@ public class API {
 		p.setHealth(20.0);
 		p.setFoodLevel(20);
 		p.getInventory().clear();
-		p.getInventory().setArmorContents((ItemStack[]) null);
+		p.getInventory().setArmorContents(null);
 		for (final PotionEffect potion : p.getActivePotionEffects()) {
 			p.removePotionEffect(potion.getType());
 
@@ -195,43 +195,43 @@ public class API {
 		switch (random.nextInt(8)) {
 		case 1:
 			Bukkit.broadcastMessage(" ");
-			Bukkit.broadcastMessage(String.valueOf(Main.prefix)
+			Bukkit.broadcastMessage(OutfitPvP.prefix
 					+ " §8➸ §7O servidor está em fase §d§lBETA§7. Caso você encontre algum §d§lERRO§7, reporte em nosso Discord!");
 			Bukkit.broadcastMessage(" ");
 			break;
 		case 2:
 			Bukkit.broadcastMessage(" ");
 			Bukkit.broadcastMessage(
-					String.valueOf(Main.prefix) + " §8➸ §7Para fazer uma denúncia, use: §d/report (nick) (motivo)§7.");
+					OutfitPvP.prefix + " §8➸ §7Para fazer uma denúncia, use: §d/report (nick) (motivo)§7.");
 			Bukkit.broadcastMessage(" ");
 			break;
 		case 3:
 			Bukkit.broadcastMessage(" ");
-			Bukkit.broadcastMessage(String.valueOf(Main.prefix)
+			Bukkit.broadcastMessage(OutfitPvP.prefix
 					+ " §8➸ §7Entre no nosso §d§lDISCORD §7e fique por dentro de nossas novidades! §8[§dhttps://discord.gg/FDFhphW]");
 			Bukkit.broadcastMessage(" ");
 			break;
 		case 4:
 			Bukkit.broadcastMessage(" ");
-			Bukkit.broadcastMessage(String.valueOf(Main.prefix)
+			Bukkit.broadcastMessage(OutfitPvP.prefix
 					+ " §8➸ §7Deseja tag §b§lYT §7digite §d/youtuber §7para saber os requisitos.");
 			Bukkit.broadcastMessage(" ");
 			break;
 		case 5:
 			Bukkit.broadcastMessage(" ");
-			Bukkit.broadcastMessage(String.valueOf(Main.prefix)
+			Bukkit.broadcastMessage(OutfitPvP.prefix
 					+ " §8➸ §7Há algum interesse em integrar à nossa §d§lSTAFF§7, §7utilize §d/aplicar§7.");
 			Bukkit.broadcastMessage(" ");
 			break;
 		case 6:
 			Bukkit.broadcastMessage(" ");
-			Bukkit.broadcastMessage(String.valueOf(Main.prefix)
+			Bukkit.broadcastMessage(OutfitPvP.prefix
 					+ " §8➸ §7Fique atento as §d§lREGRAS§7 e evite ser banido do servidor, §7utilize §d/regras§7.");
 			Bukkit.broadcastMessage(" ");
 			break;
 		case 7:
 			Bukkit.broadcastMessage(" ");
-			Bukkit.broadcastMessage(String.valueOf(Main.prefix)
+			Bukkit.broadcastMessage(OutfitPvP.prefix
 					+ " §8➸ §7Quer saber seu status? use o comando §d/status §7para saber seu status!");
 			Bukkit.broadcastMessage(" ");
 			break;

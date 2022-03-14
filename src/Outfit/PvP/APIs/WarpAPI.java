@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 
 public class WarpAPI {
 
-	private static HashMap<Player, String> Warp = new HashMap<>();
+	private static final HashMap<Player, String> Warp = new HashMap<>();
 
 	public static String getWarp(Player p) {
 

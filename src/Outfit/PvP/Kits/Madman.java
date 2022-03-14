@@ -11,7 +11,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Madman implements Listener {
 
@@ -24,7 +24,7 @@ public class Madman implements Listener {
 			if ((Habilidade.getAbility(t) == "Madman") && (t.getItemInHand().getType() == Material.STONE_SWORD)) {
 				if (new Random().nextInt(100) <= 40) {
 					p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 10 * 20, 3));
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê foi afetado, por um madman.");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §cVocê foi afetado, por um madman.");
 				}
 			}
 		}

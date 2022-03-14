@@ -12,7 +12,7 @@ import Outfit.PvP.Essencial.KitAPI;
 import Outfit.PvP.Essencial.KitUtil;
 import Outfit.PvP.Eventos.CombatLog;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Utils.Proteção;
 
 public class TpAllEvento implements CommandExecutor {
@@ -25,15 +25,13 @@ public class TpAllEvento implements CommandExecutor {
 			}
 
 			if (args.length == 0) {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você puxou §a§lTODOS §7os jogadores até você.");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você puxou §a§lTODOS §7os jogadores até você.");
 
 				for (Player tpe : Bukkit.getOnlinePlayers()) {
 					if (tpe != p) {
 
 						if (WarpAPI.getWarp(tpe) == "Evento") {
-							if (CombatLog.Sair.contains(tpe.getName())) {
-								CombatLog.Sair.remove(tpe.getName());
-							}
+							CombatLog.Sair.remove(tpe.getName());
 
 							Habilidade.setAbility(tpe, "Nenhum");
 							WarpAPI.setWarp(tpe, "Evento");

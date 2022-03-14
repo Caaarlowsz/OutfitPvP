@@ -11,22 +11,22 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class KitUtil implements Listener {
 	public static void MensagemCooldown(final Player p) {
-		p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cAguarde " + Cooldown.CoolDown(p) + " segundos");
+		p.sendMessage(OutfitPvP.prefix + " §8➸ §cAguarde " + Cooldown.CoolDown(p) + " segundos");
 	}
 
 	public static void ccooldown(final Player p) {
-		p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSeu cooldown acabou.");
+		p.sendMessage(OutfitPvP.prefix + " §8➸ §aSeu cooldown acabou.");
 	}
 
 	public static ItemStack darArmadura(final Material material, final Color cor) {
 		final ItemStack item = new ItemStack(material);
 		final LeatherArmorMeta itemm = (LeatherArmorMeta) item.getItemMeta();
 		itemm.setColor(cor);
-		item.setItemMeta((ItemMeta) itemm);
+		item.setItemMeta(itemm);
 		return item;
 	}
 

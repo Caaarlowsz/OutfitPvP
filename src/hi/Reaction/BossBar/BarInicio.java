@@ -41,7 +41,7 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 /**
  * © Copyright 2015 inventivetalent
@@ -89,7 +89,7 @@ public class BarInicio implements Listener {
 			public void run() {
 				bar.setVisible(true);
 			}
-		}.runTaskLater(Main.getPlugin(), 2);
+		}.runTaskLater(OutfitPvP.getPlugin(), 2);
 	}
 
 	@EventHandler
@@ -105,7 +105,7 @@ public class BarInicio implements Listener {
 					}
 					bar.updateMovement();
 				}
-			}.runTaskLater(Main.getPlugin(), 0);
+			}.runTaskLater(OutfitPvP.getPlugin(), 0);
 		}
 	}
 

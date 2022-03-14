@@ -14,79 +14,79 @@ import Outfit.PvP.APIs.WarpAPI;
 import Outfit.PvP.Essencial.KitAPI;
 import Outfit.PvP.Essencial.KitUtil;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Utils.Proteção;
 
 public class KitCommand implements CommandExecutor, Listener {
-	public KitCommand(Main main) {
+	public KitCommand(OutfitPvP main) {
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		Player p = (Player) sender;
 		if (label.equalsIgnoreCase("kit")) {
 			if (args.length == 0) {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cErrado, utilize a sintaxe correta: /kit (kit)");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §cErrado, utilize a sintaxe correta: /kit (kit)");
 				return true;
 			}
 
 			if (WarpAPI.getWarp(p) == "Nenhuma") {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §cNo momento, você está no /admin. Para pegar um kit, volte ao spawn usando o comando: /spawn");
 				return true;
 			}
 
 			if (WarpAPI.getWarp(p) == "Arena") {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §cVocê já está utilizando um Kit. Para pegar outro, volte ao spawn usando o comando: /spawn");
 				return true;
 			}
 
 			if (WarpAPI.getWarp(p) == "Evento") {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §cVocê está em uma Warp. Para utilizar um Kit, volte ao spawn usando o comando: /spawn");
 				return true;
 			}
 
 			if (WarpAPI.getWarp(p) == "Textura") {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §cVocê está em uma Warp. Para utilizar um Kit, volte ao spawn usando o comando: /spawn");
 				return true;
 			}
 
 			if (WarpAPI.getWarp(p) == "Potion") {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §cVocê está em uma Warp. Para utilizar um Kit, volte ao spawn usando o comando: /spawn");
 				return true;
 			}
 
 			if (WarpAPI.getWarp(p) == "Fps") {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §cVocê está em uma Warp. Para utilizar um Kit, volte ao spawn usando o comando: /spawn");
 				return true;
 			}
 
 			if (WarpAPI.getWarp(p) == "Challenge") {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §cVocê está em uma Warp. Para utilizar um Kit, volte ao spawn usando o comando: /spawn");
 				return true;
 			}
 
 			if (WarpAPI.getWarp(p) == "Parkour") {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §cVocê está em uma Warp. Para utilizar um Kit, volte ao spawn usando o comando: /spawn");
 				return true;
 			}
 
 			if (WarpAPI.getWarp(p) == "Main") {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §cVocê está em uma Warp. Para utilizar um Kit, volte ao spawn usando o comando: /spawn");
 				return true;
 			}
 		}
 
 		if (p.hasPermission("zey.pvp.admin") && WarpAPI.getWarp(p) == "Nenhuma") {
-			Main.admins.remove(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ Você saiu do modo §c§lADMIN");
+			OutfitPvP.admins.remove(p.getName());
+			p.sendMessage(OutfitPvP.prefix + " §8➸ Você saiu do modo §c§lADMIN");
 			Player[] var9;
 			int var8 = (var9 = Bukkit.getOnlinePlayers()).length;
 
@@ -105,7 +105,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			KitAPI.swordkitpvp(p);
 			Habilidade.setAbility(p, "PvP");
 			KitAPI.Kit.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lPVP");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lPVP");
 			TheTitle.sendTitle(p, "§d§lPVP");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -119,7 +119,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Ajnin");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Ajnin.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lAJNIN");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lAJNIN");
 			TheTitle.sendTitle(p, "§d§lAJNIN");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -133,7 +133,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Camel");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Camel.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lCamel");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lCamel");
 			TheTitle.sendTitle(p, "§d§lCAMEL");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -147,7 +147,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Anchor");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Anchor.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lANCHOR");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lANCHOR");
 			TheTitle.sendTitle(p, "§d§lANCHOR");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -161,7 +161,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Armor");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Armor.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lARMOR");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lARMOR");
 			KitAPI.setitem(p, Material.GOLD_INGOT, "§d§lARMOR", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lARMOR");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -176,7 +176,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Rain");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Rain.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lRAIN");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lRAIN");
 			KitAPI.setitem(p, Material.ARROW, "§d§lRAIN", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lRAIN");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -191,7 +191,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "TimeLord");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.TimeLord.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lTIMELORD");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lTIMELORD");
 			KitAPI.setitem(p, Material.WATCH, "§d§lTIMELORD", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lTIMELORD");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -206,7 +206,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Confuser");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Confuser.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lCONFUSER");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lCONFUSER");
 			KitAPI.setitem(p, Material.COAL, "§d§lCONFUSER", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lCONFUSER");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -221,7 +221,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Avatar");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Avatar.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lAVATAR");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lAVATAR");
 			KitAPI.setitem(p, Material.BEACON, "§d§lAVATAR", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lAVATAR");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -236,7 +236,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Flash");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Flash.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lFLASH");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lFLASH");
 			KitAPI.setitem(p, Material.REDSTONE_TORCH_ON, "§d§lFLASH", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lFLASH");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -251,7 +251,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "C4");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.C4.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lC4");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lC4");
 			KitAPI.setitem(p, Material.SLIME_BALL, "§d§lC4", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lC4");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -266,7 +266,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "DeshFire");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.DeshFire.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lDESHFIRE");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lDESHFIRE");
 			KitAPI.setitem(p, Material.REDSTONE_BLOCK, "§d§lDESHFIRE", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lDESHFIRE");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -281,7 +281,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Fisherman");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Fisherman.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lFISHERMAN");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lFISHERMAN");
 			KitAPI.setitem(p, Material.FISHING_ROD, "§d§lFISHERMAN", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lFISHERMAN");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -296,7 +296,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Gladiator");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Gladiator.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lGLADIATOR");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lGLADIATOR");
 			KitAPI.setitem(p, Material.IRON_FENCE, "§d§lGLADIATOR", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lGLADIATOR");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -311,7 +311,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Grappler");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Grappler.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lGRAPPLER");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lGRAPPLER");
 			KitAPI.setitem(p, Material.LEASH, "§d§lGRAPPLER", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lGRAPPLER");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -326,7 +326,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Hulk");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Hulk.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lHULK");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lHULK");
 			KitAPI.setitem(p, Material.SADDLE, "§d§lHULK", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lHULK");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -341,7 +341,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "JellyFish");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.JellyFish.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lJELLYFISH");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lJELLYFISH");
 			KitAPI.setitem(p, Material.CLAY_BALL, "§d§lJELLYFISH", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lJELLYFISH");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -357,7 +357,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "QuickDropper");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.QuickDropper.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lQUICKDROPPER");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lQUICKDROPPER");
 			TheTitle.sendTitle(p, "§d§lQUICKDROPPER");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -371,7 +371,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Kangaroo");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Kangaroo.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lKANGAROO");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lKANGAROO");
 			KitUtil.darItem(p, Material.FIREWORK, 1, "§d§lKANGAROO", 1);
 			TheTitle.sendTitle(p, "§d§lKANGAROO");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -386,7 +386,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Magma");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Magma.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lMAGMA");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lMAGMA");
 			TheTitle.sendTitle(p, "§d§lMAGMA");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -400,7 +400,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Monk");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Monk.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lMONK");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lMONK");
 			KitAPI.setitem(p, Material.BLAZE_ROD, "§d§lMONK", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lMONK");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -415,7 +415,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "MiniGun");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.MiniGun.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lMINIGUN");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lMINIGUN");
 			KitAPI.setitem(p, Material.ARROW, "§d§lMINIGUN", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lMINIGUN");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -430,7 +430,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Phantom");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Phantom.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lPHANTOM");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lPHANTOM");
 			KitAPI.setitem(p, Material.FEATHER, "§d§lPHANTOM", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lPHANTOM");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -445,7 +445,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Ninja");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Ninja.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lNINJA");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lNINJA");
 			TheTitle.sendTitle(p, "§d§lNINJA");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -459,7 +459,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Poseidon");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Poseidon.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lPOSEIDON");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lPOSEIDON");
 			TheTitle.sendTitle(p, "§d§lPOSEIDON");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -473,7 +473,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Resouper");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Resouper.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lRESOUPER");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lRESOUPER");
 			TheTitle.sendTitle(p, "§d§lRESOUPER");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -487,7 +487,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Snail");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Snail.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lSNAIL");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lSNAIL");
 			TheTitle.sendTitle(p, "§d§lSNAIL");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -501,7 +501,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Sonic");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Sonic.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lSONIC");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lSONIC");
 			KitAPI.setitem(p, Material.LAPIS_BLOCK, "§d§lSONIC", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lSONIC");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -516,7 +516,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Archer");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Archer.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lArcher");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lArcher");
 			KitAPI.setitem(p, Material.BOW, "§d§lARCHER", 1, Enchantment.ARROW_INFINITE, 1, false);
 			KitAPI.setitem(p, Material.ARROW, "§cFLECHA", 2, Enchantment.DAMAGE_ALL, 1, false);
 			TheTitle.sendTitle(p, "§d§lARCHER");
@@ -532,7 +532,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Stomper");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Stomper.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lSTOMPER");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lSTOMPER");
 			KitAPI.setitem(p, Material.GOLDEN_APPLE, "§d§lSTOMPER", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lSTOMPER");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -548,7 +548,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Switcher.add(p.getName());
 			KitUtil.darItem(p, Material.SNOW_BALL, 15, "§d§lSWITCHER", 1);
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lSWITCHER");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lSWITCHER");
 			TheTitle.sendTitle(p, "§d§lSWITCHER");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -562,7 +562,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Swords");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Swords.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lSWORDS");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lSWORDS");
 			TheTitle.sendTitle(p, "§d§lSWORDS");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -576,7 +576,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "ForceField");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.ForceField.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lFORCEFIELD");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lFORCEFIELD");
 			KitAPI.setitem(p, Material.NETHER_FENCE, "§d§lFORCEFIELD", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lFORCEFIELD");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -591,7 +591,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Thor");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Thor.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lTHOR");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lTHOR");
 			KitAPI.setitem(p, Material.GOLD_AXE, "§d§lTHOR", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lTHOR");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -606,7 +606,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Thresh");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Thresh.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lTHRESH");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lTHRESH");
 			KitAPI.setitem(p, Material.LEVER, "§d§lTHRESH", 1, Enchantment.DAMAGE_ALL, 0, false);
 			TheTitle.sendTitle(p, "§d§lTHRESH");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
@@ -621,7 +621,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Turtle");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Turtle.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lTURTLE");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lTURTLE");
 			TheTitle.sendTitle(p, "§d§lTURTLE");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -635,7 +635,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Viper");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Viper.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lVIPER");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lVIPER");
 			TheTitle.sendTitle(p, "§d§lVIPER");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -649,7 +649,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Viking");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Viking.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lVIKING");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lVIKING");
 			TheTitle.sendTitle(p, "§d§lVIKING");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -665,7 +665,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "Madman");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.AntiTower.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lMADMAN");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lMADMAN");
 			TheTitle.sendTitle(p, "§d§lMADMAN");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -680,7 +680,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			KitUtil.darItem(p, Material.ENCHANTED_BOOK, 1, "§d§lSPECIALIST", 1);
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Specialist.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lSPECIALIST");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lSPECIALIST");
 			TheTitle.sendTitle(p, "§d§lSPECIALIST");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -695,7 +695,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			KitUtil.darItem(p, Material.CARPET, 1, "§d§lALLADIN", 1);
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Alladin.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lALLADIN");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lALLADIN");
 			TheTitle.sendTitle(p, "§d§lALLADIN");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -710,7 +710,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			KitUtil.darItem(p, Material.DIAMOND_BLOCK, 1, "§d§lRYU", 1);
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Ryu.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lRYU");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lRYU");
 			TheTitle.sendTitle(p, "§d§lRYU");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -725,7 +725,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			KitUtil.darItem(p, Material.POTATO, 1, "§d§lHOTPOTATO", 1);
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Specialist.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lHOTPOTATO");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lHOTPOTATO");
 			TheTitle.sendTitle(p, "§d§lHOTPOTATO");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);
@@ -739,7 +739,7 @@ public class KitCommand implements CommandExecutor, Listener {
 			Habilidade.setAbility(p, "AntiTower");
 			KitAPI.Kit.add(p.getName());
 			KitAPI.AntiTower.add(p.getName());
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você selecionou o Kit: §d§lAntiTower");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você selecionou o Kit: §d§lAntiTower");
 			TheTitle.sendTitle(p, "§d§lANTI-TOWER");
 			TheTitle.sendSubTitle(p, "§7Kit selecionado com sucesso!");
 			SetArenaCommand.TeleportArenaRandom(p);

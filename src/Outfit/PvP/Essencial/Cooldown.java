@@ -6,7 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Cooldown implements Listener {
 	public static HashMap<Player, Long> run;
@@ -19,12 +19,12 @@ public class Cooldown implements Listener {
 		final long CoolDownLength = System.currentTimeMillis() + seconds * 1000;
 		Cooldown.run.remove(p);
 		Cooldown.run.put(p, CoolDownLength);
-		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+		Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 			@Override
 			public void run() {
 				Cooldown.run.remove(p);
 			}
-		}, (long) (seconds * 20));
+		}, seconds * 20);
 	}
 
 	public static long CoolDown(final Player p) {

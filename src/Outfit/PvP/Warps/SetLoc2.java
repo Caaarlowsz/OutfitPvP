@@ -6,12 +6,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class SetLoc2 implements Listener, CommandExecutor {
-	public static Main plugin;
+	public static OutfitPvP plugin;
 
-	public SetLoc2(Main main) {
+	public SetLoc2(OutfitPvP main) {
 		plugin = main;
 	}
 
@@ -32,7 +32,7 @@ public class SetLoc2 implements Listener, CommandExecutor {
 				plugin.getConfig().set("loc2.yaw", p.getLocation().getYaw());
 				plugin.getConfig().set("loc2.world", p.getLocation().getWorld().getName());
 				plugin.saveConfig();
-				p.sendMessage(String.valueOf(Main.prefix) + " §7» §aLOC2 foi setada com sucesso");
+				p.sendMessage(OutfitPvP.prefix + " §7» §aLOC2 foi setada com sucesso");
 			}
 
 			return true;

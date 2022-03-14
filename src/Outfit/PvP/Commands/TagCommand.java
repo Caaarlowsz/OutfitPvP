@@ -9,7 +9,7 @@ import org.bukkit.event.Listener;
 import Outfit.PvP.APIs.ChatInterativo;
 import Outfit.PvP.APIs.ClanAPI;
 import Outfit.PvP.APIs.TagsAPI;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Score.SPlayer;
 import ca.wacos.nametagedit.NametagAPI;
 
@@ -18,13 +18,13 @@ public class TagCommand implements CommandExecutor, Listener {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (!(sender instanceof Player)) {
-			sender.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cApenas jogadores podem usar isso.");
+			sender.sendMessage(OutfitPvP.prefix + " §8➸ §cApenas jogadores podem usar isso.");
 			return true;
 		}
 		Player p = (Player) sender;
 		if (args.length == 0) {
 			if (p.getName().equalsIgnoreCase("dasdasdsa") || p.getName().equalsIgnoreCase("EOFLUXO")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§4§lDONA", "/tag dona",
@@ -64,7 +64,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.dono")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§4§lDONO", "/tag dono",
@@ -118,7 +118,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.dona")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§4§lDONA", "/tag dona",
@@ -168,7 +168,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.subdono")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§4§lS-DONO", "/tag subdono",
@@ -216,7 +216,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.diretor")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§6§lDIRETOR", "/tag diretor",
@@ -262,7 +262,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.coordenador")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§f§lCOORDENADOR", "/tag coordenador",
@@ -282,7 +282,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.subdona")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§4§lS-DONA", "/tag subdona",
@@ -328,7 +328,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.developer")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§4§lDONO", "/tag dono",
@@ -374,7 +374,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.gerente")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§c§lGERENTE", "/tag gerente",
@@ -406,7 +406,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.admingc")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§c§lADMINGC", "/tag admingc",
@@ -428,7 +428,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.admin")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§c§lADMIN", "/tag admin",
@@ -448,7 +448,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.mod+")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§5§lMOD+", "/tag mod+",
@@ -470,7 +470,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.modgc")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§5§lMODGC", "/tag modgc",
@@ -492,7 +492,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.mod")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§5§lMOD", "/tag mod",
@@ -512,7 +512,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.manager")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§6§lMANAGER", "/tag manager",
@@ -532,7 +532,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.gc")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§1§lGC", "/tag gc",
@@ -552,7 +552,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.trial")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§d§lTRIAL", "/tag trial",
@@ -572,7 +572,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.helper")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§e§lHELPER", "/tag helper",
@@ -592,7 +592,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.builder")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§2§lBUILDER", "/tag builder",
@@ -612,7 +612,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.youtuber+")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§3§lYT+", "/tag youtuber+",
@@ -632,7 +632,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.youtuber")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§b§lYT", "/tag youtuber",
@@ -650,7 +650,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.spro")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§e§lSPRO", "/tag spro",
@@ -660,7 +660,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.beta")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§1§lBETA", "/tag beta",
@@ -670,7 +670,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.supremo")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§d§lKOMBO", "/tag kombo",
@@ -680,7 +680,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.pro")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§6§lPRO", "/tag pro",
@@ -690,7 +690,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.mvp")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§9§lMVP", "/tag mvp",
@@ -700,7 +700,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			if (p.hasPermission("grupo.vip")) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 				p.sendMessage("§E");
 				ChatInterativo.Comando(p.getName(), "§a§lVIP", "/tag vip",
@@ -710,7 +710,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				return true;
 			}
 			p.sendMessage(
-					String.valueOf(Main.prefix) + " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
+					OutfitPvP.prefix + " §8➸ §fLista de §d§lTODAS§f as §d§lTAGS§f disponiveis para você:");
 			p.sendMessage("§E");
 			ChatInterativo.Comando(p.getName(), "§7§lNORMAL", "/tag normal",
 					"§d(Clique) §7" + "§7Exemplo: §7" + p.getName());
@@ -725,7 +725,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §4§lDONO");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §4§lDONO");
 
 				return true;
 			}
@@ -739,7 +739,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §4§lDONA");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §4§lDONA");
 
 				return true;
 			}
@@ -753,7 +753,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §6§lDIRETOR");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §6§lDIRETOR");
 
 				return true;
 			}
@@ -767,7 +767,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §4§lS-DONO");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §4§lS-DONO");
 
 				return true;
 			}
@@ -781,7 +781,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §4§lS-DONA");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §4§lS-DONA");
 
 				return true;
 			}
@@ -795,7 +795,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §3§lDEV");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §3§lDEV");
 
 				return true;
 			}
@@ -809,7 +809,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §c§lGERENTE");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §c§lGERENTE");
 
 				return true;
 			}
@@ -823,7 +823,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §c§lADMINGC");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §c§lADMINGC");
 
 				return true;
 			}
@@ -837,7 +837,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §c§lADMIN");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §c§lADMIN");
 
 				return true;
 			}
@@ -851,7 +851,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §5§lMOD+");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §5§lMOD+");
 
 				return true;
 			}
@@ -865,7 +865,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §5§lMODGC");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §5§lMODGC");
 
 				return true;
 			}
@@ -879,7 +879,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §5§lMOD");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §5§lMOD");
 
 				return true;
 			}
@@ -893,7 +893,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §6§lMANAGER");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §6§lMANAGER");
 
 				return true;
 			}
@@ -907,7 +907,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §1§lGC");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §1§lGC");
 
 				return true;
 			}
@@ -921,7 +921,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §d§lTRIAL");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §d§lTRIAL");
 
 				return true;
 			}
@@ -935,7 +935,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §e§lHELPER");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §e§lHELPER");
 
 				return true;
 			}
@@ -949,7 +949,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §2§lBUILDER");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §2§lBUILDER");
 
 				return true;
 			}
@@ -963,7 +963,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §3§lYT+");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §3§lYT+");
 
 				return true;
 			}
@@ -977,7 +977,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §b§lYT");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §b§lYT");
 
 				return true;
 			}
@@ -991,7 +991,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §e§lSPRO");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §e§lSPRO");
 
 				return true;
 			}
@@ -1005,7 +1005,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §1§lBETA");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §1§lBETA");
 
 				return true;
 			}
@@ -1019,7 +1019,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §d§lKOMBO");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §d§lKOMBO");
 
 				return true;
 			}
@@ -1033,7 +1033,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §6§lPRO");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §6§lPRO");
 
 				return true;
 			}
@@ -1047,7 +1047,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §9§lMVP");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §9§lMVP");
 
 				return true;
 			}
@@ -1061,7 +1061,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §a§lVIP§a");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §a§lVIP§a");
 
 				return true;
 			}
@@ -1075,7 +1075,7 @@ public class TagCommand implements CommandExecutor, Listener {
 				} else {
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 				}
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua TAG foi alterada para §7§lNORMAL");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua TAG foi alterada para §7§lNORMAL");
 
 				return true;
 			}

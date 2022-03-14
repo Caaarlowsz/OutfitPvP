@@ -19,7 +19,7 @@ import org.bukkit.util.Vector;
 import Outfit.PvP.Essencial.Cooldown;
 import Outfit.PvP.Essencial.KitUtil;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class C4 implements Listener {
 	public static HashMap<String, Item> bomba = new HashMap<String, Item>();
@@ -44,11 +44,11 @@ public class C4 implements Listener {
 					itembm2.setDisplayName("§e§lC4");
 					itemb2.setItemMeta(itembm2);
 					p.getInventory().setItemInHand(itemb2);
-					item2 = (Item) bomba.get(p.getName());
+					item2 = bomba.get(p.getName());
 					bomba.remove(p.getName());
 					item2.remove();
 					p.updateInventory();
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aC4 Desarmada");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §aC4 Desarmada");
 				}
 			} else if (p.getItemInHand().getType() == Material.SLIME_BALL) {
 				if (Cooldown.add(p)) {
@@ -68,22 +68,22 @@ public class C4 implements Listener {
 				itemb.setItemMeta(itembm);
 				p.getInventory().setItemInHand(itemb);
 				p.updateInventory();
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cSua C4 foi implantada");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §cSua C4 foi implantada");
 			} else if (p.getItemInHand().getType() == Material.STONE_BUTTON) {
 				itemb2 = new ItemStack(Material.SLIME_BALL);
 				itembm2 = itemb2.getItemMeta();
 				itembm2.setDisplayName("§e§lC4");
 				itemb2.setItemMeta(itembm2);
 				p.getInventory().setItemInHand(itemb2);
-				item2 = (Item) bomba.get(p.getName());
+				item2 = bomba.get(p.getName());
 				p.getWorld().createExplosion(item2.getLocation(), 1.5F);
 				item2.getWorld().playEffect(item2.getLocation(), Effect.EXPLOSION_HUGE, 10);
 				bomba.remove(p.getName());
 				item2.remove();
 				p.updateInventory();
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aSua C4 foi ativada");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aSua C4 foi ativada");
 				Cooldown.add(p, 20);
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstace(), new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.getInstace(), new Runnable() {
 					public void run() {
 						KitUtil.ccooldown(p);
 					}

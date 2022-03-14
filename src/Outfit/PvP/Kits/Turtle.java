@@ -8,7 +8,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Turtle implements Listener {
 	@EventHandler
@@ -57,7 +57,7 @@ public class Turtle implements Listener {
 		}
 		if (Habilidade.getAbility(p).equalsIgnoreCase("Turtle")) {
 			e.setCancelled(true);
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê não pode `hitar' em quanto estiver de SHIFT.");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §cVocê não pode `hitar' em quanto estiver de SHIFT.");
 		}
 	}
 }

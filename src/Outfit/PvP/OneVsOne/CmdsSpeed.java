@@ -14,7 +14,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import Outfit.PvP.APIs.TheTitle;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Utils.Proteção;
 
 public class CmdsSpeed implements CommandExecutor {
@@ -46,21 +46,21 @@ public class CmdsSpeed implements CommandExecutor {
 						Speed1v1.Partida1 = false;
 					}
 
-					World w = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("loc2.world"));
-					double x = Main.instance.getConfig().getDouble("loc2.x");
-					double y = Main.instance.getConfig().getDouble("loc2.y");
-					double z = Main.instance.getConfig().getDouble("loc2.z");
+					World w = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("loc2.world"));
+					double x = OutfitPvP.instance.getConfig().getDouble("loc2.x");
+					double y = OutfitPvP.instance.getConfig().getDouble("loc2.y");
+					double z = OutfitPvP.instance.getConfig().getDouble("loc2.z");
 					Location loc2 = new Location(w, x, y, z);
-					loc2.setPitch((float) Main.instance.getConfig().getDouble("loc2.pitch"));
-					loc2.setYaw((float) Main.instance.getConfig().getDouble("loc2.yaw"));
+					loc2.setPitch((float) OutfitPvP.instance.getConfig().getDouble("loc2.pitch"));
+					loc2.setYaw((float) OutfitPvP.instance.getConfig().getDouble("loc2.yaw"));
 					Player2.teleport(loc2);
-					World a = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("loc1.world"));
-					double b = Main.instance.getConfig().getDouble("loc1.x");
-					double c = Main.instance.getConfig().getDouble("loc1.y");
-					double d = Main.instance.getConfig().getDouble("loc1.z");
+					World a = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("loc1.world"));
+					double b = OutfitPvP.instance.getConfig().getDouble("loc1.x");
+					double c = OutfitPvP.instance.getConfig().getDouble("loc1.y");
+					double d = OutfitPvP.instance.getConfig().getDouble("loc1.z");
 					Location loc1 = new Location(a, b, c, d);
-					loc1.setPitch((float) Main.instance.getConfig().getDouble("loc1.pitch"));
-					loc1.setYaw((float) Main.instance.getConfig().getDouble("loc1.yaw"));
+					loc1.setPitch((float) OutfitPvP.instance.getConfig().getDouble("loc1.pitch"));
+					loc1.setYaw((float) OutfitPvP.instance.getConfig().getDouble("loc1.yaw"));
 					p.teleport(loc1);
 					TheTitle.sendTitle(Player2, " ");
 					TheTitle.sendSubTitle(Player2, "§d" + Player2.getName() + " §7vs§d " + p.getName());
@@ -79,8 +79,8 @@ public class CmdsSpeed implements CommandExecutor {
 					ItemMeta Espada2 = Espada.getItemMeta();
 					Espada2.setDisplayName("§5§oEspada");
 					Espada.setItemMeta(Espada2);
-					p.getInventory().addItem(new ItemStack[] { Espada });
-					Player2.getInventory().addItem(new ItemStack[] { Espada });
+					p.getInventory().addItem(Espada);
+					Player2.getInventory().addItem(Espada);
 					Player2.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET));
 					Player2.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
 					Player2.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
@@ -94,12 +94,12 @@ public class CmdsSpeed implements CommandExecutor {
 
 					for (int i = 1; i < 9; ++i) {
 						ItemStack Fisherman = new ItemStack(Material.MUSHROOM_SOUP);
-						p.getInventory().addItem(new ItemStack[] { Fisherman });
-						Player2.getInventory().addItem(new ItemStack[] { Fisherman });
+						p.getInventory().addItem(Fisherman);
+						Player2.getInventory().addItem(Fisherman);
 						Player2.updateInventory();
 						p.updateInventory();
 
-						Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
+						Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.getPlugin(), new Runnable() {
 							public void run() {
 								for (Player plr : Bukkit.getOnlinePlayers()) {
 									Player2.hidePlayer(plr);
@@ -110,7 +110,7 @@ public class CmdsSpeed implements CommandExecutor {
 							}
 						}, 2L);
 
-						Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+						Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 							public void run() {
 								if (Events1v1.congelar.contains(p)) {
 									p.setMaxHealth(20);
@@ -121,7 +121,7 @@ public class CmdsSpeed implements CommandExecutor {
 
 							}
 						}, 20L);
-						Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+						Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 							public void run() {
 								if (Events1v1.congelar.contains(p)) {
 									p.setMaxHealth(20);
@@ -132,7 +132,7 @@ public class CmdsSpeed implements CommandExecutor {
 
 							}
 						}, 40L);
-						Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+						Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 							public void run() {
 								if (Events1v1.congelar.contains(p)) {
 									p.setMaxHealth(20);

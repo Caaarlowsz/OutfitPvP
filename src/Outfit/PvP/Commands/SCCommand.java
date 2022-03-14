@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class SCCommand implements Listener, CommandExecutor {
 
@@ -20,11 +20,11 @@ public class SCCommand implements Listener, CommandExecutor {
 		Player p = (Player) sender;
 		if (cmd.getName().equalsIgnoreCase("sc")) {
 			if (!(p.hasPermission("zey.pvp.sc"))) {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVoce nao tem permissao!");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §cVoce nao tem permissao!");
 				return true;
 			}
 			if (args.length == 0) {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cUse: /sc [mensagem]");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §cUse: /sc [mensagem]");
 				return true;
 			} else {
 				String message = "";

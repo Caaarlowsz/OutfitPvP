@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.bukkit.entity.Player;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import net.md_5.bungee.api.ChatColor;
 
 public class CrashAPI {
@@ -29,13 +29,13 @@ public class CrashAPI {
 			Class<?> explosionClass;
 			Class<?> vectorClass = ReflectionUtils.getNMSClass("Vec3D");
 
-			if (Main.isVeryOldVersion()) {
+			if (OutfitPvP.isVeryOldVersion()) {
 				explosionClass = ReflectionUtils.getNMSClass("Packet60Explosion");
 			} else {
 				explosionClass = ReflectionUtils.getNMSClass("PacketPlayOutExplosion");
 			}
 
-			if (Main.isOldVersion()) {
+			if (OutfitPvP.isOldVersion()) {
 				Method Vector3dConstructor = vectorClass.getMethod("a", double.class, double.class, double.class);
 				Vec3D = Vector3dConstructor.invoke(null, Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
 			} else {

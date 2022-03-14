@@ -13,20 +13,20 @@ import org.bukkit.entity.Player;
 
 import Outfit.PvP.APIs.TheTitle;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class ReportCommand implements CommandExecutor {
 	public ArrayList<String> reported = new ArrayList<String>();
-	private Main plugin;
+	private final OutfitPvP plugin;
 
-	public ReportCommand(Main plugin) {
+	public ReportCommand(OutfitPvP plugin) {
 		this.plugin = plugin;
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 		final Player p = (Player) sender;
 		if (!(sender instanceof Player)) {
-			sender.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cApenas jogadores podem usar isso.");
+			sender.sendMessage(OutfitPvP.prefix + " §8➸ §cApenas jogadores podem usar isso.");
 			return false;
 		} else {
 			if (commandLabel.equalsIgnoreCase("report")) {
@@ -34,13 +34,13 @@ public class ReportCommand implements CommandExecutor {
 					Player target = p.getServer().getPlayer(args[0]);
 					if (target != null) {
 						if (this.reported.contains(p.getName())) {
-							p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cAguarde, para reportar novamente.");
+							p.sendMessage(OutfitPvP.prefix + " §8➸ §cAguarde, para reportar novamente.");
 							return true;
 						}
 
 						String reportMsg = StringUtils.join(Arrays.copyOfRange(args, 1, args.length), " ");
 						this.reported.add(p.getName());
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7O Report do jogador §e" + target.getName()
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §7O Report do jogador §e" + target.getName()
 								+ " §7pelo motivo §c" + reportMsg + "§7 foi enviado a nossa equipe!");
 						Player[] arrayOfPlayer;
 						int j = (arrayOfPlayer = Bukkit.getOnlinePlayers()).length;
@@ -70,10 +70,10 @@ public class ReportCommand implements CommandExecutor {
 						}
 					} else {
 						p.sendMessage(
-								String.valueOf(Main.prefix) + " §8➸ §cEste jogador(a) está offline ou não existe.");
+								OutfitPvP.prefix + " §8➸ §cEste jogador(a) está offline ou não existe.");
 					}
 				} else {
-					p.sendMessage(String.valueOf(Main.prefix)
+					p.sendMessage(OutfitPvP.prefix
 							+ " §8➸ §cErrado, utilize a sintaxe correta: /report [Jogador(a)] (motivo)");
 				}
 			}

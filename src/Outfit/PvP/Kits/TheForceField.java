@@ -18,7 +18,7 @@ import org.bukkit.util.Vector;
 
 import Outfit.PvP.Essencial.KitAPI;
 import Outfit.PvP.Essencial.KitUtil;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class TheForceField implements Listener {
 	public static List<Player> cooldownm;
@@ -27,7 +27,7 @@ public class TheForceField implements Listener {
 		TheForceField.cooldownm = new ArrayList<Player>();
 	}
 
-	public TheForceField(final Main main) {
+	public TheForceField(final OutfitPvP main) {
 	}
 
 	@EventHandler
@@ -40,26 +40,26 @@ public class TheForceField implements Listener {
 				event.setCancelled(true);
 			}
 			if (TheForceField.cooldownm.contains(p)) {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cAguarde o cooldown terminar.");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §cAguarde o cooldown terminar.");
 				return;
 			}
 			final Location loc = p.getLocation();
 			p.getWorld().playSound(loc, Sound.MAGMACUBE_WALK2, 0.5f, 0.5f);
 			TheForceField.cooldownm.add(p);
-			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 				@Override
 				public void run() {
 					KitAPI.ForceField1.add(p.getName());
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você usou sua habilidade de ForceField.");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você usou sua habilidade de ForceField.");
 				}
 			}, 0L);
-			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 				@Override
 				public void run() {
 					KitAPI.ForceField1.remove(p.getName());
 				}
 			}, 50L);
-			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 				@Override
 				public void run() {
 					TheForceField.cooldownm.remove(p);
@@ -80,7 +80,7 @@ public class TheForceField implements Listener {
 						((Player) pertos).damage(3.0);
 					}
 					pertos.setVelocity(new Vector(0.1, 0.0, 0.1));
-					Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+					Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 						@Override
 						public void run() {
 						}

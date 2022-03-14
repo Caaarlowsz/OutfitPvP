@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Vis implements CommandExecutor, Listener {
 	public static ArrayList<Player> emVis;
@@ -40,7 +40,7 @@ public class Vis implements CommandExecutor, Listener {
 			if (p.hasPermission("zey.pvp.vis")) {
 				if (!emInvisivel(p)) {
 					addInvisivel(p);
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Modo §8§lINVISIVEL§7 ativado");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §7Modo §8§lINVISIVEL§7 ativado");
 					p.setGameMode(GameMode.CREATIVE);
 					Player[] onlinePlayers;
 					for (int length = (onlinePlayers = Bukkit.getOnlinePlayers()).length, i = 0; i < length; ++i) {
@@ -55,7 +55,7 @@ public class Vis implements CommandExecutor, Listener {
 						todos.showPlayer(p);
 					}
 					p.setGameMode(GameMode.SURVIVAL);
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Modo §8§lINVISIVEL§7 desativado");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §7Modo §8§lINVISIVEL§7 desativado");
 				}
 			} else {
 				p.sendMessage("§cVocê não tem permissão para isso.");

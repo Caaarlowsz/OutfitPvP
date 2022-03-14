@@ -8,10 +8,10 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import Outfit.PvP.Essencial.KitAPI;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Snail implements Listener {
-	public Snail(final Main main) {
+	public Snail(final OutfitPvP main) {
 	}
 
 	@EventHandler

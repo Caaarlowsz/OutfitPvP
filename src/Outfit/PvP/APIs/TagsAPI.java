@@ -3,7 +3,7 @@ package Outfit.PvP.APIs;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Score.SPlayer;
 import ca.wacos.nametagedit.NametagAPI;
 
@@ -15,7 +15,7 @@ public class TagsAPI {
 				p.setDisplayName(tag + p.getName());
 				NametagAPI.setPrefix(p.getName(), tag);
 			}
-		}.runTaskAsynchronously(Main.getInstace());
+		}.runTaskAsynchronously(OutfitPvP.getInstace());
 	}
 
 	public static void SetarTag(Player p) {

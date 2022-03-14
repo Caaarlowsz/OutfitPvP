@@ -14,7 +14,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class AutoSoupCommand implements CommandExecutor, Listener {
 	public static HashMap<String, ItemStack[]> saveinv = new HashMap<String, ItemStack[]>();
@@ -26,7 +26,7 @@ public class AutoSoupCommand implements CommandExecutor, Listener {
 	ItemStack sopa2;
 	ItemMeta msopa2;
 
-	public AutoSoupCommand(Main main) {
+	public AutoSoupCommand(OutfitPvP main) {
 		this.sopa = new ItemStack(Material.MUSHROOM_SOUP);
 		this.msopa = this.sopa.getItemMeta();
 		this.sopa1 = new ItemStack(Material.MUSHROOM_SOUP);
@@ -50,7 +50,7 @@ public class AutoSoupCommand implements CommandExecutor, Listener {
 			testando.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 70, 999));
 			testando.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 70, 999));
 			this.sopa.setItemMeta(this.msopa);
-			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
+			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.getPlugin(), new Runnable() {
 				public void run() {
 					testando.getInventory().clear();
 					testando.setHealth(5.0D);
@@ -59,12 +59,12 @@ public class AutoSoupCommand implements CommandExecutor, Listener {
 					testando.getInventory().setItem(12, AutoSoupCommand.this.sopa2);
 				}
 			}, 20L);
-			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
+			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.getPlugin(), new Runnable() {
 				public void run() {
 					testando.getInventory().clear();
-					testando.getInventory().setContents((ItemStack[]) AutoSoupCommand.saveinv.get(testando.getName()));
+					testando.getInventory().setContents(AutoSoupCommand.saveinv.get(testando.getName()));
 					testando.getInventory()
-							.setArmorContents((ItemStack[]) AutoSoupCommand.armadura.get(testando.getName()));
+							.setArmorContents(AutoSoupCommand.armadura.get(testando.getName()));
 					testando.setHealth(20.0D);
 				}
 			}, 50L);

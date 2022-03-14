@@ -21,13 +21,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class MenuOutros implements Listener, CommandExecutor {
 	@SuppressWarnings({ "rawtypes", "unchecked", "unused" })
 	public static void guiKits(final Player p) {
-		final Inventory inv = Bukkit.getServer().createInventory((InventoryHolder) p, 27, "§8[§dOUTROS§8]");
+		final Inventory inv = Bukkit.getServer().createInventory(p, 27, "§8[§dOUTROS§8]");
 
 		final ItemStack pyro = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14);
 		final ItemMeta metapyro = pyro.getItemMeta();
 		metapyro.setDisplayName("§c§lVOLTAR");
 		final ArrayList descpyro1 = new ArrayList();
-		metapyro.setLore((List) descpyro1);
+		metapyro.setLore(descpyro1);
 		pyro.setItemMeta(metapyro);
 		inv.setItem(0, pyro);
 
@@ -36,7 +36,7 @@ public class MenuOutros implements Listener, CommandExecutor {
 			final ItemMeta magmam = magma.getItemMeta();
 			magmam.setDisplayName("§c§lCABEÇAS APENAS PARA VIP'S");
 			final ArrayList<String> desc = new ArrayList<String>();
-			magmam.setLore((List) desc);
+			magmam.setLore(desc);
 			magma.setItemMeta(magmam);
 			inv.setItem(13, magma);
 		} else if (p.hasPermission("zey.pvp.menuvip")) {
@@ -44,7 +44,7 @@ public class MenuOutros implements Listener, CommandExecutor {
 			final ItemMeta magmam = magma.getItemMeta();
 			magmam.setDisplayName("§d§lCABEÇAS");
 			final ArrayList<String> desc = new ArrayList<String>();
-			magmam.setLore((List) desc);
+			magmam.setLore(desc);
 			magma.setItemMeta(magmam);
 			inv.setItem(13, magma);
 		}

@@ -15,23 +15,23 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import Outfit.PvP.Essencial.KitAPI;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Utils.Proteção;
 import net.minecraft.util.com.google.common.collect.Maps;
 
 public class AdminCommand implements CommandExecutor {
 
-	public Main main;
+	public OutfitPvP main;
 	public Map<String, ItemStack[]> inv = Maps.newHashMap();
 	public Map<String, ItemStack[]> armor = Maps.newHashMap();
 
-	public AdminCommand(Main main) {
+	public AdminCommand(OutfitPvP main) {
 		this.main = main;
 	}
 
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (!(sender instanceof Player)) {
-			sender.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cApenas jogadores podem usar isso.");
+			sender.sendMessage(OutfitPvP.prefix + " §8➸ §cApenas jogadores podem usar isso.");
 			return true;
 		}
 
@@ -39,8 +39,8 @@ public class AdminCommand implements CommandExecutor {
 
 		if (label.equalsIgnoreCase("admin")) {
 			if (p.hasPermission("zey.pvp.admin")) {
-				if (!Main.admins.contains(p.getName())) {
-					Main.admins.add(p.getName());
+				if (!OutfitPvP.admins.contains(p.getName())) {
+					OutfitPvP.admins.add(p.getName());
 
 					for (Player players : Bukkit.getOnlinePlayers()) {
 						if (!players.hasPermission("zey.pvp.admin.ver")) {
@@ -54,10 +54,10 @@ public class AdminCommand implements CommandExecutor {
 
 					Outfit.PvP.APIs.WarpAPI.setWarp(p, "Nenhuma");
 
-					p.getInventory().setBoots((ItemStack) null);
-					p.getInventory().setChestplate((ItemStack) null);
-					p.getInventory().setLeggings((ItemStack) null);
-					p.getInventory().setHelmet((ItemStack) null);
+					p.getInventory().setBoots(null);
+					p.getInventory().setChestplate(null);
+					p.getInventory().setLeggings(null);
+					p.getInventory().setHelmet(null);
 					p.getInventory().clear();
 
 					p.setExp(0.0f);
@@ -111,10 +111,10 @@ public class AdminCommand implements CommandExecutor {
 
 					p.updateInventory();
 
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você entrou no modo §a§lADMIN");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você entrou no modo §a§lADMIN");
 
 				} else {
-					Main.admins.remove(p.getName());
+					OutfitPvP.admins.remove(p.getName());
 
 					for (Player players : Bukkit.getOnlinePlayers()) {
 						players.showPlayer(p);
@@ -128,7 +128,7 @@ public class AdminCommand implements CommandExecutor {
 					p.setGameMode(GameMode.SURVIVAL);
 					Outfit.PvP.APIs.WarpAPI.setWarp(p, "Nenhuma");
 
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Você saiu do modo §c§lADMIN");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §7Você saiu do modo §c§lADMIN");
 					BuildCommand.embuild.remove(p);
 				}
 			}

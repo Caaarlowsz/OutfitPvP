@@ -1,5 +1,5 @@
 name: OutfitPvP
-main: Outfit.PvP.Main.Main
+main: com.github.caaarlowsz.outfitmc.kitpvp.Main
 version: 2.1
 author: Danih , Rafael Auler
 description: Plugin de kitpvp OutfitPvP

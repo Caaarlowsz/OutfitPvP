@@ -12,8 +12,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class MyConfig {
 	private int comments;
-	private MyConfigManager manager;
-	private File file;
+	private final MyConfigManager manager;
+	private final File file;
 	private FileConfiguration config;
 
 	public MyConfig(final InputStream configStream, final File configFile, final int comments,
@@ -21,7 +21,7 @@ public class MyConfig {
 		this.comments = comments;
 		this.manager = new MyConfigManager(plugin);
 		this.file = configFile;
-		this.config = (FileConfiguration) YamlConfiguration.loadConfiguration(configStream);
+		this.config = YamlConfiguration.loadConfiguration(configStream);
 	}
 
 	public Object get(final String path) {
@@ -73,12 +73,12 @@ public class MyConfig {
 	}
 
 	public List<?> getList(final String path) {
-		return (List<?>) this.config.getList(path);
+		return this.config.getList(path);
 	}
 
 	@SuppressWarnings("rawtypes")
 	public List<?> getList(final String path, final List<?> def) {
-		return (List<?>) this.config.getList(path, (List) def);
+		return this.config.getList(path, def);
 	}
 
 	public boolean contains(final String path) {
@@ -86,7 +86,7 @@ public class MyConfig {
 	}
 
 	public void removeKey(final String path) {
-		this.config.set(path, (Object) null);
+		this.config.set(path, null);
 	}
 
 	public void set(final String path, final Object value) {
@@ -95,8 +95,8 @@ public class MyConfig {
 
 	public void set(final String path, final Object value, final String comment) {
 		if (!this.config.contains(path)) {
-			this.config.set(String.valueOf(this.manager.getPluginName()) + "_COMMENT_" + this.comments,
-					(Object) (" " + comment));
+			this.config.set(this.manager.getPluginName() + "_COMMENT_" + this.comments,
+					" " + comment);
 			++this.comments;
 		}
 		this.config.set(path, value);
@@ -105,8 +105,8 @@ public class MyConfig {
 	public void set(final String path, final Object value, final String[] comment) {
 		for (final String comm : comment) {
 			if (!this.config.contains(path)) {
-				this.config.set(String.valueOf(this.manager.getPluginName()) + "_COMMENT_" + this.comments,
-						(Object) (" " + comm));
+				this.config.set(this.manager.getPluginName() + "_COMMENT_" + this.comments,
+						" " + comm);
 				++this.comments;
 			}
 		}
@@ -120,7 +120,7 @@ public class MyConfig {
 	}
 
 	public void reloadConfig() {
-		this.config = (FileConfiguration) YamlConfiguration.loadConfiguration(this.manager.getConfigContent(this.file));
+		this.config = YamlConfiguration.loadConfiguration(this.manager.getConfigContent(this.file));
 	}
 
 	public void saveConfig() {
@@ -129,6 +129,6 @@ public class MyConfig {
 	}
 
 	public Set<String> getKeys() {
-		return (Set<String>) this.config.getKeys(false);
+		return this.config.getKeys(false);
 	}
 }

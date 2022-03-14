@@ -6,12 +6,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class SetSumo implements Listener, CommandExecutor {
-	public static Main plugin;
+	public static OutfitPvP plugin;
 
-	public SetSumo(Main main) {
+	public SetSumo(OutfitPvP main) {
 		plugin = main;
 	}
 
@@ -19,7 +19,7 @@ public class SetSumo implements Listener, CommandExecutor {
 		if ((cmd.getName().equalsIgnoreCase("sumoset")) && ((sender instanceof Player))) {
 			if (!sender.hasPermission("zey.pvp.set")) {
 				Player p = (Player) sender;
-				p.sendMessage(String.valueOf(Main.prefix) + " §7» §cSem permissao.");
+				p.sendMessage(OutfitPvP.prefix + " §7» §cSem permissao.");
 			}
 			if (sender.hasPermission("zey.pvp.set")) {
 				Player p = (Player) sender;
@@ -30,7 +30,7 @@ public class SetSumo implements Listener, CommandExecutor {
 				plugin.getConfig().set("sumo.yaw", Float.valueOf(p.getLocation().getYaw()));
 				plugin.getConfig().set("sumo.world", p.getLocation().getWorld().getName());
 				plugin.saveConfig();
-				p.sendMessage(String.valueOf(Main.prefix) + " §7» §aWarp Sumo foi setada com sucesso");
+				p.sendMessage(OutfitPvP.prefix + " §7» §aWarp Sumo foi setada com sucesso");
 			}
 			return true;
 		}

@@ -21,7 +21,7 @@ public class Specialist implements Listener {
 				&& Habilidade.getAbility(p) == "Specialist"
 				&& (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
 			event.setCancelled(true);
-			p.openEnchanting((Location) null, true);
+			p.openEnchanting(null, true);
 		}
 
 	}

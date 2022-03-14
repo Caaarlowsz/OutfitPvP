@@ -20,7 +20,7 @@ public class Direito implements Listener {
 	@EventHandler
 	public void AbrirMenuGeral(final PlayerInteractEvent e) {
 		final Player p = e.getPlayer();
-		if (p.getItemInHand().getType().equals((Object) Material.HOPPER_MINECART)
+		if (p.getItemInHand().getType().equals(Material.HOPPER_MINECART)
 				&& p.getItemInHand().getItemMeta().hasDisplayName()
 				&& p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§dMenu §7(Clique)")
 				&& Outfit.PvP.APIs.WarpAPI.getWarp(p) == "Spawn") {
@@ -37,7 +37,7 @@ public class Direito implements Listener {
 	@EventHandler
 	public void AbrirMenuKits(final PlayerInteractEvent e) {
 		final Player p = e.getPlayer();
-		if (p.getItemInHand().getType().equals((Object) Material.STORAGE_MINECART)
+		if (p.getItemInHand().getType().equals(Material.STORAGE_MINECART)
 				&& p.getItemInHand().getItemMeta().hasDisplayName()
 				&& p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§dKits §7(Clique)")
 				&& Outfit.PvP.APIs.WarpAPI.getWarp(p) == "Spawn") {
@@ -54,7 +54,7 @@ public class Direito implements Listener {
 	@EventHandler
 	public void AbrirMenuWarps(final PlayerInteractEvent e) {
 		final Player p = e.getPlayer();
-		if (p.getItemInHand().getType().equals((Object) Material.EXPLOSIVE_MINECART)
+		if (p.getItemInHand().getType().equals(Material.EXPLOSIVE_MINECART)
 				&& p.getItemInHand().getItemMeta().hasDisplayName()
 				&& p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§dWarps §7(Clique)")
 				&& Outfit.PvP.APIs.WarpAPI.getWarp(p) == "Spawn") {
@@ -71,7 +71,7 @@ public class Direito implements Listener {
 	@EventHandler
 	public void Regras(final PlayerInteractEvent e) {
 		final Player p = e.getPlayer();
-		if (p.getItemInHand().getType().equals((Object) Material.PAPER)
+		if (p.getItemInHand().getType().equals(Material.PAPER)
 				&& p.getItemInHand().getItemMeta().hasDisplayName()
 				&& p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§dRegras §7(Clique)")
 				&& Outfit.PvP.APIs.WarpAPI.getWarp(p) == "Spawn") {
@@ -88,7 +88,7 @@ public class Direito implements Listener {
 	@EventHandler
 	public void ReiniciarParkour(final PlayerInteractEvent e) {
 		final Player p = e.getPlayer();
-		if (p.getItemInHand().getType().equals((Object) Material.REDSTONE)
+		if (p.getItemInHand().getType().equals(Material.REDSTONE)
 				&& p.getItemInHand().getItemMeta().hasDisplayName()
 				&& p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§c§lVOLTAR")
 				&& Outfit.PvP.APIs.WarpAPI.getWarp(p) == "Parkour") {

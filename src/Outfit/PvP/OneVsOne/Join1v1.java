@@ -6,7 +6,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class Join1v1 implements Listener {
 
-	private static Itens Item = new Itens();
+	private static final Itens Item = new Itens();
 
 	public static ItemStack Item_ = Item.createItem(Material.BLAZE_ROD, "BLAZE_ROD",
 			"§dDesafie um jogador! §7(botão direito)", new String[0], 1, (short) 0);

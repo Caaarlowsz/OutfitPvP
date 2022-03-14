@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import Outfit.PvP.Config.ZeyCoins;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class MenuLojaKits implements Listener, CommandExecutor {
 	public static ItemStack vidro;
@@ -42,7 +42,7 @@ public class MenuLojaKits implements Listener, CommandExecutor {
 	public static ItemStack coisa;
 	public static ItemMeta coisameta;
 
-	public MenuLojaKits(final Main main) {
+	public MenuLojaKits(final OutfitPvP main) {
 	}
 
 	@EventHandler
@@ -55,15 +55,15 @@ public class MenuLojaKits implements Listener, CommandExecutor {
 			if (e.getCurrentItem().isSimilar(MenuLojaKits.ninja)) {
 				if (ZeyCoins.getPlayerMoney(p) >= 14000) {
 					ZeyCoins.removeMoney(p, 14000);
-					Bukkit.dispatchCommand((CommandSender) Bukkit.getConsoleSender(),
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
 							"pex user " + p.getName() + " add kit.quickdropper");
-					p.sendMessage(String.valueOf(Main.prefix)
+					p.sendMessage(OutfitPvP.prefix
 							+ " §8➸ §7Kit §a§lQUICKDROPPER§7 Agora Est\u00e1 Nos Seus Kits");
 					e.setCancelled(true);
 					p.closeInventory();
 					p.playSound(p.getLocation(), Sound.ANVIL_BREAK, 5.0f, 5.0f);
 				} else if (ZeyCoins.getPlayerMoney(p) < 14000) {
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cMoedas Insuficientes");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §cMoedas Insuficientes");
 					e.setCancelled(true);
 					p.closeInventory();
 					p.playSound(p.getLocation(), Sound.ANVIL_BREAK, 5.0f, 5.0f);
@@ -72,15 +72,15 @@ public class MenuLojaKits implements Listener, CommandExecutor {
 			if (e.getCurrentItem().isSimilar(MenuLojaKits.viking)) {
 				if (ZeyCoins.getPlayerMoney(p) >= 25000) {
 					ZeyCoins.removeMoney(p, 25000);
-					Bukkit.dispatchCommand((CommandSender) Bukkit.getConsoleSender(),
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
 							"pex user " + p.getName() + " add kit.Stomper");
 					p.sendMessage(
-							String.valueOf(Main.prefix) + " §8➸ §7Kit §a§lSTOMPER§7 Agora Est\u00e1 Nos Seus Kits");
+							OutfitPvP.prefix + " §8➸ §7Kit §a§lSTOMPER§7 Agora Est\u00e1 Nos Seus Kits");
 					e.setCancelled(true);
 					p.closeInventory();
 					p.playSound(p.getLocation(), Sound.ANVIL_BREAK, 5.0f, 5.0f);
 				} else if (ZeyCoins.getPlayerMoney(p) < 25000) {
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cMoedas Insuficientes");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §cMoedas Insuficientes");
 					e.setCancelled(true);
 					p.closeInventory();
 					p.playSound(p.getLocation(), Sound.ANVIL_BREAK, 5.0f, 5.0f);
@@ -89,14 +89,14 @@ public class MenuLojaKits implements Listener, CommandExecutor {
 			if (e.getCurrentItem().isSimilar(MenuLojaKits.stomper)) {
 				if (ZeyCoins.getPlayerMoney(p) >= 5000) {
 					ZeyCoins.removeMoney(p, 5000);
-					Bukkit.dispatchCommand((CommandSender) Bukkit.getConsoleSender(),
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
 							"pex user " + p.getName() + " add kit.thor");
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Kit §a§lTHOR§7 Agora Est\u00e1 Nos Seus Kits");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §7Kit §a§lTHOR§7 Agora Est\u00e1 Nos Seus Kits");
 					e.setCancelled(true);
 					p.closeInventory();
 					p.playSound(p.getLocation(), Sound.ANVIL_BREAK, 5.0f, 5.0f);
 				} else if (ZeyCoins.getPlayerMoney(p) < 5000) {
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cMoedas Insuficientes");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §cMoedas Insuficientes");
 					e.setCancelled(true);
 					p.closeInventory();
 					p.playSound(p.getLocation(), Sound.ANVIL_BREAK, 5.0f, 5.0f);
@@ -105,15 +105,15 @@ public class MenuLojaKits implements Listener, CommandExecutor {
 			if (e.getCurrentItem().isSimilar(MenuLojaKits.viper)) {
 				if (ZeyCoins.getPlayerMoney(p) >= 15000) {
 					ZeyCoins.removeMoney(p, 15000);
-					Bukkit.dispatchCommand((CommandSender) Bukkit.getConsoleSender(),
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
 							"pex user " + p.getName() + " add kit.anchor");
 					p.sendMessage(
-							String.valueOf(Main.prefix) + " §8➸ §7Kit §a§lANCHOR§7 Agora Est\u00e1 Nos Seus Kits");
+							OutfitPvP.prefix + " §8➸ §7Kit §a§lANCHOR§7 Agora Est\u00e1 Nos Seus Kits");
 					e.setCancelled(true);
 					p.closeInventory();
 					p.playSound(p.getLocation(), Sound.ANVIL_BREAK, 5.0f, 5.0f);
 				} else if (ZeyCoins.getPlayerMoney(p) < 15000) {
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cMoedas Insuficientes");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §cMoedas Insuficientes");
 					e.setCancelled(true);
 					p.closeInventory();
 					p.playSound(p.getLocation(), Sound.ANVIL_BREAK, 5.0f, 5.0f);
@@ -122,14 +122,14 @@ public class MenuLojaKits implements Listener, CommandExecutor {
 			if (e.getCurrentItem().isSimilar(MenuLojaKits.snail)) {
 				if (ZeyCoins.getPlayerMoney(p) >= 7000) {
 					ZeyCoins.removeMoney(p, 7000);
-					Bukkit.dispatchCommand((CommandSender) Bukkit.getConsoleSender(),
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
 							"pex user " + p.getName() + " add kit.c4");
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Kit §a§lC4§7 Agora Est\u00e1 Nos Seus Kits");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §7Kit §a§lC4§7 Agora Est\u00e1 Nos Seus Kits");
 					e.setCancelled(true);
 					p.closeInventory();
 					p.playSound(p.getLocation(), Sound.ANVIL_BREAK, 5.0f, 5.0f);
 				} else if (ZeyCoins.getPlayerMoney(p) < 7000) {
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cMoedas Insuficientes");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §cMoedas Insuficientes");
 					e.setCancelled(true);
 					p.closeInventory();
 					p.playSound(p.getLocation(), Sound.ANVIL_BREAK, 5.0f, 5.0f);
@@ -144,7 +144,7 @@ public class MenuLojaKits implements Listener, CommandExecutor {
 		}
 		final Player p = (Player) sender;
 		if (cmd.getName().equalsIgnoreCase("lojakits")) {
-			final Inventory warps = Bukkit.createInventory((InventoryHolder) p, 27, "§8[§dLOJA KITS§8]");
+			final Inventory warps = Bukkit.createInventory(p, 27, "§8[§dLOJA KITS§8]");
 
 			final ItemStack event46 = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14);
 			final ItemMeta event4v = event46.getItemMeta();

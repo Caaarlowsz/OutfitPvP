@@ -19,14 +19,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import Outfit.PvP.Commands.IniciarCommand;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class MenuKits2 implements Listener, CommandExecutor {
-	public MenuKits2(final Main main) {
+	public MenuKits2(final OutfitPvP main) {
 	}
 
 	public static void guiKits1(final Player p) {
-		final Inventory inv = Bukkit.getServer().createInventory((InventoryHolder) p, 54, "§8[§dKITS§8] §7(Pag. 2).");
+		final Inventory inv = Bukkit.getServer().createInventory(p, 54, "§8[§dKITS§8] §7(Pag. 2).");
 
 		final ItemStack vidro22 = new ItemStack(Material.INK_SACK, 1, (short) 8);
 		final ItemMeta meta31v = vidro22.getItemMeta();
@@ -111,9 +111,9 @@ public class MenuKits2 implements Listener, CommandExecutor {
 			descpyro.add("§8➸ §d§lINFO");
 			descpyro.add("§7Cause fraqueza em inimigos");
 			descpyro.add("§7pertos de você.");
-			metapyro.setLore((List<String>) descpyro);
+			metapyro.setLore(descpyro);
 			pyro.setItemMeta(metapyro);
-			inv.addItem(new ItemStack[] { pyro });
+			inv.addItem(pyro);
 		}
 		if (p.hasPermission("kit.specialist") || IniciarCommand.fullkit) {
 			final ItemStack pyro = new ItemStack(Material.ENCHANTED_BOOK);
@@ -123,9 +123,9 @@ public class MenuKits2 implements Listener, CommandExecutor {
 			descpyro.add("§7  ");
 			descpyro.add("§8➸ §d§lINFO");
 			descpyro.add("§7Mate inimigos e encante sua espada.");
-			metapyro.setLore((List<String>) descpyro);
+			metapyro.setLore(descpyro);
 			pyro.setItemMeta(metapyro);
-			inv.addItem(new ItemStack[] { pyro });
+			inv.addItem(pyro);
 		}
 		if (p.hasPermission("kit.ryu") || IniciarCommand.fullkit) {
 			final ItemStack pyro = new ItemStack(Material.DIAMOND_BLOCK);
@@ -135,9 +135,9 @@ public class MenuKits2 implements Listener, CommandExecutor {
 			descpyro.add("§7  ");
 			descpyro.add("§8➸ §d§lINFO");
 			descpyro.add("§7De um Hadooouken.");
-			metapyro.setLore((List<String>) descpyro);
+			metapyro.setLore(descpyro);
 			pyro.setItemMeta(metapyro);
-			inv.addItem(new ItemStack[] { pyro });
+			inv.addItem(pyro);
 		}
 		if (p.hasPermission("kit.minigun") || IniciarCommand.fullkit) {
 			final ItemStack pyro = new ItemStack(Material.ARROW);
@@ -147,9 +147,9 @@ public class MenuKits2 implements Listener, CommandExecutor {
 			descpyro.add("§7  ");
 			descpyro.add("§8➸ §d§lINFO");
 			descpyro.add("§7Vire uma MiniGun.");
-			metapyro.setLore((List<String>) descpyro);
+			metapyro.setLore(descpyro);
 			pyro.setItemMeta(metapyro);
-			inv.addItem(new ItemStack[] { pyro });
+			inv.addItem(pyro);
 		}
 		if (p.hasPermission("kit.phantom") || IniciarCommand.fullkit) {
 			final ItemStack pyro = new ItemStack(Material.FEATHER);
@@ -159,9 +159,9 @@ public class MenuKits2 implements Listener, CommandExecutor {
 			descpyro.add("§7  ");
 			descpyro.add("§8➸ §d§lINFO");
 			descpyro.add("§7Vire um passaro.");
-			metapyro.setLore((List<String>) descpyro);
+			metapyro.setLore(descpyro);
 			pyro.setItemMeta(metapyro);
-			inv.addItem(new ItemStack[] { pyro });
+			inv.addItem(pyro);
 		}
 		if (p.hasPermission("kit.alladin") || IniciarCommand.fullkit) {
 			final ItemStack pyro = new ItemStack(Material.CARPET);
@@ -171,9 +171,9 @@ public class MenuKits2 implements Listener, CommandExecutor {
 			descpyro.add("§7  ");
 			descpyro.add("§8➸ §d§lINFO");
 			descpyro.add("§7Voe com um tapete magico.");
-			metapyro.setLore((List<String>) descpyro);
+			metapyro.setLore(descpyro);
 			pyro.setItemMeta(metapyro);
-			inv.addItem(new ItemStack[] { pyro });
+			inv.addItem(pyro);
 		}
 		if (p.hasPermission("kit.hotpotato") || IniciarCommand.fullkit) {
 			final ItemStack pyro = new ItemStack(Material.POTATO);
@@ -183,9 +183,9 @@ public class MenuKits2 implements Listener, CommandExecutor {
 			descpyro.add("§7  ");
 			descpyro.add("§8➸ §d§lINFO");
 			descpyro.add("§7Brinque de HotPotato, com seus inimigos.");
-			metapyro.setLore((List<String>) descpyro);
+			metapyro.setLore(descpyro);
 			pyro.setItemMeta(metapyro);
-			inv.addItem(new ItemStack[] { pyro });
+			inv.addItem(pyro);
 		}
 		if (p.hasPermission("kit.flash") || IniciarCommand.fullkit) {
 			final ItemStack pyro = new ItemStack(Material.REDSTONE_TORCH_ON);
@@ -195,9 +195,9 @@ public class MenuKits2 implements Listener, CommandExecutor {
 			descpyro.add("§7  ");
 			descpyro.add("§8➸ §d§lINFO");
 			descpyro.add("§7Chegue nos lugares muito rapido.");
-			metapyro.setLore((List<String>) descpyro);
+			metapyro.setLore(descpyro);
 			pyro.setItemMeta(metapyro);
-			inv.addItem(new ItemStack[] { pyro });
+			inv.addItem(pyro);
 		}
 
 		for (int descpyro2 = (inv.getContents()).length, metapyro2 = 0; metapyro2 < descpyro2; ++metapyro2) {

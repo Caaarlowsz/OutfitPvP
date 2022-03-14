@@ -17,7 +17,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import Outfit.PvP.APIs.WarpAPI;
 import Outfit.PvP.Config.ZeyCoins;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Warps.Parkour;
 
 public class ParkourJump implements Listener {
@@ -25,7 +25,7 @@ public class ParkourJump implements Listener {
 	ArrayList<String> nofalldamage = new ArrayList<String>();
 	ArrayList<String> nofalldamagewait = new ArrayList<String>();
 
-	public ParkourJump(Main main) {
+	public ParkourJump(OutfitPvP main) {
 	}
 
 	@EventHandler
@@ -43,9 +43,9 @@ public class ParkourJump implements Listener {
 			lobby.setYaw((float) Parkour.plugin.getConfig().getDouble("parkour.yaw"));
 			p.teleport(lobby);
 			p.setHealthScale(20.0D);
-			ZeyCoins.addMoney((Player) p, 25000);
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aVocê terminou o Parkour");
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aVocê ganhou 25000 Dolls!");
+			ZeyCoins.addMoney(p, 25000);
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §aVocê terminou o Parkour");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §aVocê ganhou 25000 Dolls!");
 		}
 
 	}

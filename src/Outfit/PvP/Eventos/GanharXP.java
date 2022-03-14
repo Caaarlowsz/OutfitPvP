@@ -14,8 +14,8 @@ public class GanharXP implements Listener {
 			Player killer = e.getEntity().getKiller();
 			Player killed = e.getEntity();
 			killed.teleport(killed.getWorld().getSpawnLocation());
-			e.setDeathMessage((String) null);
-			ZeyCoins.addMoney((Player) killer, 100);
+			e.setDeathMessage(null);
+			ZeyCoins.addMoney(killer, 100);
 			ZeyCoins.removeMoney(killed, 50);
 		}
 

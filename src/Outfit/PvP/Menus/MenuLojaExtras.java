@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import Outfit.PvP.Config.ZeyCoins;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class MenuLojaExtras implements Listener, CommandExecutor {
 	public static ItemStack vidro;
@@ -42,7 +42,7 @@ public class MenuLojaExtras implements Listener, CommandExecutor {
 	public static ItemStack coisa;
 	public static ItemMeta coisameta;
 
-	public MenuLojaExtras(final Main main) {
+	public MenuLojaExtras(final OutfitPvP main) {
 	}
 
 	@EventHandler
@@ -55,14 +55,14 @@ public class MenuLojaExtras implements Listener, CommandExecutor {
 			if (e.getCurrentItem().isSimilar(MenuLojaExtras.viking)) {
 				if (ZeyCoins.getPlayerMoney(p) >= 10000) {
 					ZeyCoins.removeMoney(p, 10000);
-					Bukkit.dispatchCommand((CommandSender) Bukkit.getConsoleSender(),
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
 							"pex user " + p.getName() + " add zey.pvp.falarcolorido");
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Voc\u00ea Agora Pode §a§lFALAR COLORIDO");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §7Voc\u00ea Agora Pode §a§lFALAR COLORIDO");
 					e.setCancelled(true);
 					p.closeInventory();
 					p.playSound(p.getLocation(), Sound.ANVIL_BREAK, 5.0f, 5.0f);
 				} else if (ZeyCoins.getPlayerMoney(p) < 10000) {
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cMoedas Insuficientes");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §cMoedas Insuficientes");
 					e.setCancelled(true);
 					p.closeInventory();
 					p.playSound(p.getLocation(), Sound.ANVIL_BREAK, 5.0f, 5.0f);
@@ -71,14 +71,14 @@ public class MenuLojaExtras implements Listener, CommandExecutor {
 			if (e.getCurrentItem().isSimilar(MenuLojaExtras.ninja)) {
 				if (ZeyCoins.getPlayerMoney(p) >= 50000) {
 					ZeyCoins.removeMoney(p, 50000);
-					Bukkit.dispatchCommand((CommandSender) Bukkit.getConsoleSender(),
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
 							"pex user " + p.getName() + " add kit.*");
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Voc\u00ea Agora tem todos os §a§lKITS");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §7Voc\u00ea Agora tem todos os §a§lKITS");
 					e.setCancelled(true);
 					p.closeInventory();
 					p.playSound(p.getLocation(), Sound.ANVIL_BREAK, 5.0f, 5.0f);
 				} else if (ZeyCoins.getPlayerMoney(p) < 50000) {
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cMoedas Insuficientes");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §cMoedas Insuficientes");
 					e.setCancelled(true);
 					p.closeInventory();
 					p.playSound(p.getLocation(), Sound.ANVIL_BREAK, 5.0f, 5.0f);
@@ -93,7 +93,7 @@ public class MenuLojaExtras implements Listener, CommandExecutor {
 		}
 		final Player p = (Player) sender;
 		if (cmd.getName().equalsIgnoreCase("lojaextras")) {
-			final Inventory warps = Bukkit.createInventory((InventoryHolder) p, 27, "§8[§dLOJAS EXTRAS§8]");
+			final Inventory warps = Bukkit.createInventory(p, 27, "§8[§dLOJAS EXTRAS§8]");
 
 			final ItemStack vidro = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 0);
 			final ItemMeta vidrox = vidro.getItemMeta();

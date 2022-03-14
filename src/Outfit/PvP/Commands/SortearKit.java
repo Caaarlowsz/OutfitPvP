@@ -12,7 +12,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import Outfit.PvP.Essencial.HorarioAPI;
 import Outfit.PvP.Essencial.ListKits;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class SortearKit implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -49,7 +49,7 @@ public class SortearKit implements CommandExecutor {
 						}
 					}
 
-					all = (Player) Players.get((new Random()).nextInt(Players.size()));
+					all = Players.get((new Random()).nextInt(Players.size()));
 					Bukkit.broadcastMessage("           §c(!) §e§lKitPvP §c(!) ");
 					Bukkit.broadcastMessage("");
 					Bukkit.broadcastMessage("       §aO Sorteio de §7Um kit§a Foi Finalizado!");
@@ -57,13 +57,13 @@ public class SortearKit implements CommandExecutor {
 					Bukkit.broadcastMessage("     §aHorário de Término: §7" + HorarioAPI.getHorario());
 					Random r = new Random();
 					x = r.nextInt(Kit.size());
-					Bukkit.broadcastMessage("         §aO Kit Ganho Foi: §7" + (String) Kit.get(x));
+					Bukkit.broadcastMessage("         §aO Kit Ganho Foi: §7" + Kit.get(x));
 					Bukkit.broadcastMessage("");
 					Bukkit.broadcastMessage("           §c(!) §e§LSORTEIOS §c(!)    ");
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-							"pex user " + all.getName() + " add kit." + (String) Kit.get(x));
+							"pex user " + all.getName() + " add kit." + Kit.get(x));
 				}
-			}).runTaskLater(Main.instance, 200L);
+			}).runTaskLater(OutfitPvP.instance, 200L);
 		}
 
 		return false;

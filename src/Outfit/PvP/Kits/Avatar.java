@@ -30,7 +30,7 @@ import org.bukkit.util.Vector;
 import Outfit.PvP.Essencial.Cooldown;
 import Outfit.PvP.Essencial.KitUtil;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Avatar implements Listener {
 	public static List<String> arAvatar;
@@ -71,25 +71,25 @@ public class Avatar implements Listener {
 				Avatar.arAvatar.add(p.getName());
 			} else if (Avatar.arAvatar.contains(p.getName())
 					&& (e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK)
-					&& p.getItemInHand().equals((Object) ar)) {
+					&& p.getItemInHand().equals(ar)) {
 				p.setItemInHand(água);
 				Avatar.arAvatar.remove(p.getName());
 				Avatar.águaAvatar.add(p.getName());
 			} else if (Avatar.águaAvatar.contains(p.getName())
 					&& (e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK)
-					&& p.getItemInHand().equals((Object) água)) {
+					&& p.getItemInHand().equals(água)) {
 				p.setItemInHand(terra);
 				Avatar.águaAvatar.remove(p.getName());
 				Avatar.terraAvatar.add(p.getName());
 			} else if (Avatar.terraAvatar.contains(p.getName())
 					&& (e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK)
-					&& p.getItemInHand().equals((Object) terra)) {
+					&& p.getItemInHand().equals(terra)) {
 				p.setItemInHand(fogo);
 				Avatar.terraAvatar.remove(p.getName());
 				Avatar.fogoAvatar.add(p.getName());
 			} else if (Avatar.fogoAvatar.contains(p.getName())
 					&& (e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK)
-					&& p.getItemInHand().equals((Object) fogo)) {
+					&& p.getItemInHand().equals(fogo)) {
 				p.setItemInHand(ar);
 				Avatar.fogoAvatar.remove(p.getName());
 				Avatar.arAvatar.add(p.getName());
@@ -120,8 +120,8 @@ public class Avatar implements Listener {
 			final Snowball h = (Snowball) p.launchProjectile((Class<? extends Projectile>) Snowball.class);
 			final Vector velo1 = p.getLocation().getDirection().normalize().multiply(10);
 			h.setVelocity(velo1);
-			h.setMetadata("ar", (MetadataValue) new FixedMetadataValue(Main.plugin, (Object) true));
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+			h.setMetadata("ar", new FixedMetadataValue(OutfitPvP.plugin, true));
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 				@Override
 				public void run() {
 					KitUtil.ccooldown(p);
@@ -165,8 +165,8 @@ public class Avatar implements Listener {
 			final Snowball h = (Snowball) p.launchProjectile((Class<? extends Projectile>) Snowball.class);
 			final Vector velo1 = p.getLocation().getDirection().normalize().multiply(10);
 			h.setVelocity(velo1);
-			h.setMetadata("água", (MetadataValue) new FixedMetadataValue(Main.plugin, (Object) true));
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+			h.setMetadata("água", new FixedMetadataValue(OutfitPvP.plugin, true));
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 				@Override
 				public void run() {
 					KitUtil.ccooldown(p);
@@ -209,8 +209,8 @@ public class Avatar implements Listener {
 			final Snowball h = (Snowball) p.launchProjectile((Class<? extends Projectile>) Snowball.class);
 			final Vector velo1 = p.getLocation().getDirection().normalize().multiply(10);
 			h.setVelocity(velo1);
-			h.setMetadata("terra", (MetadataValue) new FixedMetadataValue(Main.plugin, (Object) true));
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+			h.setMetadata("terra", new FixedMetadataValue(OutfitPvP.plugin, true));
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 				@Override
 				public void run() {
 					KitUtil.ccooldown(p);
@@ -256,8 +256,8 @@ public class Avatar implements Listener {
 			final Snowball h = (Snowball) p.launchProjectile((Class<? extends Projectile>) Snowball.class);
 			final Vector velo1 = p.getLocation().getDirection().normalize().multiply(10);
 			h.setVelocity(velo1);
-			h.setMetadata("fogo", (MetadataValue) new FixedMetadataValue(Main.plugin, (Object) true));
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+			h.setMetadata("fogo", new FixedMetadataValue(OutfitPvP.plugin, true));
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 				@Override
 				public void run() {
 					KitUtil.ccooldown(p);

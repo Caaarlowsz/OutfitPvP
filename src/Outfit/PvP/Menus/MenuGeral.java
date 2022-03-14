@@ -23,7 +23,7 @@ import Outfit.PvP.Cassino.ApostasListener;
 public class MenuGeral implements Listener, CommandExecutor {
 	@SuppressWarnings({ "rawtypes", "unchecked", "unused" })
 	public static void guiKits(final Player p) {
-		final Inventory inv = Bukkit.getServer().createInventory((InventoryHolder) p, 54, "§8[§dMENU§8]");
+		final Inventory inv = Bukkit.getServer().createInventory(p, 54, "§8[§dMENU§8]");
 		final ItemStack pyro = new ItemStack(Material.getMaterial(340));
 		final ItemMeta metapyro = pyro.getItemMeta();
 		metapyro.setDisplayName("§d§lMenu Geral");
@@ -32,7 +32,7 @@ public class MenuGeral implements Listener, CommandExecutor {
 		descpyro1.add("§8➸ §d§lUTILIDADE");
 		descpyro1.add("§7Transi\u00e7\u00e3o Entre");
 		descpyro1.add("§7Os Menus Do Server");
-		metapyro.setLore((List) descpyro1);
+		metapyro.setLore(descpyro1);
 		pyro.setItemMeta(metapyro);
 		inv.setItem(13, pyro);
 		final ItemStack event456 = new ItemStack(Material.CHEST);
@@ -66,7 +66,7 @@ public class MenuGeral implements Listener, CommandExecutor {
 			final ItemMeta magmam = magma.getItemMeta();
 			magmam.setDisplayName("§c§lBLOQUEADO");
 			final ArrayList<String> desc = new ArrayList<String>();
-			magmam.setLore((List) desc);
+			magmam.setLore(desc);
 			magma.setItemMeta(magmam);
 			inv.setItem(8, magma);
 		} else if (p.hasPermission("cmd.admin")) {
@@ -74,7 +74,7 @@ public class MenuGeral implements Listener, CommandExecutor {
 			final ItemMeta magmam = magma.getItemMeta();
 			magmam.setDisplayName("§a§lADMINISTRA\u00c7\u00c2O");
 			final ArrayList<String> desc = new ArrayList<String>();
-			magmam.setLore((List) desc);
+			magmam.setLore(desc);
 			magma.setItemMeta(magmam);
 			inv.setItem(8, magma);
 		}

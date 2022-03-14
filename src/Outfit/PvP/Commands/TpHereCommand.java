@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class TpHereCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -17,18 +17,18 @@ public class TpHereCommand implements CommandExecutor {
 			p.sendMessage("§cVocê não tem permissão para isso.");
 			return true;
 		} else if (args.length == 0) {
-			p.sendMessage(String.valueOf(Main.prefix)
+			p.sendMessage(OutfitPvP.prefix
 					+ " §8➸ §cErrado, utilize a sintaxe correta: /tphere ou /here para puxar um jogador até você.");
 			return true;
 		} else {
 			Player k = Bukkit.getPlayer(args[0]);
 			if (k == null) {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cEste jogador(a) está offline ou não existe.");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §cEste jogador(a) está offline ou não existe.");
 				return true;
 			} else {
 				k.teleport(p);
 				p.sendMessage(
-						String.valueOf(Main.prefix) + " §8➸ §7Você puxou o jogador: §e" + k.getName() + " §7até você.");
+						OutfitPvP.prefix + " §8➸ §7Você puxou o jogador: §e" + k.getName() + " §7até você.");
 				return true;
 			}
 		}

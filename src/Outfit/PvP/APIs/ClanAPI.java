@@ -96,23 +96,19 @@ public class ClanAPI {
 
 	public static void kickPlayer(String player, String clan) {
 		ArrayList<String> list = (ArrayList<String>) ClanConfig.getConfig().getStringList(clan + ".Membros");
-		if (list.contains(player.toLowerCase())) {
-			list.remove(player.toLowerCase());
-		}
+        list.remove(player.toLowerCase());
 		ClanConfig.getConfig().set(clan + ".Membros", list);
 		ClanConfig.saveConfigs();
-		ClanConfig2.getConfig().set(player.toLowerCase().toString(), null);
+		ClanConfig2.getConfig().set(player.toLowerCase(), null);
 		ClanConfig2.saveConfigs();
 	}
 
 	public static void kickPlayer(Player p, String clan) {
 		ArrayList<String> list = (ArrayList<String>) ClanConfig.getConfig().getStringList(clan + ".Membros");
-		if (list.contains(p.getName().toLowerCase())) {
-			list.remove(p.getName().toLowerCase());
-		}
+        list.remove(p.getName().toLowerCase());
 		ClanConfig.getConfig().set(clan + ".Membros", list);
 		ClanConfig.saveConfigs();
-		ClanConfig2.getConfig().set(p.getName().toLowerCase().toString(), null);
+		ClanConfig2.getConfig().set(p.getName().toLowerCase(), null);
 		ClanConfig2.saveConfigs();
 	}
 
@@ -128,13 +124,11 @@ public class ClanAPI {
 
 	public static void kickPlayer(OfflinePlayer p, String clan) {
 		ArrayList<String> list = (ArrayList<String>) ClanConfig.getConfig().getStringList(clan + ".Membros");
-		if (list.contains(p.getName().toLowerCase())) {
-			list.remove(p.getName().toLowerCase());
-		}
+        list.remove(p.getName().toLowerCase());
 		ClanConfig.getConfig().set(clan + ".Membros", list);
 		ClanConfig.saveConfigs();
 		ClanConfig2.getConfig().set(p.getName().toLowerCase() + ".Clan", null);
-		ClanConfig2.getConfig().set(p.getName().toLowerCase().toString(), null);
+		ClanConfig2.getConfig().set(p.getName().toLowerCase(), null);
 		ClanConfig2.saveConfigs();
 	}
 

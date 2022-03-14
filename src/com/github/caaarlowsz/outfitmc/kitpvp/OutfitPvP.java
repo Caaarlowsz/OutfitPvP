@@ -1,7 +1,10 @@
-package Outfit.PvP.Main;
+package com.github.caaarlowsz.outfitmc.kitpvp;
 
 import java.util.List;
 
+import Outfit.PvP.Main.Version;
+import com.github.caaarlowsz.kitpvpapi.KitPvP;
+import com.github.caaarlowsz.kitpvpapi.KitPvPAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -197,7 +200,28 @@ import Outfit.PvP.Warps.WarpSumo;
 import Outfit.PvP.Warps.wFisherman;
 import net.minecraft.util.com.google.common.collect.Lists;
 
-public class Main extends JavaPlugin {
+public class OutfitPvP extends JavaPlugin implements KitPvP {
+
+	@Override
+	public void onEnable() {
+		super.onEnable();
+		KitPvPAPI.setInstance(this);
+
+		// TODO: Remover quando melhorar a classe principal
+		this.enable();
+	}
+
+	@Override
+	public void onDisable() {
+		super.onDisable();
+		KitPvPAPI.setInstance(null);
+
+		// TODO: Remover quando melhorar a classe principal
+		this.disable();
+	}
+
+	// TODO: Melhorar a classe principal
+
 	public static String prefix;
 	public static String loja;
 	public static String ts;
@@ -207,25 +231,25 @@ public class Main extends JavaPlugin {
 	public static String motd3;
 	public static String motd4;
 	public static Plugin plugin;
-	public static Main instance;
+	public static OutfitPvP instance;
 	public static MyConfigManager manager;
 	public static BlinkEffect bk = new BlinkEffect();
 	private static Version version;
 	public static List<String> admins = Lists.newArrayList();
 
-	public static Main getInstace() {
+	public static OutfitPvP getInstace() {
 		return instance;
 	}
 
-	public static Main getInstance1() {
+	public static OutfitPvP getInstance1() {
 		return instance;
 	}
 
-	public static Main getPlugin() {
-		return (Main) JavaPlugin.getProvidingPlugin((Class<?>) Main.class);
+	public static OutfitPvP getPlugin() {
+		return (OutfitPvP) JavaPlugin.getProvidingPlugin(OutfitPvP.class);
 	}
 
-	public void onEnable() {
+	public void enable() {
 		for (Player todos : Bukkit.getOnlinePlayers()) {
 			todos.kickPlayer(
 					"§d§lKombo§f§lNetwork \n \n §cServidor Reiniciando \n Para sua segurança e a de outros jogadores(a), você foi kickado. \n\nAguarde o servidor reiniciar e entre para jogar novamente =)");
@@ -235,7 +259,7 @@ public class Main extends JavaPlugin {
 		Bukkit.getConsoleSender().sendMessage("§b§lSistema de /crash ativado");
 
 		SManager.onEnable();
-		this.getServer().getPluginManager().registerEvents((Listener) new PlayerListener(), (Plugin) this);
+		this.getServer().getPluginManager().registerEvents(new PlayerListener(), this);
 		try {
 			saveDefaultConfig();
 		} catch (Exception localException) {
@@ -252,19 +276,19 @@ public class Main extends JavaPlugin {
 		Bukkit.getConsoleSender().sendMessage("      §d§lKombo§f§lPvP §a§lHABILITADO");
 		Bukkit.getConsoleSender().sendMessage("§b§l§m-------------------------------------");
 
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPlugin(), new Runnable() {
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(OutfitPvP.getPlugin(), new Runnable() {
 			public void run() {
 				API.AutomaticMessage();
 			}
 		}, 0L, 120 * 20);
 
-		Bukkit.getScheduler().runTaskTimerAsynchronously((Plugin) Main.getPlugin(), (Runnable) new Runnable() {
+		Bukkit.getScheduler().runTaskTimerAsynchronously(OutfitPvP.getPlugin(), new Runnable() {
 			public void run() {
-				Main.bk.next();
+				OutfitPvP.bk.next();
 			}
 		}, 0L, 20L);
 
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPlugin(), new Runnable() {
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(OutfitPvP.getPlugin(), new Runnable() {
 			public void run() {
 				for (World w : Bukkit.getServer().getWorlds())
 					w.setTime(0L);
@@ -286,7 +310,7 @@ public class Main extends JavaPlugin {
 		Kits();
 	}
 
-	public void onDisable() {
+	public void disable() {
 		Bukkit.getConsoleSender().sendMessage("§b§l§m-------------------------------------");
 		Bukkit.getConsoleSender().sendMessage("          §d§lOutfit§f§lNetwork        ");
 		Bukkit.getConsoleSender().sendMessage("                                       ");
@@ -301,20 +325,14 @@ public class Main extends JavaPlugin {
 		if (version == Version.v1_6) {
 			return true;
 		}
-		if (version == Version.v1_5) {
-			return true;
-		}
-		return false;
+		return version == Version.v1_5;
 	}
 
 	public static boolean isVeryOldVersion() {
 		if (version == Version.v1_6) {
 			return true;
 		}
-		if (version == Version.v1_5) {
-			return true;
-		}
-		return false;
+		return version == Version.v1_5;
 	}
 
 	public void Eventos() {

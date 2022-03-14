@@ -15,7 +15,7 @@ import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import Outfit.PvP.APIs.Lag;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class LagCommand implements CommandExecutor {
 	public static int TickCount = 0;
@@ -26,16 +26,16 @@ public class LagCommand implements CommandExecutor {
 		Player p = (Player) arg0;
 		if (arg1.getName().equalsIgnoreCase("ping")) {
 			if (arg3.length == 0) {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Seu ping é de §d"
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §7Seu ping é de §d"
 						+ ((CraftPlayer) p).getHandle().ping + " §7ms");
 				return true;
 			} else {
 				Player target = Bukkit.getPlayer(arg3[0]);
 				if (target == null) {
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cEste jogador(a) está offline ou não existe.");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §cEste jogador(a) está offline ou não existe.");
 					return true;
 				} else {
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7O jogador(a): §d" + target.getName()
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §7O jogador(a): §d" + target.getName()
 							+ " §7está com um ping de §d" + ((CraftPlayer) target).getHandle().ping + " §7ms");
 					return true;
 				}
@@ -57,7 +57,7 @@ public class LagCommand implements CommandExecutor {
 
 			p.sendMessage("§7 ");
 			p.sendMessage("§7Coletando informações...");
-			p.sendMessage("§7Você está no Servidor§8: " + Main.prefix + "§7, online aqui§8: §d"
+			p.sendMessage("§7Você está no Servidor§8: " + OutfitPvP.prefix + "§7, online aqui§8: §d"
 					+ Bukkit.getOnlinePlayers().length);
 			p.sendMessage("  §d- §7Uso de processamento§8: §d" + usedCPU + " %§8, §7lag§8: §d"
 					+ (usedCPU >= 90.0D ? "sim" : "nao"));

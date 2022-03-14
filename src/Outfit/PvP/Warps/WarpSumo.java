@@ -16,15 +16,15 @@ import Outfit.PvP.APIs.WarpAPI;
 import Outfit.PvP.Commands.BuildCommand;
 import Outfit.PvP.Essencial.KitAPI;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Menus.MenuWarps;
 import Outfit.PvP.Sumo.JoinSumo;
 import Outfit.PvP.Utils.Proteção;
 
 public class WarpSumo implements Listener, CommandExecutor {
-	public static Main plugin;
+	public static OutfitPvP plugin;
 
-	public WarpSumo(Main main) {
+	public WarpSumo(OutfitPvP main) {
 		plugin = main;
 	}
 
@@ -50,12 +50,12 @@ public class WarpSumo implements Listener, CommandExecutor {
 			p.sendMessage("");
 			p.sendMessage("");
 			p.sendMessage("");
-			p.sendMessage(String.valueOf(Main.prefix) + " §8-> §aTeleportado com sucesso");
+			p.sendMessage(OutfitPvP.prefix + " §8-> §aTeleportado com sucesso");
 			TheTitle.sendTitle(p, "§d§lSUMO");
 			TheTitle.sendSubTitle(p, "§7Teleportado com sucesso!");
 			if ((p.hasPermission("zey.pvp.admin")) && (WarpAPI.getWarp(p) == "Nenhuma")) {
-				Main.admins.remove(p.getName());
-				p.sendMessage(String.valueOf(Main.prefix) + " §8-> §7Voce saiu do modo §c§lADMIN");
+				OutfitPvP.admins.remove(p.getName());
+				p.sendMessage(OutfitPvP.prefix + " §8-> §7Voce saiu do modo §c§lADMIN");
 				Player[] arrayOfPlayer;
 				int j = (arrayOfPlayer = Bukkit.getOnlinePlayers()).length;
 				for (int i = 0; i < j; i++) {

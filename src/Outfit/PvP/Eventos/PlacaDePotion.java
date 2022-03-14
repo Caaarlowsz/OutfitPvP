@@ -13,13 +13,13 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class PlacaDePotion implements Listener {
 	@SuppressWarnings("unused")
-	private Main plugin;
+	private OutfitPvP plugin;
 
-	public PlacaDePotion(final Main main) {
+	public PlacaDePotion(final OutfitPvP main) {
 		this.plugin = main;
 	}
 
@@ -40,7 +40,7 @@ public class PlacaDePotion implements Listener {
 	public void inv(final PlayerInteractEvent e) {
 		final Player p = e.getPlayer();
 		final ItemStack sopas = new ItemStack(Material.POTION, 1, (short) 16421);
-		final Inventory inve = Bukkit.getServer().createInventory((InventoryHolder) p, 36, "§8[§dPOTIONS§8]");
+		final Inventory inve = Bukkit.getServer().createInventory(p, 36, "§8[§dPOTIONS§8]");
 		inve.setItem(0, sopas);
 		inve.setItem(1, sopas);
 		inve.setItem(2, sopas);

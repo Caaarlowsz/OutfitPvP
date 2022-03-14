@@ -11,12 +11,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class MyConfigManager implements Listener {
-	private JavaPlugin plugin;
+	private final JavaPlugin plugin;
 
 	public MyConfigManager(final JavaPlugin plugin) {
 		this.plugin = plugin;
@@ -81,11 +82,11 @@ public class MyConfigManager implements Listener {
 			return;
 		}
 		try {
-			final StringBuilder config = new StringBuilder("");
+			final StringBuilder config = new StringBuilder();
 			final BufferedReader reader = new BufferedReader(new FileReader(file));
 			String currentLine;
 			while ((currentLine = reader.readLine()) != null) {
-				config.append(String.valueOf(currentLine) + "\n");
+				config.append(currentLine + "\n");
 			}
 			reader.close();
 			config.append("# +----------------------------------------------------+ #\n");
@@ -102,7 +103,7 @@ public class MyConfigManager implements Listener {
 					if (line.length() % 2 != 0) {
 						finalLine.append(" ");
 					}
-					config.append("# < " + finalLine.toString() + " > #\n");
+					config.append("# < " + finalLine + " > #\n");
 				}
 			}
 			config.append("# +----------------------------------------------------+ #");
@@ -122,21 +123,21 @@ public class MyConfigManager implements Listener {
 		try {
 			int commentNum = 0;
 			final String pluginName = this.getPluginName();
-			final StringBuilder whole = new StringBuilder("");
+			final StringBuilder whole = new StringBuilder();
 			final BufferedReader reader = new BufferedReader(new FileReader(file));
 			String currentLine;
 			while ((currentLine = reader.readLine()) != null) {
 				if (currentLine.startsWith("#")) {
 					final String addLine = currentLine.replaceFirst("#",
-							String.valueOf(pluginName) + "_COMMENT_" + commentNum + ":");
-					whole.append(String.valueOf(addLine) + "\n");
+                            pluginName + "_COMMENT_" + commentNum + ":");
+					whole.append(addLine + "\n");
 					++commentNum;
 				} else {
-					whole.append(String.valueOf(currentLine) + "\n");
+					whole.append(currentLine + "\n");
 				}
 			}
 			final String config = whole.toString();
-			final InputStream configStream = new ByteArrayInputStream(config.getBytes(Charset.forName("UTF-8")));
+			final InputStream configStream = new ByteArrayInputStream(config.getBytes(StandardCharsets.UTF_8));
 			reader.close();
 			return configStream;
 		} catch (IOException e) {
@@ -174,19 +175,19 @@ public class MyConfigManager implements Listener {
 		int lastLine = 0;
 		int headerLine = 0;
 		final String[] lines = configString.split("\n");
-		final StringBuilder config = new StringBuilder("");
+		final StringBuilder config = new StringBuilder();
 		String[] array;
 		for (int length = (array = lines).length, i = 0; i < length; ++i) {
 			final String line = array[i];
-			if (line.startsWith(String.valueOf(this.getPluginName()) + "_COMMENT")) {
+			if (line.startsWith(this.getPluginName() + "_COMMENT")) {
 				final String comment = "#" + line.trim().substring(line.indexOf(":") + 1);
 				if (comment.startsWith("# +-")) {
 					if (headerLine == 0) {
-						config.append(String.valueOf(comment) + "\n");
+						config.append(comment + "\n");
 						lastLine = 0;
 						headerLine = 1;
 					} else if (headerLine == 1) {
-						config.append(String.valueOf(comment) + "\n\n");
+						config.append(comment + "\n\n");
 						lastLine = 0;
 						headerLine = 0;
 					}
@@ -198,14 +199,14 @@ public class MyConfigManager implements Listener {
 						normalComment = comment;
 					}
 					if (lastLine == 0) {
-						config.append(String.valueOf(normalComment) + "\n");
+						config.append(normalComment + "\n");
 					} else if (lastLine == 1) {
 						config.append("\n" + normalComment + "\n");
 					}
 					lastLine = 0;
 				}
 			} else {
-				config.append(String.valueOf(line) + "\n");
+				config.append(line + "\n");
 				lastLine = 1;
 			}
 		}

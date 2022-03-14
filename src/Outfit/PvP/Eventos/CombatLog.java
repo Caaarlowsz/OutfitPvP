@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import Outfit.PvP.APIs.WarpAPI;
 import Outfit.PvP.Config.ZeyCoins;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class CombatLog implements Listener {
 	public static List<String> Sair = new ArrayList<String>();
@@ -40,15 +40,15 @@ public class CombatLog implements Listener {
 					Sair.add(p.getName());
 					Sair.add(hitter.getName());
 					p.sendMessage(
-							String.valueOf(Main.prefix) + " §8➸ §7Voce entrou em combate com §d" + hitter.getName());
+							OutfitPvP.prefix + " §8➸ §7Voce entrou em combate com §d" + hitter.getName());
 					hitter.sendMessage(
-							String.valueOf(Main.prefix) + " §8➸ §7Voce entrou em combate com §d" + p.getName());
-					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+							OutfitPvP.prefix + " §8➸ §7Voce entrou em combate com §d" + p.getName());
+					Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 						public void run() {
 							CombatLog.Sair.remove(p.getName());
 							CombatLog.Sair.remove(hitter.getName());
-							p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Voce nao esta mais em combate!");
-							hitter.sendMessage(String.valueOf(Main.prefix) + " §8➸ §7Voce nao esta mais em combate!");
+							p.sendMessage(OutfitPvP.prefix + " §8➸ §7Voce nao esta mais em combate!");
+							hitter.sendMessage(OutfitPvP.prefix + " §8➸ §7Voce nao esta mais em combate!");
 						}
 					}, 200L);
 				}
@@ -63,7 +63,7 @@ public class CombatLog implements Listener {
 		if (Sair.contains(p.getName())) {
 			p.setHealth(0.0D);
 			p.teleport(p.getWorld().getSpawnLocation());
-			Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §d" + p.getName()
+			Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §d" + p.getName()
 					+ " §7foi cagar em combate e perdeu §d100 §7Dolls§7!");
 			ZeyCoins.removeMoney(p, 100);
 		}
@@ -75,7 +75,7 @@ public class CombatLog implements Listener {
 		Player p = event.getPlayer();
 		if (Sair.contains(p.getName()) && event.getMessage().toLowerCase().startsWith("/")) {
 			event.setCancelled(true);
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVoce está em combate!");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §cVoce está em combate!");
 		}
 
 	}

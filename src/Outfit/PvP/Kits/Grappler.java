@@ -19,18 +19,18 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
 
 import Outfit.PvP.Essencial.KitAPI;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Grappler implements Listener {
 	Map<Player, Cordinha> hooks = new HashMap<Player, Cordinha>();
 
-	public Grappler(Main main) {
+	public Grappler(OutfitPvP main) {
 	}
 
 	@EventHandler
 	public void onSlot(PlayerItemHeldEvent e) {
 		if (this.hooks.containsKey(e.getPlayer())) {
-			((Cordinha) this.hooks.get(e.getPlayer())).remove();
+			this.hooks.get(e.getPlayer()).remove();
 			this.hooks.remove(e.getPlayer());
 		}
 
@@ -41,7 +41,7 @@ public class Grappler implements Listener {
 		if (event.getEntity() instanceof Player) {
 			Player player = (Player) event.getEntity();
 			if (event.getCause() == DamageCause.FALL) {
-				if (this.hooks.containsKey(player) && ((Cordinha) this.hooks.get(player)).isHooked()
+				if (this.hooks.containsKey(player) && this.hooks.get(player).isHooked()
 						&& event.getDamage() > 3.0D) {
 					event.setDamage(3.0D);
 				}
@@ -53,7 +53,7 @@ public class Grappler implements Listener {
 	@EventHandler
 	public void onMove(PlayerMoveEvent e) {
 		if (this.hooks.containsKey(e.getPlayer()) && !e.getPlayer().getItemInHand().getType().equals(Material.LEASH)) {
-			((Cordinha) this.hooks.get(e.getPlayer())).remove();
+			this.hooks.get(e.getPlayer()).remove();
 			this.hooks.remove(e.getPlayer());
 		}
 
@@ -70,19 +70,19 @@ public class Grappler implements Listener {
 				return;
 			}
 
-			if (!((Cordinha) this.hooks.get(p)).isHooked()) {
+			if (!this.hooks.get(p).isHooked()) {
 				return;
 			}
 
-			double t = ((Cordinha) this.hooks.get(p)).getBukkitEntity().getLocation().distance(p.getLocation());
+			double t = this.hooks.get(p).getBukkitEntity().getLocation().distance(p.getLocation());
 			double v_x = (1.0D + 0.08D * t)
-					* (((Cordinha) this.hooks.get(p)).getBukkitEntity().getLocation().getX() - p.getLocation().getX())
+					* (this.hooks.get(p).getBukkitEntity().getLocation().getX() - p.getLocation().getX())
 					/ t;
 			double v_y = (1.0D + 0.03D * t)
-					* (((Cordinha) this.hooks.get(p)).getBukkitEntity().getLocation().getY() - p.getLocation().getY())
+					* (this.hooks.get(p).getBukkitEntity().getLocation().getY() - p.getLocation().getY())
 					/ t;
 			double v_z = (1.0D + 0.08D * t)
-					* (((Cordinha) this.hooks.get(p)).getBukkitEntity().getLocation().getZ() - p.getLocation().getZ())
+					* (this.hooks.get(p).getBukkitEntity().getLocation().getZ() - p.getLocation().getZ())
 					/ t;
 			Vector v = p.getVelocity();
 			v.setX(v_x);
@@ -103,16 +103,16 @@ public class Grappler implements Listener {
 					return;
 				}
 
-				if (!((Cordinha) this.hooks.get(p)).isHooked()) {
+				if (!this.hooks.get(p).isHooked()) {
 					return;
 				}
 
-				double t = ((Cordinha) this.hooks.get(p)).getBukkitEntity().getLocation().distance(p.getLocation());
-				double v_x = (1.0D + 0.08D * t) * (((Cordinha) this.hooks.get(p)).getBukkitEntity().getLocation().getX()
+				double t = this.hooks.get(p).getBukkitEntity().getLocation().distance(p.getLocation());
+				double v_x = (1.0D + 0.08D * t) * (this.hooks.get(p).getBukkitEntity().getLocation().getX()
 						- p.getLocation().getX()) / t;
-				double v_y = (1.0D + 0.03D * t) * (((Cordinha) this.hooks.get(p)).getBukkitEntity().getLocation().getY()
+				double v_y = (1.0D + 0.03D * t) * (this.hooks.get(p).getBukkitEntity().getLocation().getY()
 						- p.getLocation().getY()) / t;
-				double v_z = (1.0D + 0.08D * t) * (((Cordinha) this.hooks.get(p)).getBukkitEntity().getLocation().getZ()
+				double v_z = (1.0D + 0.08D * t) * (this.hooks.get(p).getBukkitEntity().getLocation().getZ()
 						- p.getLocation().getZ()) / t;
 				p.playSound(p.getLocation(), Sound.STEP_GRAVEL, 2.0F, 2.0F);
 				Vector v = p.getVelocity();
@@ -122,12 +122,12 @@ public class Grappler implements Listener {
 				p.setVelocity(v);
 			} else {
 				if (Kangaroo.KitNerf.contains(p.getName())) {
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVoce foi hitado aguarde!");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §cVoce foi hitado aguarde!");
 					return;
 				}
 
 				if (this.hooks.containsKey(p)) {
-					((Cordinha) this.hooks.get(p)).remove();
+					this.hooks.get(p).remove();
 				}
 
 				Cordinha nmsHook = new Cordinha(p.getWorld(), ((CraftPlayer) p).getHandle());

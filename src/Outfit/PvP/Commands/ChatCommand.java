@@ -9,12 +9,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class ChatCommand implements CommandExecutor, Listener {
 	public static boolean c = false;
 
-	public ChatCommand(Main main) {
+	public ChatCommand(OutfitPvP main) {
 	}
 
 	public boolean onCommand(CommandSender Sender, Command Cmd, String Label, String[] Args) {
@@ -26,19 +26,19 @@ public class ChatCommand implements CommandExecutor, Listener {
 			}
 
 			if (Args.length == 0) {
-				p.sendMessage(String.valueOf(Main.prefix)
+				p.sendMessage(OutfitPvP.prefix
 						+ " §8➸ §cErrado, utilize a sintaxe correta: /chat [Ligar/Desligar]");
 				return true;
 			}
 
 			if (Args[0].equalsIgnoreCase("desligar")) {
 				c = true;
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §7O chat do servidor foi §c§lDESLIGADO§7.");
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §7O chat do servidor foi §c§lDESLIGADO§7.");
 			}
 
 			if (Args[0].equalsIgnoreCase("ligar")) {
 				c = false;
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §7O chat do servidor foi §a§lLIGADO§7.");
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §7O chat do servidor foi §a§lLIGADO§7.");
 			}
 		}
 
@@ -51,7 +51,7 @@ public class ChatCommand implements CommandExecutor, Listener {
 		if (!p.hasPermission("zey.pvp.falarchat") && c) {
 			e.setCancelled(true);
 			p.sendMessage(
-					String.valueOf(Main.prefix) + " §8➸ §cVocê não tem permissão para falar com o chat desativado.");
+					OutfitPvP.prefix + " §8➸ §cVocê não tem permissão para falar com o chat desativado.");
 		}
 
 	}

@@ -22,7 +22,7 @@ import org.bukkit.util.Vector;
 
 import Outfit.PvP.Essencial.KitAPI;
 import Outfit.PvP.Essencial.KitUtil;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class DeshFire implements Listener {
 	public int boost;
@@ -42,7 +42,7 @@ public class DeshFire implements Listener {
 		DeshFire.cooldownm = new ArrayList<Player>();
 	}
 
-	public DeshFire(final Main main) {
+	public DeshFire(final OutfitPvP main) {
 		this.boost = Integer.valueOf(6);
 	}
 
@@ -57,7 +57,7 @@ public class DeshFire implements Listener {
 				event.setCancelled(true);
 			}
 			if (DeshFire.cooldownm.contains(p)) {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cAguarde o cooldown terminar.");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §cAguarde o cooldown terminar.");
 				return;
 			}
 			DeshFire.cooldownm.add(p);
@@ -68,39 +68,39 @@ public class DeshFire implements Listener {
 				if (pertos instanceof Player) {
 					((Player) pertos).damage(10.0);
 					pertos.setVelocity(new Vector(0.1, 0.0, 0.1));
-					((Player) pertos).setFireTicks(fire * 20);
+					pertos.setFireTicks(fire * 20);
 				}
 			}
 			final ItemStack Capacete = new ItemStack(Material.LEATHER_HELMET);
 			final LeatherArmorMeta kCapacete = (LeatherArmorMeta) Capacete.getItemMeta();
 			kCapacete.setColor(Color.RED);
-			Capacete.setItemMeta((ItemMeta) kCapacete);
+			Capacete.setItemMeta(kCapacete);
 			final ItemStack Peitoral = new ItemStack(Material.LEATHER_CHESTPLATE);
 			final LeatherArmorMeta kPeitoral = (LeatherArmorMeta) Peitoral.getItemMeta();
 			kPeitoral.setColor(Color.RED);
-			Peitoral.setItemMeta((ItemMeta) kPeitoral);
+			Peitoral.setItemMeta(kPeitoral);
 			final ItemStack Calss = new ItemStack(Material.LEATHER_LEGGINGS);
 			final LeatherArmorMeta kCalss = (LeatherArmorMeta) Calss.getItemMeta();
 			kCalss.setColor(Color.RED);
-			Calss.setItemMeta((ItemMeta) kCalss);
+			Calss.setItemMeta(kCalss);
 			final ItemStack Bota = new ItemStack(Material.LEATHER_BOOTS);
 			final LeatherArmorMeta kBota = (LeatherArmorMeta) Capacete.getItemMeta();
 			kBota.setColor(Color.RED);
-			Bota.setItemMeta((ItemMeta) kBota);
+			Bota.setItemMeta(kBota);
 			DeshFire.Armadura.put(p.getName(), p.getInventory().getArmorContents());
 			p.getInventory().setHelmet(Capacete);
 			p.getInventory().setChestplate(Peitoral);
 			p.getInventory().setLeggings(Calss);
 			p.getInventory().setBoots(Bota);
 			p.updateInventory();
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 				@Override
 				public void run() {
-					p.getInventory().setArmorContents((ItemStack[]) null);
+					p.getInventory().setArmorContents(null);
 					p.updateInventory();
 				}
 			}, 50L);
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 				@SuppressWarnings("unlikely-arg-type")
 				@Override
 				public void run() {

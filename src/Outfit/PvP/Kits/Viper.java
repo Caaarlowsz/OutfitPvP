@@ -8,10 +8,10 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import Outfit.PvP.Essencial.KitAPI;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Viper implements Listener {
-	public Viper(final Main main) {
+	public Viper(final OutfitPvP main) {
 	}
 
 	@EventHandler

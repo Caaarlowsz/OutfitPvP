@@ -12,7 +12,7 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 public class Proteção implements Listener {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private static HashMap<Player, ImortalEnum> imortal = new HashMap();
+	private static final HashMap<Player, ImortalEnum> imortal = new HashMap();
 
 	@EventHandler
 	public void dano(EntityDamageEvent e) {
@@ -40,14 +40,11 @@ public class Proteção implements Listener {
 	}
 
 	public static ImortalEnum getImortal(Player p) {
-		return (ImortalEnum) imortal.get(p);
+		return imortal.get(p);
 	}
 
 	public static boolean isImortal(Player p) {
-		if (getImortal(p) == ImortalEnum.ON) {
-			return true;
-		}
-		return false;
+		return getImortal(p) == ImortalEnum.ON;
 	}
 
 	public static void setImortal(Player p, boolean i) {

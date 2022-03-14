@@ -15,7 +15,7 @@ import Outfit.PvP.Clan.Clan;
 import Outfit.PvP.Clan.ClanManager;
 import Outfit.PvP.Config.ClanConfig;
 import Outfit.PvP.Config.ZeyCoins;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Score.SPlayer;
 import ca.wacos.nametagedit.NametagAPI;
 
@@ -52,12 +52,12 @@ public class ClanCommand implements CommandExecutor {
 					}
 					String clan = Args[1];
 					if (!ClanAPI.pedidos.get(clan).contains(p.getName().toLowerCase())) {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ Você não recebeu convite desse Clan");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ Você não recebeu convite desse Clan");
 						return true;
 					}
 					Clan clann = ClanManager.getClan(Args[1]);
 					if (clann == null) {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cEste clan não existe!");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cEste clan não existe!");
 						return true;
 					}
 					ClanAPI.addPlayerToClan(p, ClanManager.getClan(clan));
@@ -67,16 +67,16 @@ public class ClanCommand implements CommandExecutor {
 				}
 				if (Args[0].equalsIgnoreCase("convidar")) {
 					if (ClanAPI.getClanPlayer(p) == null) {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §8➸ §cVocê não possui um Clan");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §8➸ §cVocê não possui um Clan");
 						return true;
 					}
 					if (!ClanAPI.getOwner(ClanAPI.getClanPlayerString(p)).equalsIgnoreCase(p.getName())) {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê não é o Dono desse Clan");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cVocê não é o Dono desse Clan");
 						return true;
 					}
 					if (Bukkit.getPlayer(Args[1].toLowerCase()) != null
 							&& ClanAPI.getClanPlayer(Bukkit.getPlayer(Args[1].toLowerCase())) != null) {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cEsse Jogador já possui um Clan");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cEsse Jogador já possui um Clan");
 						return true;
 					}
 					if (!ClanAPI.pedidos.containsKey(ClanAPI.getClanPlayerString(p))) {
@@ -105,14 +105,14 @@ public class ClanCommand implements CommandExecutor {
 								"§d# §f" + nick + " §dfoi convidado para o Clan");
 						return true;
 					} else {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cJá existe um convite para esse Nick");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cJá existe um convite para esse Nick");
 
 						return true;
 					}
 				}
 				if (Args[0].equalsIgnoreCase("info")) {
 					if (ClanAPI.getClanPlayer(p) == null) {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê não possui um Clan");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cVocê não possui um Clan");
 						return true;
 					}
 					p.sendMessage(" ");
@@ -127,34 +127,34 @@ public class ClanCommand implements CommandExecutor {
 				}
 				if (Args[0].equalsIgnoreCase("tag")) {
 					if (ClanAPI.getClanPlayer(p) == null) {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê não possui um Clan");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cVocê não possui um Clan");
 						return true;
 					}
 					if (Args[1].length() > 3) {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cA tag nao pode ultrapassar 3 caracteres");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cA tag nao pode ultrapassar 3 caracteres");
 						return true;
 					}
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aTag adicionada com sucesso.");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §aTag adicionada com sucesso.");
 				}
 				if (Args[0].equalsIgnoreCase("expulsar")) {
 					if (ClanAPI.getClanPlayer(p) == null) {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê não possui um Clan");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cVocê não possui um Clan");
 						return true;
 					}
 					if (!ClanAPI.getOwner(ClanAPI.getClanPlayerString(p)).equalsIgnoreCase(p.getName())) {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê não é o Dono desse Clan");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cVocê não é o Dono desse Clan");
 						return true;
 					}
 					Player vic = Bukkit.getPlayer(Args[1]);
 					if (vic.getName().equals(p.getName())) {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê não pode kikar você mesmo");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cVocê não pode kikar você mesmo");
 						return true;
 					}
 					if (vic == null) {
 						OfflinePlayer vicoff = Bukkit.getOfflinePlayer(Args[1]);
 						if (!ClanAPI.getClanPlayerString(vicoff).equalsIgnoreCase(ClanAPI.getClanPlayerString(p))) {
-							p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cEsse jogador nao pertence ao seu Clan");
+							p.sendMessage(OutfitPvP.prefix + " §8➸ §cEsse jogador nao pertence ao seu Clan");
 							return true;
 						}
 						ClanAPI.kickPlayer(vicoff, ClanAPI.getClanPlayerString(p));
@@ -163,7 +163,7 @@ public class ClanCommand implements CommandExecutor {
 						return true;
 					}
 					if (!ClanAPI.getClanPlayerString(vic).equalsIgnoreCase(ClanAPI.getClanPlayerString(p))) {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cEsse jogador nao pertence ao seu Clan");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cEsse jogador nao pertence ao seu Clan");
 						return true;
 					}
 					ClanAPI.kickPlayer(vic, ClanAPI.getClanPlayerString(p));
@@ -176,7 +176,7 @@ public class ClanCommand implements CommandExecutor {
 				}
 				if (Args[0].equalsIgnoreCase("msg")) {
 					if (ClanAPI.getClanPlayer(p) == null) {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê não possui um Clan");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cVocê não possui um Clan");
 						return true;
 					}
 					String message = " ";
@@ -192,15 +192,15 @@ public class ClanCommand implements CommandExecutor {
 				}
 				if (Args[0].equalsIgnoreCase("deletar")) {
 					if (ClanAPI.getClanPlayer(p) == null) {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê não possui um Clan");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cVocê não possui um Clan");
 						return true;
 					}
 					if (!ClanAPI.getOwner(ClanAPI.getClanPlayerString(p)).equalsIgnoreCase(p.getName())) {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê não é o Dono desse Clan");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cVocê não é o Dono desse Clan");
 						return true;
 					}
 
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cClan deletado com Sucesso");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §cClan deletado com Sucesso");
 					Bukkit.broadcastMessage("§5§lCLAN §8» §d" + p.getName() + " §fdeletou o Clan §8➸ §c"
 							+ ClanAPI.getClanPlayerString(p));
 					Clan clan = ClanManager.getClan(ClanAPI.getClanPlayerString(p));
@@ -210,15 +210,15 @@ public class ClanCommand implements CommandExecutor {
 				}
 				if (Args[0].equalsIgnoreCase("sair")) {
 					if (ClanAPI.getClanPlayer(p) == null) {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê não possui um Clan");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cVocê não possui um Clan");
 						return true;
 					}
 					if (ClanAPI.getOwner(ClanAPI.getClanPlayerString(p)).equalsIgnoreCase(p.getName())) {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê não pode sair do seu Clan");
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cUse [/clan deletar] para deletar o Clan");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cVocê não pode sair do seu Clan");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cUse [/clan deletar] para deletar o Clan");
 						return true;
 					}
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê saiu do Clan");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §cVocê saiu do Clan");
 					ClanAPI.senMessage(ClanAPI.getClanPlayerString(p), "§c# §f" + p.getName() + " §fsaiu do Clan");
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.Rank(p));
 					ClanAPI.kickPlayer(p, ClanAPI.getClanPlayerString(p));
@@ -226,16 +226,16 @@ public class ClanCommand implements CommandExecutor {
 				}
 				if (Args[0].equalsIgnoreCase("criar")) {
 					if (ZeyCoins.getPlayerMoney(p) < 2500) {
-						p.sendMessage(String.valueOf(Main.prefix)
+						p.sendMessage(OutfitPvP.prefix
 								+ " §8➸ §cÉ necessário ter 2500 de coins para criar um Clan");
 						return true;
 					}
 					if (ClanAPI.clanExist(Args[1])) {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cEste clan já existe");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cEste clan já existe");
 						return true;
 					}
 					if (ClanAPI.getClanPlayer(p) != null) {
-						p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê já possui um Clan");
+						p.sendMessage(OutfitPvP.prefix + " §8➸ §cVocê já possui um Clan");
 						return true;
 					}
 					String tag = Args[2].replace("&", "§").replace("§k", "").replace("§l", "").replace("§m", "")
@@ -243,18 +243,18 @@ public class ClanCommand implements CommandExecutor {
 					String tag2 = ChatColor.stripColor(tag);
 					if ((tag2.length() > 3) || (tag2.length() < 3) || Args[2].length() > 9) {
 						p.sendMessage(
-								String.valueOf(Main.prefix) + " §8➸ §cA tag do clan deve ter apenas 3 caracteres.");
+								OutfitPvP.prefix + " §8➸ §cA tag do clan deve ter apenas 3 caracteres.");
 						return true;
 					}
 					for (String CLAN : ClanManager.getAllClansString()) {
 						if (ClanConfig.getConfig().getString(CLAN + ".Tag").equalsIgnoreCase(tag)) {
-							p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cJá existe um Clan com essa Tag");
+							p.sendMessage(OutfitPvP.prefix + " §8➸ §cJá existe um Clan com essa Tag");
 							return true;
 						}
 					}
 					ClanAPI.createClan(p, tag, Args[1]);
 					ZeyCoins.removeMoney(p, 2500);
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cClan criado com Sucesso!");
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §cClan criado com Sucesso!");
 					Bukkit.broadcastMessage("§5§lCLAN §8» §d" + p.getName() + " §fcriou o Clan §8➸ §c" + Args[1]);
 					NametagAPI.setSuffix(p.getName(), " " + SPlayer.ClanTag(p));
 

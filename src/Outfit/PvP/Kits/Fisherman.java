@@ -7,10 +7,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerFishEvent;
 
 import Outfit.PvP.Essencial.KitAPI;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Fisherman implements Listener {
-	public Fisherman(Main main) {
+	public Fisherman(OutfitPvP main) {
 	}
 
 	@EventHandler

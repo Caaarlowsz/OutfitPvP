@@ -26,7 +26,7 @@ import Outfit.PvP.Config.ConfigManager;
 import Outfit.PvP.Config.ZeyCoins;
 import Outfit.PvP.Essencial.KitAPI;
 import Outfit.PvP.Essencial.KitUtil;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Menus.MenuWarps;
 import Outfit.PvP.Utils.Proteção;
 
@@ -36,7 +36,7 @@ public class Entrar implements Listener {
 		Player p = e.getPlayer();
 
 		e.setJoinMessage(null);
-		TheTitle.sendTitle(p, Main.prefix);
+		TheTitle.sendTitle(p, OutfitPvP.prefix);
 		TheTitle.sendSubTitle(p, "§7Use: §d/Login §7ou §d/Register§7!");
 
 		KitAPI.remove(p);
@@ -65,10 +65,10 @@ public class Entrar implements Listener {
 		p.sendMessage("§a  ");
 		p.sendMessage("§a  ");
 		p.sendMessage("§a  ");
-		p.sendMessage("§c" + Main.prefix + " §8➸ §7Os melhores estao aqui!");
+		p.sendMessage("§c" + OutfitPvP.prefix + " §8➸ §7Os melhores estao aqui!");
 		p.sendMessage("§a  ");
 		if (p.hasPermission("zey.pvp.slotvip")) {
-			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getInstace(), new Runnable() {
+			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.getInstace(), new Runnable() {
 				public void run() {
 					Bukkit.broadcastMessage(p.getDisplayName() + " §7entrou no servidor!");
 				}
@@ -192,9 +192,7 @@ public class Entrar implements Listener {
 			TheTitle.sendTitle(p, "§d§lKNOCKBACK");
 			TheTitle.sendSubTitle(p, "§7Tente Novamente!");
 
-			if (CombatLog.Sair.contains(p.getName())) {
-				CombatLog.Sair.remove(p.getName());
-			}
+			CombatLog.Sair.remove(p.getName());
 
 			p.getInventory().clear();
 
@@ -215,16 +213,14 @@ public class Entrar implements Listener {
 			TheTitle.sendTitle(p, "§d§lFISHERMAN");
 			TheTitle.sendSubTitle(p, "§7Tente Novamente!");
 
-			if (CombatLog.Sair.contains(p.getName())) {
-				CombatLog.Sair.remove(p.getName());
-			}
+			CombatLog.Sair.remove(p.getName());
 
 			p.getInventory().clear();
 			KitAPI.Kit.add(p.getName());
 			KitAPI.Fisherman.add(p.getName());
 			KitAPI.setitem(p, Material.FISHING_ROD, "§d§lFISHERMAN", 0, Enchantment.DAMAGE_ALL, 0, false);
 
-			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask((Plugin) Main.getInstace(), new Runnable() {
+			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.getInstace(), new Runnable() {
 				public void run() {
 					p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 999999999, 0));
 				}
@@ -238,9 +234,7 @@ public class Entrar implements Listener {
 			TheTitle.sendTitle(p, "§d§lMAIN");
 			TheTitle.sendSubTitle(p, "§7Você morreu.");
 
-			if (CombatLog.Sair.contains(p.getName())) {
-				CombatLog.Sair.remove(p.getName());
-			}
+			CombatLog.Sair.remove(p.getName());
 
 			p.getInventory().clear();
 
@@ -273,14 +267,14 @@ public class Entrar implements Listener {
 			p.getInventory().setItem(14, cogur);
 			p.getInventory().setItem(15, cogum);
 
-			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask((Plugin) Main.getInstace(), new Runnable() {
+			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.getInstace(), new Runnable() {
 				public void run() {
 					p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 100));
 					p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 100, 100));
 				}
 			}, 1L);
 
-			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask((Plugin) Main.getInstace(), new Runnable() {
+			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.getInstace(), new Runnable() {
 				public void run() {
 					p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999999, 0));
 					p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999999, 0));
@@ -295,9 +289,7 @@ public class Entrar implements Listener {
 			TheTitle.sendTitle(p, "§d§lPOTION");
 			TheTitle.sendSubTitle(p, "§7Você morreu.");
 
-			if (CombatLog.Sair.contains(p.getName())) {
-				CombatLog.Sair.remove(p.getName());
-			}
+			CombatLog.Sair.remove(p.getName());
 
 			p.getInventory().clear();
 
@@ -314,14 +306,14 @@ public class Entrar implements Listener {
 			p.getInventory().setItem(0, espada);
 			p.setFireTicks(0);
 
-			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask((Plugin) Main.getInstace(), new Runnable() {
+			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.getInstace(), new Runnable() {
 				public void run() {
 					p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 100));
 					p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 100, 100));
 				}
 			}, 1L);
 
-			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask((Plugin) Main.getInstace(), new Runnable() {
+			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.getInstace(), new Runnable() {
 				public void run() {
 					p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999999, 0));
 				}
@@ -335,9 +327,7 @@ public class Entrar implements Listener {
 			TheTitle.sendTitle(p, "§d§lFPS");
 			TheTitle.sendSubTitle(p, "§7Você morreu.");
 
-			if (CombatLog.Sair.contains(p.getName())) {
-				CombatLog.Sair.remove(p.getName());
-			}
+			CombatLog.Sair.remove(p.getName());
 
 			p.getInventory().clear();
 
@@ -370,7 +360,7 @@ public class Entrar implements Listener {
 			p.getInventory().setItem(14, cogur);
 			p.getInventory().setItem(15, cogum);
 
-			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask((Plugin) Main.getInstace(), new Runnable() {
+			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.getInstace(), new Runnable() {
 				public void run() {
 					p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 100));
 					p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 100, 100));
@@ -393,9 +383,7 @@ public class Entrar implements Listener {
 		BuildCommand.embuild.remove(p);
 		p.setGameMode(GameMode.SURVIVAL);
 		WarpAPI.setWarp(p, "Spawn");
-		if (CombatLog.Sair.contains(p.getName())) {
-			CombatLog.Sair.remove(p.getName());
-		}
+		CombatLog.Sair.remove(p.getName());
 
 		Proteção.setImortal(p, true);
 		Proteção.isImortal(p);
@@ -416,9 +404,9 @@ public class Entrar implements Listener {
 		KitAPI.setitem(p, Material.HOPPER_MINECART, "§dMenu §7(Clique)", 5, Enchantment.DAMAGE_ALL, 0, false);
 		KitAPI.setitem(p, Material.GOLD_NUGGET, "§dDolls Diario §7(Clique)", 7, Enchantment.DAMAGE_ALL, 0, false);
 
-		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask((Plugin) Main.getInstace(), new Runnable() {
+		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OutfitPvP.getInstace(), new Runnable() {
 			public void run() {
-				TheTitle.sendTitle(p, Main.prefix);
+				TheTitle.sendTitle(p, OutfitPvP.prefix);
 				TheTitle.sendSubTitle(p, "§7Você morreu.");
 				p.playSound(p.getLocation(), Sound.ARROW_HIT, 5.0F, 0.0F);
 			}
@@ -441,9 +429,9 @@ public class Entrar implements Listener {
 
 		if (WarpAPI.getWarp(p) == "SCREENSHARE") {
 			MenuWarps.RemoveWarp(p);
-			Bukkit.broadcastMessage(String.valueOf(String.valueOf(Main.prefix)) + " §8➸ §7O jogador(a): §d"
+			Bukkit.broadcastMessage(String.valueOf(OutfitPvP.prefix) + " §8➸ §7O jogador(a): §d"
 					+ p.getName() + " §7§c§lDESLOGOU§7 na §d§lSCREENSHARE!");
-			Bukkit.dispatchCommand((CommandSender) Bukkit.getConsoleSender(),
+			Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
 					"ban " + p.getName() + " [AutoBan] Deslogou enquanto estava em §lSCREENSHARE!");
 			e.setQuitMessage(null);
 		}

@@ -6,12 +6,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Setthemain implements Listener, CommandExecutor {
-	public static Main plugin;
+	public static OutfitPvP plugin;
 
-	public Setthemain(Main main) {
+	public Setthemain(OutfitPvP main) {
 		plugin = main;
 	}
 
@@ -32,7 +32,7 @@ public class Setthemain implements Listener, CommandExecutor {
 				plugin.getConfig().set("themain.yaw", p.getLocation().getYaw());
 				plugin.getConfig().set("themain.world", p.getLocation().getWorld().getName());
 				plugin.saveConfig();
-				p.sendMessage(String.valueOf(Main.prefix) + " §7» §aWarp Main foi setado com sucesso");
+				p.sendMessage(OutfitPvP.prefix + " §7» §aWarp Main foi setado com sucesso");
 			}
 
 			return true;

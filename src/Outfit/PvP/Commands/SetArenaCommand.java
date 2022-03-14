@@ -11,12 +11,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class SetArenaCommand implements Listener, CommandExecutor {
-	public static Main plugin;
+	public static OutfitPvP plugin;
 
-	public SetArenaCommand(Main main) {
+	public SetArenaCommand(OutfitPvP main) {
 		plugin = main;
 	}
 
@@ -25,13 +25,13 @@ public class SetArenaCommand implements Listener, CommandExecutor {
 		if (p.hasPermission("zey.pvp.setarena") && label.equalsIgnoreCase("setarena")) {
 			if (args.length == 0) {
 				p.sendMessage(
-						String.valueOf(Main.prefix) + " §8➸ §cErrado, utilize a sintaxe correta: /setarena (1 - 5)");
+						OutfitPvP.prefix + " §8➸ §cErrado, utilize a sintaxe correta: /setarena (1 - 5)");
 				return true;
 			}
 
 			if (args[0].equalsIgnoreCase("1")) {
-				Main.getPlugin().getConfig();
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aA Arena 1 Foi Setada");
+				OutfitPvP.getPlugin().getConfig();
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aA Arena 1 Foi Setada");
 				plugin.getConfig().set("arena1.x", p.getLocation().getX());
 				plugin.getConfig().set("arena1.y", p.getLocation().getY());
 				plugin.getConfig().set("arena1.z", p.getLocation().getZ());
@@ -39,12 +39,12 @@ public class SetArenaCommand implements Listener, CommandExecutor {
 				plugin.getConfig().set("arena1.pitch", p.getLocation().getPitch());
 				plugin.getConfig().set("arena1.yaw", p.getLocation().getYaw());
 				plugin.getConfig().set("arena1.world", p.getLocation().getWorld().getName());
-				Main.plugin.saveConfig();
+				OutfitPvP.plugin.saveConfig();
 			}
 
 			if (args[0].equalsIgnoreCase("2")) {
-				Main.getPlugin().getConfig();
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aA Arena 2 Foi Setada");
+				OutfitPvP.getPlugin().getConfig();
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aA Arena 2 Foi Setada");
 				plugin.getConfig().set("arena2.x", p.getLocation().getX());
 				plugin.getConfig().set("arena2.y", p.getLocation().getY());
 				plugin.getConfig().set("arena2.z", p.getLocation().getZ());
@@ -52,12 +52,12 @@ public class SetArenaCommand implements Listener, CommandExecutor {
 				plugin.getConfig().set("arena2.pitch", p.getLocation().getPitch());
 				plugin.getConfig().set("arena2.yaw", p.getLocation().getYaw());
 				plugin.getConfig().set("arena2.world", p.getLocation().getWorld().getName());
-				Main.plugin.saveConfig();
+				OutfitPvP.plugin.saveConfig();
 			}
 
 			if (args[0].equalsIgnoreCase("3")) {
-				Main.getPlugin().getConfig();
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aA Arena 3 Foi Setada");
+				OutfitPvP.getPlugin().getConfig();
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aA Arena 3 Foi Setada");
 				plugin.getConfig().set("arena3.x", p.getLocation().getX());
 				plugin.getConfig().set("arena3.y", p.getLocation().getY());
 				plugin.getConfig().set("arena3.z", p.getLocation().getZ());
@@ -65,12 +65,12 @@ public class SetArenaCommand implements Listener, CommandExecutor {
 				plugin.getConfig().set("arena3.pitch", p.getLocation().getPitch());
 				plugin.getConfig().set("arena3.yaw", p.getLocation().getYaw());
 				plugin.getConfig().set("arena3.world", p.getLocation().getWorld().getName());
-				Main.plugin.saveConfig();
+				OutfitPvP.plugin.saveConfig();
 			}
 
 			if (args[0].equalsIgnoreCase("4")) {
-				Main.getPlugin().getConfig();
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aA Arena 4 Foi Setada");
+				OutfitPvP.getPlugin().getConfig();
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aA Arena 4 Foi Setada");
 				plugin.getConfig().set("arena4.x", p.getLocation().getX());
 				plugin.getConfig().set("arena4.y", p.getLocation().getY());
 				plugin.getConfig().set("arena4.z", p.getLocation().getZ());
@@ -78,12 +78,12 @@ public class SetArenaCommand implements Listener, CommandExecutor {
 				plugin.getConfig().set("arena4.pitch", p.getLocation().getPitch());
 				plugin.getConfig().set("arena4.yaw", p.getLocation().getYaw());
 				plugin.getConfig().set("arena4.world", p.getLocation().getWorld().getName());
-				Main.plugin.saveConfig();
+				OutfitPvP.plugin.saveConfig();
 			}
 
 			if (args[0].equalsIgnoreCase("5")) {
-				Main.getPlugin().getConfig();
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aA Arena 5 Foi Setada");
+				OutfitPvP.getPlugin().getConfig();
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aA Arena 5 Foi Setada");
 				plugin.getConfig().set("arena5.x", p.getLocation().getX());
 				plugin.getConfig().set("arena5.y", p.getLocation().getY());
 				plugin.getConfig().set("arena5.z", p.getLocation().getZ());
@@ -91,7 +91,7 @@ public class SetArenaCommand implements Listener, CommandExecutor {
 				plugin.getConfig().set("arena5.pitch", p.getLocation().getPitch());
 				plugin.getConfig().set("arena5.yaw", p.getLocation().getYaw());
 				plugin.getConfig().set("arena5.world", p.getLocation().getWorld().getName());
-				Main.plugin.saveConfig();
+				OutfitPvP.plugin.saveConfig();
 			}
 		}
 

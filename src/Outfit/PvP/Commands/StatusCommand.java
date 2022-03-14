@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 import Outfit.PvP.Account.Grupos;
 import Outfit.PvP.Config.ZeyCoins;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Score.SPlayer;
 
 public class StatusCommand implements CommandExecutor {
@@ -24,11 +24,11 @@ public class StatusCommand implements CommandExecutor {
 				p.sendMessage("§d» §fMarca: " + SPlayer.Marca(p));
 				p.sendMessage("§a");
 				p.sendMessage("§5» §fMatou: §a"
-						+ Main.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".kills"));
+						+ OutfitPvP.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".kills"));
 				p.sendMessage("§9» §fKillStreak: §6"
-						+ Main.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".ks"));
+						+ OutfitPvP.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".ks"));
 				p.sendMessage("§3» §fMorreu: §c"
-						+ Main.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".mortes"));
+						+ OutfitPvP.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".mortes"));
 				p.sendMessage("§b» §fDolls: §2$" + ZeyCoins.getPlayerMoney(p));
 				p.sendMessage("§a» §fClan: §d" + SPlayer.Clan(p));
 				p.sendMessage("§a");
@@ -46,11 +46,11 @@ public class StatusCommand implements CommandExecutor {
 					p.sendMessage("§d» §fMarca: " + SPlayer.Marca(t));
 					p.sendMessage("§a");
 					p.sendMessage("§5» §fMatou: §a"
-							+ Main.plugin.getConfig().getInt("status." + t.getName().toLowerCase() + ".kills"));
+							+ OutfitPvP.plugin.getConfig().getInt("status." + t.getName().toLowerCase() + ".kills"));
 					p.sendMessage("§9» §fKillStreak: §6"
-							+ Main.plugin.getConfig().getInt("status." + t.getName().toLowerCase() + ".ks"));
+							+ OutfitPvP.plugin.getConfig().getInt("status." + t.getName().toLowerCase() + ".ks"));
 					p.sendMessage("§3» §fMorreu: §c"
-							+ Main.plugin.getConfig().getInt("status." + t.getName().toLowerCase() + ".mortes"));
+							+ OutfitPvP.plugin.getConfig().getInt("status." + t.getName().toLowerCase() + ".mortes"));
 					p.sendMessage("§b» §fDolls: §2$" + ZeyCoins.getPlayerMoney(t));
 					p.sendMessage("§a» §fClan: §d" + SPlayer.Clan(t));
 					p.sendMessage("§a");

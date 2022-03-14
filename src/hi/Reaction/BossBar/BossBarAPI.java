@@ -196,7 +196,7 @@ public abstract class BossBarAPI {
 			Object handle = Reflection.getHandle(p);
 			Object connection = Reflection.getField(handle.getClass(), "playerConnection").get(handle);
 			Reflection.getMethod(connection.getClass(), "sendPacket", Reflection.getNMSClass("Packet"))
-					.invoke(connection, new Object[] { packet });
+					.invoke(connection, packet);
 		} catch (Exception e) {
 		}
 	}

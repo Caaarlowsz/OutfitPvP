@@ -42,7 +42,7 @@ public class Switcher implements Listener {
 			final ItemMeta itemm = item.getItemMeta();
 			itemm.setDisplayName("§d§lSWITCHER");
 			item.setItemMeta(itemm);
-			matou.getInventory().addItem(new ItemStack[] { item });
+			matou.getInventory().addItem(item);
 			matou.updateInventory();
 		}
 	}

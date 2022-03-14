@@ -12,7 +12,7 @@ import org.bukkit.entity.Projectile;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.Listener;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import net.minecraft.server.v1_7_R4.EntityFishingHook;
 import net.minecraft.server.v1_7_R4.EntityHuman;
 import net.minecraft.server.v1_7_R4.EntitySnowball;
@@ -28,11 +28,11 @@ public class Cordinha extends EntityFishingHook implements Listener {
 	public boolean lastControllerDead;
 	public boolean isHooked;
 
-	public void Grappler(final Main plugin) {
+	public void Grappler(final OutfitPvP plugin) {
 	}
 
 	public Cordinha(final World world, final EntityHuman entityhuman) {
-		super((net.minecraft.server.v1_7_R4.World) ((CraftWorld) world).getHandle(), entityhuman);
+		super(((CraftWorld) world).getHandle(), entityhuman);
 		this.owner = entityhuman;
 	}
 
@@ -90,13 +90,13 @@ public class Cordinha extends EntityFishingHook implements Listener {
 		this.sb = (Snowball) this.owner.getBukkitEntity()
 				.launchProjectile((Class<? extends Projectile>) Snowball.class);
 		this.controller = ((CraftSnowball) this.sb).getHandle();
-		final PacketPlayOutEntityDestroy packet = new PacketPlayOutEntityDestroy(new int[] { this.controller.getId() });
+		final PacketPlayOutEntityDestroy packet = new PacketPlayOutEntityDestroy(this.controller.getId());
 		Player[] onlinePlayers;
 		for (int length = (onlinePlayers = Bukkit.getOnlinePlayers()).length, i = 0; i < length; ++i) {
 			final Player p = onlinePlayers[i];
-			((CraftPlayer) p).getHandle().playerConnection.sendPacket((Packet) packet);
+			((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet);
 		}
-		((CraftWorld) location.getWorld()).getHandle().addEntity((net.minecraft.server.v1_7_R4.Entity) this);
+		((CraftWorld) location.getWorld()).getHandle().addEntity(this);
 	}
 
 	public void remove() {

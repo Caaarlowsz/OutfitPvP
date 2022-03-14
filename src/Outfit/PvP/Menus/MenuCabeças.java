@@ -1,7 +1,6 @@
 package Outfit.PvP.Menus;
 
-import java.util.ArrayList;
-
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -15,20 +14,20 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import Outfit.PvP.Main.Main;
+import java.util.ArrayList;
 
-public class MenuCabe\u00e7as implements Listener {
+public class MenuCabeças implements Listener {
 	private static ArrayList<String> comchapeu;
 
 	static {
-		MenuCabe\u00e7as.comchapeu = new ArrayList<String>();
+		MenuCabeças.comchapeu = new ArrayList<String>();
 	}
 
-	public MenuCabe\u00e7as(final Main main) {
+	public MenuCabeças(final OutfitPvP main) {
 	}
 
 	public static void guiKits(final Player p) {
-		final Inventory inv = Bukkit.createInventory((InventoryHolder) p, 54, "§8[§dCABECAS§8]");
+		final Inventory inv = Bukkit.createInventory(p, 54, "§8[§dCABECAS§8]");
 		final ItemStack event1234 = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14);
 		final ItemMeta eventv1234 = event1234.getItemMeta();
 		eventv1234.setDisplayName("§c§lVOLTAR");
@@ -99,7 +98,7 @@ public class MenuCabe\u00e7as implements Listener {
 	}
 
 	public boolean onCommand(final CommandSender sender, final Command cmd, final String commandLabel,
-			final String[] args) {
+							 final String[] args) {
 		if (commandLabel.equalsIgnoreCase("warps")) {
 			final Player p = (Player) sender;
 			guiKits(p);
@@ -115,23 +114,23 @@ public class MenuCabe\u00e7as implements Listener {
 
 			if (e.getCurrentItem().getType() == Material.WORKBENCH) {
 				p.getInventory().setHelmet(new ItemStack(Material.WORKBENCH));
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aCabe\u00e7a Alterada Para: §d§lCRAFTING TABLE");
-				MenuCabe\u00e7as.comchapeu.remove(p);
-				MenuCabe\u00e7as.comchapeu.add(p.getName());
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aCabeça Alterada Para: §d§lCRAFTING TABLE");
+				MenuCabeças.comchapeu.remove(p);
+				MenuCabeças.comchapeu.add(p.getName());
 				p.closeInventory();
 			}
 			if (e.getCurrentItem().getType() == Material.REDSTONE_LAMP_OFF) {
 				p.getInventory().setHelmet(new ItemStack(Material.REDSTONE_LAMP_OFF));
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aCabe\u00e7a Alterada Para: §d§lLAMPADA");
-				MenuCabe\u00e7as.comchapeu.remove(p);
-				MenuCabe\u00e7as.comchapeu.add(p.getName());
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aCabeça Alterada Para: §d§lLAMPADA");
+				MenuCabeças.comchapeu.remove(p);
+				MenuCabeças.comchapeu.add(p.getName());
 				p.closeInventory();
 			}
 			if (e.getCurrentItem().getType() == Material.FURNACE) {
 				p.getInventory().setHelmet(new ItemStack(Material.FURNACE));
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aCabe\u00e7a Alterada Para: §d§lFORNALHA");
-				MenuCabe\u00e7as.comchapeu.remove(p);
-				MenuCabe\u00e7as.comchapeu.add(p.getName());
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aCabeça Alterada Para: §d§lFORNALHA");
+				MenuCabeças.comchapeu.remove(p);
+				MenuCabeças.comchapeu.add(p.getName());
 				p.closeInventory();
 			}
 			if (e.getCurrentItem().getType() == Material.STAINED_GLASS_PANE) {
@@ -139,43 +138,43 @@ public class MenuCabe\u00e7as implements Listener {
 				MenuOutros.guiKits(p);
 			}
 			if (e.getCurrentItem().getType() == Material.REDSTONE) {
-				if (!MenuCabe\u00e7as.comchapeu.contains(p.getName())) {
-					p.sendMessage(String.valueOf(Main.prefix)
-							+ " §8➸ §cVoc\u00ea N\u00e3o Est\u00e1 Com Uma Cabe\u00e7a Personalizada");
+				if (!MenuCabeças.comchapeu.contains(p.getName())) {
+					p.sendMessage(OutfitPvP.prefix
+							+ " §8➸ §cVoc\u00ea N\u00e3o Est\u00e1 Com Uma Cabeça Personalizada");
 				} else {
 					p.getInventory().setHelmet(new ItemStack(Material.AIR));
-					p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aCabe\u00e7a Alterada Para: §d§lNENHUMA");
-					MenuCabe\u00e7as.comchapeu.remove(p.getName());
+					p.sendMessage(OutfitPvP.prefix + " §8➸ §aCabeça Alterada Para: §d§lNENHUMA");
+					MenuCabeças.comchapeu.remove(p.getName());
 				}
 				p.closeInventory();
 			}
 			if (e.getCurrentItem().getType() == Material.GLASS) {
 				p.getInventory().setHelmet(new ItemStack(Material.GLASS));
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aCabe\u00e7a Alterada Para: §d§lVIDRO");
-				MenuCabe\u00e7as.comchapeu.remove(p);
-				MenuCabe\u00e7as.comchapeu.add(p.getName());
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aCabeça Alterada Para: §d§lVIDRO");
+				MenuCabeças.comchapeu.remove(p);
+				MenuCabeças.comchapeu.add(p.getName());
 				p.closeInventory();
 			}
 			if (e.getCurrentItem().getType() == Material.ANVIL) {
 				p.getInventory().setHelmet(new ItemStack(Material.ANVIL));
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aCabe\u00e7a Alterada Para: §d§lBIGORNA");
-				MenuCabe\u00e7as.comchapeu.remove(p);
-				MenuCabe\u00e7as.comchapeu.add(p.getName());
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aCabeça Alterada Para: §d§lBIGORNA");
+				MenuCabeças.comchapeu.remove(p);
+				MenuCabeças.comchapeu.add(p.getName());
 				p.closeInventory();
 			}
 			if (e.getCurrentItem().getType() == Material.TNT) {
 				p.getInventory().setHelmet(new ItemStack(Material.TNT));
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aCabe\u00e7a Alterada Para: §d§lTNT");
-				MenuCabe\u00e7as.comchapeu.remove(p);
-				MenuCabe\u00e7as.comchapeu.remove(p);
-				MenuCabe\u00e7as.comchapeu.add(p.getName());
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aCabeça Alterada Para: §d§lTNT");
+				MenuCabeças.comchapeu.remove(p);
+				MenuCabeças.comchapeu.remove(p);
+				MenuCabeças.comchapeu.add(p.getName());
 				p.closeInventory();
 			}
 			if (e.getCurrentItem().getType() == Material.DIAMOND_BLOCK) {
 				p.getInventory().setHelmet(new ItemStack(Material.DIAMOND_BLOCK));
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aCabe\u00e7a Alterada Para: §d§lDIAMANTE");
-				MenuCabe\u00e7as.comchapeu.remove(p);
-				MenuCabe\u00e7as.comchapeu.add(p.getName());
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aCabeça Alterada Para: §d§lDIAMANTE");
+				MenuCabeças.comchapeu.remove(p);
+				MenuCabeças.comchapeu.add(p.getName());
 				p.closeInventory();
 			}
 			if (e.getCurrentItem().getType() == Material.THIN_GLASS) {
@@ -183,16 +182,16 @@ public class MenuCabe\u00e7as implements Listener {
 			}
 			if (e.getCurrentItem().getType() == Material.BOOKSHELF) {
 				p.getInventory().setHelmet(new ItemStack(Material.BOOKSHELF));
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aCabe\u00e7a Alterada Para: §d§lESTANTE");
-				MenuCabe\u00e7as.comchapeu.remove(p);
-				MenuCabe\u00e7as.comchapeu.add(p.getName());
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aCabeça Alterada Para: §d§lESTANTE");
+				MenuCabeças.comchapeu.remove(p);
+				MenuCabeças.comchapeu.add(p.getName());
 				p.closeInventory();
 			}
 			if (e.getCurrentItem().getType() == Material.MOB_SPAWNER) {
 				p.getInventory().setHelmet(new ItemStack(Material.MOB_SPAWNER));
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aCabe\u00e7a Alterada Para: §d§lSPAWNER");
-				MenuCabe\u00e7as.comchapeu.remove(p);
-				MenuCabe\u00e7as.comchapeu.add(p.getName());
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aCabeça Alterada Para: §d§lSPAWNER");
+				MenuCabeças.comchapeu.remove(p);
+				MenuCabeças.comchapeu.add(p.getName());
 				p.closeInventory();
 			}
 		}

@@ -7,7 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 @SuppressWarnings("all")
 public class SManager {
@@ -26,7 +26,7 @@ public class SManager {
 			SManager.players.put(player.getUniqueId(), new SPlayer(player.getName()));
 			player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
 		}
-		Bukkit.getScheduler().runTaskTimerAsynchronously((Plugin) Main.getPlugin(), (Runnable) new Runnable() {
+		Bukkit.getScheduler().runTaskTimerAsynchronously((Plugin) OutfitPvP.getPlugin(), (Runnable) new Runnable() {
 			@Override
 			public synchronized void run() {
 				for (final SPlayer player : SManager.players.values()) {

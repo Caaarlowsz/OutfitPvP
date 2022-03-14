@@ -19,7 +19,7 @@ import net.minecraft.server.v1_7_R4.PacketPlayOutChat;
 
 public class TheTitle implements Listener {
 
-	private static int VERSION = 47;
+	private static final int VERSION = 47;
 
 	@EventHandler
 	public void onPlayerColor(SignChangeEvent e) {
@@ -70,9 +70,9 @@ public class TheTitle implements Listener {
 			Object connection = getField(handle.getClass(), "playerConnection").get(handle);
 			Object packet = ProtocolInjector.PacketTitle.class.getConstructor(
 					new Class[] { ProtocolInjector.PacketTitle.Action.class, Integer.TYPE, Integer.TYPE, Integer.TYPE })
-					.newInstance(new Object[] { ProtocolInjector.PacketTitle.Action.TIMES, Integer.valueOf(fadeIn),
-							Integer.valueOf(stay), Integer.valueOf(fadeOut) });
-			getMethod(connection.getClass(), "sendPacket", new Class[0]).invoke(connection, new Object[] { packet });
+					.newInstance(ProtocolInjector.PacketTitle.Action.TIMES, Integer.valueOf(fadeIn),
+                            Integer.valueOf(stay), Integer.valueOf(fadeOut));
+			getMethod(connection.getClass(), "sendPacket", new Class[0]).invoke(connection, packet);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -118,7 +118,7 @@ public class TheTitle implements Listener {
 
 	private static Object getHandle(Object obj) {
 		try {
-			return getMethod(obj.getClass(), "getHandle", new Class[0]).invoke(obj, new Object[0]);
+			return getMethod(obj.getClass(), "getHandle", new Class[0]).invoke(obj);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -152,6 +152,6 @@ public class TheTitle implements Listener {
 		}
 		IChatBaseComponent cbc = ChatSerializer.a("{\"text\": \"" + message + "\"}");
 		PacketPlayOutChat ppoc = new PacketPlayOutChat(cbc);
-		((CraftPlayer) p).getHandle().playerConnection.sendPacket(ppoc);
+		p.getHandle().playerConnection.sendPacket(ppoc);
 	}
 }

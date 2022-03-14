@@ -27,7 +27,7 @@ import org.bukkit.potion.PotionEffect;
 import Outfit.PvP.APIs.TheTitle;
 import Outfit.PvP.APIs.WarpAPI;
 import Outfit.PvP.Eventos.Habilidade;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 import Outfit.PvP.Utils.Proteção;
 
 public class EventsSumo implements Listener {
@@ -43,17 +43,17 @@ public class EventsSumo implements Listener {
 		final Player p = event.getPlayer();
 		if (((event.getRightClicked() instanceof Player)) && (p.getItemInHand().equals(JoinSumo.ItemS_))) {
 			if (ChamouDuelo.contains(p)) {
-				p.sendMessage(String.valueOf(Main.prefix) + " §8-> §cAguarde para desafiar outro jogador...");
+				p.sendMessage(OutfitPvP.prefix + " §8-> §cAguarde para desafiar outro jogador...");
 				return;
 			}
 			final Player Player2 = (Player) event.getRightClicked();
 			AceitarDuelo.add(Player2);
 			ChamouDuelo.add(p);
-			p.sendMessage(String.valueOf(Main.prefix) + " §8-> §7Voce desafiou o jogador: §d" + Player2.getName()
+			p.sendMessage(OutfitPvP.prefix + " §8-> §7Voce desafiou o jogador: §d" + Player2.getName()
 					+ " §7para um duelo!");
-			Player2.sendMessage(String.valueOf(Main.prefix) + " §8-> §7Voce foi desafiado por: §d" + p.getName()
+			Player2.sendMessage(OutfitPvP.prefix + " §8-> §7Voce foi desafiado por: §d" + p.getName()
 					+ " §7para um duelo!");
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 				public void run() {
 					if (EventsSumo.ChamouDuelo.contains(p)) {
 						EventsSumo.ChamouDuelo.remove(p);
@@ -69,7 +69,7 @@ public class EventsSumo implements Listener {
 		final Player player = event.getPlayer();
 		if (congelar.contains(player)) {
 			event.setTo(player.getLocation());
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 				public void run() {
 					EventsSumo.congelar.remove(player);
 				}
@@ -92,21 +92,21 @@ public class EventsSumo implements Listener {
 				congelar.add(Player2);
 				Proteção.setImortal(Player2, false);
 				Proteção.setImortal(p, false);
-				World w = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("s2.world"));
-				double x = Main.instance.getConfig().getDouble("s2.x");
-				double y = Main.instance.getConfig().getDouble("s2.y");
-				double z = Main.instance.getConfig().getDouble("s2.z");
+				World w = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("s2.world"));
+				double x = OutfitPvP.instance.getConfig().getDouble("s2.x");
+				double y = OutfitPvP.instance.getConfig().getDouble("s2.y");
+				double z = OutfitPvP.instance.getConfig().getDouble("s2.z");
 				Location s2 = new Location(w, x, y, z);
-				s2.setPitch((float) Main.instance.getConfig().getDouble("s2.pitch"));
-				s2.setYaw((float) Main.instance.getConfig().getDouble("s2.yaw"));
+				s2.setPitch((float) OutfitPvP.instance.getConfig().getDouble("s2.pitch"));
+				s2.setYaw((float) OutfitPvP.instance.getConfig().getDouble("s2.yaw"));
 				Player2.teleport(s2);
-				World a = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("s1.world"));
-				double b = Main.instance.getConfig().getDouble("s1.x");
-				double c = Main.instance.getConfig().getDouble("s1.y");
-				double d = Main.instance.getConfig().getDouble("s1.z");
+				World a = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("s1.world"));
+				double b = OutfitPvP.instance.getConfig().getDouble("s1.x");
+				double c = OutfitPvP.instance.getConfig().getDouble("s1.y");
+				double d = OutfitPvP.instance.getConfig().getDouble("s1.z");
 				Location s1 = new Location(a, b, c, d);
-				s1.setPitch((float) Main.instance.getConfig().getDouble("s1.pitch"));
-				s1.setYaw((float) Main.instance.getConfig().getDouble("s1.yaw"));
+				s1.setPitch((float) OutfitPvP.instance.getConfig().getDouble("s1.pitch"));
+				s1.setYaw((float) OutfitPvP.instance.getConfig().getDouble("s1.yaw"));
 				p.teleport(s1);
 
 				TheTitle.sendTitle(Player2, " ");
@@ -134,7 +134,7 @@ public class EventsSumo implements Listener {
 					SpeedSumo.NeginhoSegundos.remove(Player2);
 					SpeedSumo.Partida1 = false;
 				}
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.getPlugin(), new Runnable() {
 					public void run() {
 						Player[] arrayOfPlayer;
 						int j = (arrayOfPlayer = Bukkit.getOnlinePlayers()).length;
@@ -148,7 +148,7 @@ public class EventsSumo implements Listener {
 					}
 				}, 2L);
 
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 					public void run() {
 						if (EventsSumo.congelar.contains(p)) {
 							p.setMaxHealth(20);
@@ -158,7 +158,7 @@ public class EventsSumo implements Listener {
 						}
 					}
 				}, 20L);
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 					public void run() {
 						if (EventsSumo.congelar.contains(p)) {
 							p.setMaxHealth(20);
@@ -168,7 +168,7 @@ public class EventsSumo implements Listener {
 						}
 					}
 				}, 40L);
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 					public void run() {
 						if (EventsSumo.congelar.contains(p)) {
 							p.setMaxHealth(20);
@@ -198,24 +198,24 @@ public class EventsSumo implements Listener {
 				inPvP.remove(m);
 				inPvP.remove(v);
 				m.sendMessage(" ");
-				m.sendMessage(String.valueOf(Main.prefix) + " §8-> §7Voce ganhou o duelo contra: §d" + v.getName());
+				m.sendMessage(OutfitPvP.prefix + " §8-> §7Voce ganhou o duelo contra: §d" + v.getName());
 				m.sendMessage(" ");
 				TheTitle.sendTitle(m, "§d§lSUMO");
 				TheTitle.sendSubTitle(m, "§7Voce ganhou o duelo contra: §d" + v.getName());
 				Proteção.setImortal(v, true);
 				Proteção.setImortal(m, true);
 				v.sendMessage(" ");
-				v.sendMessage(String.valueOf(Main.prefix) + " §8-> §7Voce perdeu o duelo contra: §d" + m.getName());
+				v.sendMessage(OutfitPvP.prefix + " §8-> §7Voce perdeu o duelo contra: §d" + m.getName());
 				v.sendMessage(" ");
 				TheTitle.sendTitle(v, "§d§lSUMO");
 				TheTitle.sendSubTitle(v, "§7Voce perdeu o duelo contra: §d" + m.getName());
-				World w = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("sumo.world"));
-				double x = Main.instance.getConfig().getDouble("sumo.x");
-				double y = Main.instance.getConfig().getDouble("sumo.y");
-				double z = Main.instance.getConfig().getDouble("sumo.z");
+				World w = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("sumo.world"));
+				double x = OutfitPvP.instance.getConfig().getDouble("sumo.x");
+				double y = OutfitPvP.instance.getConfig().getDouble("sumo.y");
+				double z = OutfitPvP.instance.getConfig().getDouble("sumo.z");
 				final Location spawn = new Location(w, x, y, z);
-				spawn.setPitch((float) Main.instance.getConfig().getDouble("sumo.pitch"));
-				spawn.setYaw((float) Main.instance.getConfig().getDouble("sumo.yaw"));
+				spawn.setPitch((float) OutfitPvP.instance.getConfig().getDouble("sumo.pitch"));
+				spawn.setYaw((float) OutfitPvP.instance.getConfig().getDouble("sumo.yaw"));
 				m.teleport(spawn);
 
 				m.setGameMode(GameMode.SURVIVAL);
@@ -224,7 +224,7 @@ public class EventsSumo implements Listener {
 				for (PotionEffect effect : m.getActivePotionEffects()) {
 					m.removePotionEffect(effect.getType());
 				}
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.getPlugin(), new Runnable() {
 					public void run() {
 						v.teleport(spawn);
 						v.setGameMode(GameMode.SURVIVAL);
@@ -242,7 +242,7 @@ public class EventsSumo implements Listener {
 				JogandoSumoPlayer.remove(m);
 				JogandoSair.remove(m.getName());
 				JogandoSair.remove(v.getName());
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.getPlugin(), new Runnable() {
 					public void run() {
 						v.getInventory().clear();
 						m.getInventory().clear();
@@ -279,14 +279,14 @@ public class EventsSumo implements Listener {
 	public void onPlayerLeft(PlayerQuitEvent e) {
 		Player p = e.getPlayer();
 		if (JogandoSair.containsKey(p.getName())) {
-			Player t = Bukkit.getServer().getPlayer((String) JogandoSair.get(p.getName()));
-			World w = Bukkit.getServer().getWorld(Main.instance.getConfig().getString("sumo.world"));
-			double x = Main.instance.getConfig().getDouble("sumo.x");
-			double y = Main.instance.getConfig().getDouble("sumo.y");
-			double z = Main.instance.getConfig().getDouble("sumo.z");
+			Player t = Bukkit.getServer().getPlayer(JogandoSair.get(p.getName()));
+			World w = Bukkit.getServer().getWorld(OutfitPvP.instance.getConfig().getString("sumo.world"));
+			double x = OutfitPvP.instance.getConfig().getDouble("sumo.x");
+			double y = OutfitPvP.instance.getConfig().getDouble("sumo.y");
+			double z = OutfitPvP.instance.getConfig().getDouble("sumo.z");
 			Location spawn = new Location(w, x, y, z);
-			spawn.setPitch((float) Main.instance.getConfig().getDouble("sumo.pitch"));
-			spawn.setYaw((float) Main.instance.getConfig().getDouble("sumo.yaw"));
+			spawn.setPitch((float) OutfitPvP.instance.getConfig().getDouble("sumo.pitch"));
+			spawn.setYaw((float) OutfitPvP.instance.getConfig().getDouble("sumo.yaw"));
 			t.teleport(spawn);
 			JogandoSair.remove(t.getName());
 			JogandoSair.remove(p.getName());
@@ -303,7 +303,7 @@ public class EventsSumo implements Listener {
 			for (PotionEffect effect : t.getActivePotionEffects()) {
 				t.removePotionEffect(effect.getType());
 			}
-			t.sendMessage(String.valueOf(Main.prefix) + " §8-> §7O jogador §d§l" + p.getName()
+			t.sendMessage(OutfitPvP.prefix + " §8-> §7O jogador §d§l" + p.getName()
 					+ " §7deslogou durante o duelo!");
 			t.getInventory().setItem(3, JoinSumo.ItemS_);
 			t.getInventory().setItem(5, JoinSumo.CinzaS);
@@ -336,7 +336,7 @@ public class EventsSumo implements Listener {
 		Player p = event.getPlayer();
 		if ((WarpAPI.getWarp(p) == "Sumo") && (!JogandoSumoPlayer.contains(p))
 				&& (!event.getMessage().startsWith("/spawn")) && (!event.getMessage().startsWith("/score"))) {
-			event.getPlayer().sendMessage(String.valueOf(Main.prefix)
+			event.getPlayer().sendMessage(OutfitPvP.prefix
 					+ " §8-> §cVocê não pode utilizar comandos na §c§lSumo§7. §cUtilize /spawn§7!");
 			event.setCancelled(true);
 		}
@@ -347,7 +347,7 @@ public class EventsSumo implements Listener {
 		Player p = event.getPlayer();
 		if ((JogandoSumoPlayer.contains(p)) && (WarpAPI.getWarp(p) == "Sumo")
 				&& (!event.getMessage().startsWith("/score"))) {
-			event.getPlayer().sendMessage(String.valueOf(Main.prefix)
+			event.getPlayer().sendMessage(OutfitPvP.prefix
 					+ " §8-> §cVoce está impossibilitado de utilizar comandos durante o duelo!");
 			event.setCancelled(true);
 		}

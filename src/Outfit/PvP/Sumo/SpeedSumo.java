@@ -12,7 +12,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class SpeedSumo implements Listener {
 	public static boolean Partida1 = false;
@@ -37,8 +37,8 @@ public class SpeedSumo implements Listener {
 				Partida1 = true;
 				Iniciou.add(p);
 				Trocar(p);
-				p.sendMessage(String.valueOf(Main.prefix) + " §8-> §aVoce entrou na fila para o sumo rapido.");
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+				p.sendMessage(OutfitPvP.prefix + " §8-> §aVoce entrou na fila para o sumo rapido.");
+				Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 					public void run() {
 						SpeedSumo.NeginhoSegundos.add(p);
 					}
@@ -65,8 +65,8 @@ public class SpeedSumo implements Listener {
 				Nome = "";
 				Iniciou.remove(p);
 				NeginhoSegundos.remove(p);
-				p.sendMessage(String.valueOf(Main.prefix) + " §8-> §cVoce saiu da fila de sumo rápido.");
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+				p.sendMessage(OutfitPvP.prefix + " §8-> §cVoce saiu da fila de sumo rápido.");
+				Bukkit.getScheduler().scheduleSyncDelayedTask(OutfitPvP.plugin, new Runnable() {
 					public void run() {
 						p.getInventory().setItem(5, JoinSumo.CinzaS);
 						p.updateInventory();

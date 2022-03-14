@@ -6,12 +6,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class SetSpawn implements CommandExecutor, Listener {
-	public static Main plugin;
+	public static OutfitPvP plugin;
 
-	public SetSpawn(Main main) {
+	public SetSpawn(OutfitPvP main) {
 		plugin = main;
 	}
 
@@ -32,7 +32,7 @@ public class SetSpawn implements CommandExecutor, Listener {
 				plugin.getConfig().set("spawn.yaw", p1.getLocation().getYaw());
 				plugin.getConfig().set("spawn.world", p1.getLocation().getWorld().getName());
 				plugin.saveConfig();
-				p1.sendMessage(String.valueOf(Main.prefix) + " §7» §aWarp Spawn foi setado com sucesso");
+				p1.sendMessage(OutfitPvP.prefix + " §7» §aWarp Spawn foi setado com sucesso");
 				p1.getWorld().setSpawnLocation(p1.getLocation().getBlockX(), p1.getLocation().getBlockY(),
 						p1.getLocation().getBlockZ());
 			}

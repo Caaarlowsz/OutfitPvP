@@ -20,7 +20,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import Outfit.PvP.Essencial.KitAPI;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class Thresh implements Listener {
 	public static HashMap<String, Long> cooldown;
@@ -31,7 +31,7 @@ public class Thresh implements Listener {
 		Thresh.tiros = new HashMap<String, Snowball>();
 	}
 
-	public Thresh(final Main main) {
+	public Thresh(final OutfitPvP main) {
 	}
 
 	@EventHandler
@@ -49,10 +49,10 @@ public class Thresh implements Listener {
 				Thresh.tiros.put(p.getName(), tiro);
 				Thresh.cooldown.put(p.getName(), System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(15L));
 				p.playSound(p.getLocation(), Sound.GLASS, 1.0f, 1.0f);
-				p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §aVocê usou seu Thresh.");
+				p.sendMessage(OutfitPvP.prefix + " §8➸ §aVocê usou seu Thresh.");
 				return;
 			}
-			p.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cAguarde o cooldown terminar.");
+			p.sendMessage(OutfitPvP.prefix + " §8➸ §cAguarde o cooldown terminar.");
 		}
 	}
 
@@ -73,7 +73,7 @@ public class Thresh implements Listener {
 					hit.teleport(ploc);
 					hit.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 100, 1));
 					hit.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 1));
-					hit.sendMessage(String.valueOf(Main.prefix) + " §8➸ §cVocê foi pego por um Thresh.");
+					hit.sendMessage(OutfitPvP.prefix + " §8➸ §cVocê foi pego por um Thresh.");
 				}
 			}
 		}

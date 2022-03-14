@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
 import Outfit.PvP.APIs.TheTitle;
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class BroadcastCommand implements CommandExecutor, Listener {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -16,7 +16,7 @@ public class BroadcastCommand implements CommandExecutor, Listener {
 			if (sender.hasPermission("zey.pvp.bc")) {
 				if (args.length == 0) {
 					sender.sendMessage(
-							String.valueOf(Main.prefix) + " §8➸ §cErrado, utilize a sintaxe Correta: /bc [Mensagem]");
+                            OutfitPvP.prefix + " §8➸ §cErrado, utilize a sintaxe Correta: /bc [Mensagem]");
 					return true;
 				}
 
@@ -27,10 +27,10 @@ public class BroadcastCommand implements CommandExecutor, Listener {
 				int var7;
 				for (var7 = 0; var7 < var8; ++var7) {
 					String msg2 = var9[var7];
-					msg = String.valueOf(String.valueOf(String.valueOf(msg))) + msg2 + " ";
+					msg = String.valueOf(msg) + msg2 + " ";
 				}
 
-				Bukkit.broadcastMessage(String.valueOf(Main.prefix) + " §8➸ §f" + msg.replace("&", "§"));
+				Bukkit.broadcastMessage(OutfitPvP.prefix + " §8➸ §f" + msg.replace("&", "§"));
 				Player[] var11;
 				var8 = (var11 = Bukkit.getOnlinePlayers()).length;
 

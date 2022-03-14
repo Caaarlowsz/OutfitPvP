@@ -6,12 +6,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import Outfit.PvP.Main.Main;
+import com.github.caaarlowsz.outfitmc.kitpvp.OutfitPvP;
 
 public class SetFish implements Listener, CommandExecutor {
-	public static Main plugin;
+	public static OutfitPvP plugin;
 
-	public SetFish(Main main) {
+	public SetFish(OutfitPvP main) {
 		plugin = main;
 	}
 
@@ -32,7 +32,7 @@ public class SetFish implements Listener, CommandExecutor {
 				plugin.getConfig().set("fish.yaw", p.getLocation().getYaw());
 				plugin.getConfig().set("fish.world", p.getLocation().getWorld().getName());
 				plugin.saveConfig();
-				p.sendMessage(String.valueOf(Main.prefix) + " §7» §aWarp Fisherman foi setada com sucesso");
+				p.sendMessage(OutfitPvP.prefix + " §7» §aWarp Fisherman foi setada com sucesso");
 			}
 
 			return true;
